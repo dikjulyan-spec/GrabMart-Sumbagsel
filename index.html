@@ -439,19 +439,121 @@ footer {
 .reveal { opacity:0; transform:translateY(28px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.vis { opacity:1; transform:translateY(0); }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE TABLET ── */
 @media(max-width:920px) {
   .nav-links { display:none; }
-  .reg-wrap { grid-template-columns:1fr; }
+  .nav-cta { font-size:.78rem; padding:8px 14px; }
+  .reg-wrap { grid-template-columns:1fr; gap:36px; }
   .form-card { position:static; }
   .kontak-grid { grid-template-columns:1fr 1fr; }
+  .testi-grid { grid-template-columns:1fr; }
+  .why-grid { grid-template-columns:1fr 1fr; }
+  .mc-grid { grid-template-columns:1fr 1fr; }
+  section { padding:60px 5vw; }
 }
+
+/* ── RESPONSIVE MOBILE ── */
 @media(max-width:600px) {
-  h1 { font-size:2.3rem; }
-  .hero-stats { gap:20px; }
+  :root { --nav-h: 60px; }
+
+  /* NAV */
+  nav { padding: 0 4vw; }
+  .nav-brand { font-size:1.1rem; }
+  .nav-brand .pill { display:none; }
+  .nav-cta { font-size:.75rem; padding:7px 12px; }
+
+  /* HERO */
+  .hero { padding: 90px 4vw 60px; min-height: auto; }
+  h1 { font-size:2rem; line-height:1.1; }
+  h1 .muted { font-size:.6em; }
+  .hero-desc { font-size:.92rem; }
+  .hero-btns { flex-direction:column; gap:10px; }
+  .hero-btns .btn-g, .hero-btns .btn-o { width:100%; justify-content:center; font-size:.9rem; padding:13px 20px; }
+  .hero-stats { gap:16px; flex-wrap:wrap; margin-top:36px; }
+  .h-stat .n { font-size:1.6rem; }
+  .h-stat .l { font-size:.72rem; }
+  .official-strip { flex-wrap:wrap; gap:6px; }
+  .official-strip .src { font-size:.68rem; }
+
+  /* SECTIONS */
+  section { padding:50px 4vw; }
+  .sec-title { font-size:1.5rem; }
+  .sec-sub { font-size:.85rem; margin-bottom:32px; }
+
+  /* GRIDS */
+  .why-grid { grid-template-columns:1fr; gap:14px; }
+  .testi-grid { grid-template-columns:1fr; }
+  .doc-grid { grid-template-columns:1fr 1fr; gap:12px; }
+  .mc-grid { grid-template-columns:1fr; }
   .mods { grid-template-columns:1fr; }
   .kontak-grid { grid-template-columns:1fr; }
   .form-row { grid-template-columns:1fr; }
+
+  /* CARDS */
+  .why-card { padding:20px; }
+  .wc-ico { width:44px; height:44px; font-size:1.6rem; }
+  .doc-card { padding:18px 12px; }
+  .doc-ico { font-size:1.8rem; }
+  .doc-nm { font-size:.82rem; }
+  .doc-ds { font-size:.72rem; }
+
+  /* STEPS */
+  .steps { gap:0; }
+  .step { gap:14px; padding-bottom:24px; }
+  .step-n { width:32px; height:32px; font-size:.78rem; }
+  .step-body .st { font-size:.88rem; }
+  .step-body .sd { font-size:.8rem; }
+
+  /* FORM CARD */
+  .form-card { padding:24px 18px; border-radius:16px; }
+  .form-card h3 { font-size:1.2rem; }
+  .f-submit { font-size:.92rem; padding:14px; }
+
+  /* EDU TABS */
+  .edu-tabs { gap:8px; }
+  .edu-tab { padding:7px 12px; font-size:.75rem; }
+
+  /* LOGIN FLOW */
+  #t-login > div:first-child + div { grid-template-columns:1fr !important; gap:20px !important; }
+  .lf-step { padding:12px; gap:10px; }
+  .lf-n { width:26px; height:26px; font-size:.75rem; }
+  .lf-c .lf-t { font-size:.83rem; }
+  .lf-c .lf-d { font-size:.76rem; }
+  .trouble { grid-template-columns:1fr; }
+
+  /* MERCHANT */
+  .mc-body { padding:14px 16px; }
+  .mc-name { font-size:.95rem; }
+  .mc-stats { gap:8px; }
+
+  /* FAQ */
+  .faq-q { font-size:.85rem; padding:15px 16px; }
+  .faq-item.open .faq-a { padding:0 16px 15px; }
+
+  /* KONTAK */
+  .kon-card { padding:20px; }
+  .app-bar { padding:24px; gap:20px; }
+  .app-bar-text h3 { font-size:1.1rem; }
+  .app-btns { flex-direction:column; }
+  .app-btn { justify-content:center; }
+
+  /* FOOTER */
+  footer { flex-direction:column; align-items:flex-start; gap:14px; padding:24px 4vw; }
+  .flinks { flex-wrap:wrap; gap:12px; }
+  .flinks a { font-size:.78rem; }
+
+  /* HERO STAT ROW */
+  .hero-stats { display:grid; grid-template-columns:1fr 1fr; }
+
+  /* DOC INFO BAR */
+  .doc-info-bar { font-size:.78rem; flex-wrap:wrap; }
+
+  /* MOCK BROWSER */
+  .mock { font-size:.82rem; }
+
+  /* TESTIMONIAL */
+  .testi-card { padding:20px; }
+  .testi-card .quote { font-size:.82rem; }
 }
 </style>
 </head>
@@ -474,8 +576,27 @@ footer {
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#kontak">Kontak</a></li>
   </ul>
-  <a href="https://grb.to/PendaftaranGM" target="_blank" class="nav-cta">🛒 Daftar Sekarang</a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="https://grb.to/PendaftaranGM" target="_blank" class="nav-cta">🛒 Daftar</a>
+    <button id="ham-btn" onclick="toggleMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--white);flex-direction:column;gap:5px;">
+      <span style="display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;"></span>
+      <span style="display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;"></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div id="mob-menu" style="display:none;position:fixed;inset:0;z-index:850;background:rgba(8,12,8,.97);backdrop-filter:blur(12px);padding:90px 6vw 40px;flex-direction:column;gap:8px;">
+  <a href="#why" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Keuntungan</a>
+  <a href="#daftar" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Cara Daftar</a>
+  <a href="#dokumen" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Dokumen</a>
+  <a href="#edukasi" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Panduan Edukasi</a>
+  <a href="#merchant" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Merchant Sukses</a>
+  <a href="#faq" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">FAQ</a>
+  <a href="#kontak" onclick="closeMenu()" style="color:var(--white);font-size:1.2rem;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(0,177,79,.12);display:block;">Kontak</a>
+  <a href="https://grb.to/PendaftaranGM" target="_blank" class="btn-g" style="margin-top:20px;justify-content:center;font-size:1rem;">🛒 Daftar Sekarang — Gratis</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1438,6 +1559,28 @@ window.addEventListener('scroll', () => {
   const d = document.documentElement;
   document.getElementById('pbar').style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
 });
+
+// Hamburger menu
+const hamBtn = document.getElementById('ham-btn');
+const mobMenu = document.getElementById('mob-menu');
+function showHamIfMobile() {
+  if (window.innerWidth <= 920) {
+    hamBtn.style.display = 'flex';
+  } else {
+    hamBtn.style.display = 'none';
+    mobMenu.style.display = 'none';
+  }
+}
+showHamIfMobile();
+window.addEventListener('resize', showHamIfMobile);
+
+function toggleMenu() {
+  const isOpen = mobMenu.style.display === 'flex';
+  mobMenu.style.display = isOpen ? 'none' : 'flex';
+}
+function closeMenu() {
+  mobMenu.style.display = 'none';
+}
 
 // Reveal on scroll
 const obs = new IntersectionObserver(entries => {
