@@ -349,6 +349,8 @@ footer{background:linear-gradient(135deg,#0D2010,#1A3A1A);padding:44px 5vw;displ
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spinSlow{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes floatBadge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .reveal.vis{opacity:1;transform:translateY(0)}
 
@@ -365,6 +367,8 @@ footer{background:linear-gradient(135deg,#0D2010,#1A3A1A);padding:44px 5vw;displ
   .kontak-grid{grid-template-columns:1fr 1fr}
   .sg-grid{grid-template-columns:1fr}
   .roles{grid-template-columns:1fr}
+  .hero-2col{grid-template-columns:1fr!important;gap:0!important}
+  .hero-illustration{display:none!important}
   section{padding:60px 5vw}
 }
 
@@ -443,35 +447,168 @@ footer{background:linear-gradient(135deg,#0D2010,#1A3A1A);padding:44px 5vw;displ
 </div>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" style="padding-top:calc(var(--nav-h) + 40px);padding-bottom:60px;">
   <div class="hero-blobs">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
   </div>
-  <div class="hero-float">
-    <div class="hero-float-item">🥬</div>
-    <div class="hero-float-item">🛒</div>
-    <div class="hero-float-item">🍎</div>
-    <div class="hero-float-item">📦</div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="pulse"></span>Merchant Resmi GrabMart — Palembang, Lampung, Jambi, Bengkulu</div>
-    <h1>Kembangkan Bisnis<br>Anda Bersama <span class="g">GrabMart</span><span class="sub">Daftar Merchant GrabMart di Wilayah Sumbagsel — Gratis!</span></h1>
-    <p class="hero-desc">Daftar gratis sebagai merchant GrabMart di <strong>Palembang, Bandar Lampung, Jambi, Bengkulu, dan Pangkal Pinang</strong>. Toko aktif dalam 3–10 hari kerja, kelola dari HP, dan terima pembayaran otomatis ke rekening bank Anda.</p>
-    <div class="hero-btns">
-      <a href="https://grb.to/PendaftaranGM" target="_blank" class="btn-primary">🛒 Daftar Sekarang — Gratis</a>
-      <a href="#edukasi" class="btn-secondary">📚 Panduan Lengkap</a>
+  <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;width:100%;max-width:1200px;margin:0 auto;" class="hero-2col">
+    <!-- KIRI: TEKS -->
+    <div class="hero-inner" style="max-width:100%;">
+      <div class="hero-badge"><span class="pulse"></span>Merchant Resmi GrabMart — Palembang, Lampung, Jambi, Bengkulu</div>
+      <h1>Kembangkan Bisnis<br>Anda Bersama <span class="g">GrabMart</span><span class="sub">Daftar Merchant GrabMart di Wilayah Sumbagsel — Gratis!</span></h1>
+      <p class="hero-desc">Daftar gratis sebagai merchant GrabMart di <strong>Palembang, Bandar Lampung, Jambi, Bengkulu, dan Pangkal Pinang</strong>. Toko aktif dalam 3–10 hari kerja dan terima pembayaran otomatis ke rekening Anda.</p>
+      <div class="hero-btns">
+        <a href="https://grb.to/PendaftaranGM" target="_blank" class="btn-primary">🛒 Daftar Sekarang — Gratis</a>
+        <a href="#edukasi" class="btn-secondary">📚 Panduan Lengkap</a>
+      </div>
+      <div class="hero-stats" style="grid-template-columns:repeat(2,1fr);margin-top:32px;">
+        <div class="h-stat"><div class="n">3–10</div><div class="l">Hari kerja toko siap aktif</div></div>
+        <div class="h-stat"><div class="n">258+</div><div class="l">Kota layanan di Indonesia</div></div>
+        <div class="h-stat"><div class="n">Rp 0</div><div class="l">Biaya pendaftaran</div></div>
+        <div class="h-stat"><div class="n">3 Hari</div><div class="l">Maks. pembayaran pertama</div></div>
+      </div>
+      <div class="off-strip">
+        <span class="off-badge">✓ Sumber Resmi</span>
+        <span class="off-src">Data dari <a href="https://www.grab.com/id/en/merchant/" target="_blank">grab.com/id/en/merchant</a></span>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="h-stat"><div class="n">3–10</div><div class="l">Hari kerja toko siap aktif</div></div>
-      <div class="h-stat"><div class="n">258+</div><div class="l">Kota layanan di Indonesia</div></div>
-      <div class="h-stat"><div class="n">Rp 0</div><div class="l">Biaya pendaftaran</div></div>
-      <div class="h-stat"><div class="n">3 Hari</div><div class="l">Maks. pembayaran pertama</div></div>
-    </div>
-    <div class="off-strip">
-      <span class="off-badge">✓ Sumber Resmi</span>
-      <span class="off-src">Data dari <a href="https://www.grab.com/id/en/merchant/" target="_blank">grab.com/id/en/merchant</a> &amp; <a href="https://help.grab.com/merchant" target="_blank">help.grab.com/merchant</a></span>
+
+    <!-- KANAN: ILUSTRASI SVG -->
+    <div class="hero-illustration" style="position:relative;display:flex;align-items:center;justify-content:center;">
+
+      <!-- Background circle dekoratif -->
+      <div style="position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,177,79,.12),rgba(0,177,79,.03));top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+      <div style="position:absolute;width:340px;height:340px;border-radius:50%;border:2px dashed rgba(0,177,79,.2);top:50%;left:50%;transform:translate(-50%,-50%);animation:spinSlow 20s linear infinite;"></div>
+
+      <!-- SVG Ilustrasi Produk Segar -->
+      <svg viewBox="0 0 500 500" width="460" height="460" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:1;filter:drop-shadow(0 20px 40px rgba(0,177,79,.15));">
+
+        <!-- KERANJANG BELANJA -->
+        <g transform="translate(130,200)">
+          <!-- Body keranjang -->
+          <path d="M20,40 Q10,40 8,50 L0,120 Q-2,135 15,135 L225,135 Q242,135 240,120 L232,50 Q230,40 220,40 Z" fill="#00B14F" opacity="0.95"/>
+          <!-- Garis keranjang -->
+          <line x1="60" y1="40" x2="55" y2="135" stroke="#009040" stroke-width="2" opacity="0.5"/>
+          <line x1="120" y1="40" x2="120" y2="135" stroke="#009040" stroke-width="2" opacity="0.5"/>
+          <line x1="180" y1="40" x2="185" y2="135" stroke="#009040" stroke-width="2" opacity="0.5"/>
+          <!-- Handle kiri -->
+          <path d="M60,40 Q50,-10 90,-20 Q120,-28 120,0" fill="none" stroke="#00B14F" stroke-width="8" stroke-linecap="round"/>
+          <!-- Handle kanan -->
+          <path d="M180,40 Q190,-10 150,-20 Q120,-28 120,0" fill="none" stroke="#00B14F" stroke-width="8" stroke-linecap="round"/>
+          <!-- Bayangan keranjang -->
+          <ellipse cx="120" cy="145" rx="90" ry="8" fill="rgba(0,0,0,.08)"/>
+        </g>
+
+        <!-- PRODUK DALAM KERANJANG -->
+
+        <!-- WORTEL -->
+        <g transform="translate(155,130) rotate(-15)">
+          <ellipse cx="12" cy="35" rx="12" ry="35" fill="#FF8C00"/>
+          <ellipse cx="12" cy="35" rx="8" ry="31" fill="#FFA500" opacity="0.6"/>
+          <!-- daun wortel -->
+          <path d="M12,0 Q5,-20 0,-30" stroke="#2E8B2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M12,0 Q19,-22 24,-32" stroke="#2E8B2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M12,0 Q12,-25 12,-35" stroke="#228B22" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- TOMAT -->
+        <g transform="translate(230,105)">
+          <circle cx="30" cy="40" r="30" fill="#FF4136"/>
+          <circle cx="20" cy="30" r="8" fill="#FF6B6B" opacity="0.5"/>
+          <!-- Tangkai tomat -->
+          <path d="M30,10 Q25,-5 20,-10" stroke="#228B22" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M30,10 Q35,-5 40,-8" stroke="#228B22" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M30,10 Q30,-5 30,-12" stroke="#2E8B2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="30" cy="11" rx="8" ry="4" fill="#228B22" opacity="0.8"/>
+        </g>
+
+        <!-- BAYAM / DAUN HIJAU -->
+        <g transform="translate(180,85)">
+          <ellipse cx="20" cy="25" rx="20" ry="28" fill="#22C55E" transform="rotate(-20,20,25)"/>
+          <ellipse cx="20" cy="25" rx="14" ry="20" fill="#16A34A" opacity="0.5" transform="rotate(-20,20,25)"/>
+          <line x1="20" y1="53" x2="20" y2="5" stroke="#15803D" stroke-width="2" transform="rotate(-20,20,25)"/>
+        </g>
+
+        <!-- APEL MERAH -->
+        <g transform="translate(290,160)">
+          <path d="M35,15 Q65,10 70,45 Q75,75 50,90 Q35,95 20,90 Q-5,75 0,45 Q5,10 35,15 Z" fill="#DC2626"/>
+          <path d="M35,15 Q20,12 15,40 Q12,60 25,80" fill="none" stroke="#B91C1C" stroke-width="3" opacity="0.4"/>
+          <circle cx="25" cy="30" r="8" fill="#EF4444" opacity="0.4"/>
+          <!-- Tangkai -->
+          <path d="M35,15 Q38,-5 42,-15" stroke="#78350F" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Daun kecil -->
+          <ellipse cx="48" cy="-10" rx="10" ry="6" fill="#22C55E" transform="rotate(30,48,-10)"/>
+        </g>
+
+        <!-- BROKOLI -->
+        <g transform="translate(145,150)">
+          <!-- Batang -->
+          <rect x="18" y="50" width="12" height="30" fill="#6B8E23" rx="4"/>
+          <!-- Kepala brokoli -->
+          <circle cx="12" cy="42" r="16" fill="#228B22"/>
+          <circle cx="28" cy="38" r="14" fill="#2E8B2E"/>
+          <circle cx="20" cy="30" r="12" fill="#228B22"/>
+          <circle cx="10" cy="30" r="10" fill="#166534"/>
+          <circle cx="30" cy="30" r="10" fill="#15803D"/>
+          <circle cx="20" cy="22" r="9" fill="#166534"/>
+        </g>
+
+        <!-- JERUK -->
+        <g transform="translate(310,230)">
+          <circle cx="30" cy="30" r="30" fill="#F97316"/>
+          <circle cx="30" cy="30" r="26" fill="#FB923C" opacity="0.5"/>
+          <circle cx="20" cy="22" r="7" fill="#FDBA74" opacity="0.4"/>
+          <!-- segmen jeruk -->
+          <line x1="30" y1="4" x2="30" y2="56" stroke="#EA580C" stroke-width="1.5" opacity="0.4"/>
+          <line x1="4" y1="30" x2="56" y2="30" stroke="#EA580C" stroke-width="1.5" opacity="0.4"/>
+          <line x1="12" y1="12" x2="48" y2="48" stroke="#EA580C" stroke-width="1.5" opacity="0.3"/>
+          <line x1="48" y1="12" x2="12" y2="48" stroke="#EA580C" stroke-width="1.5" opacity="0.3"/>
+          <!-- Tangkai -->
+          <path d="M30,0 Q32,-12 35,-18" stroke="#78350F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="-15" rx="9" ry="5" fill="#22C55E" transform="rotate(20,38,-15)"/>
+        </g>
+
+        <!-- LABEL HARGA / TAG -->
+        <g transform="translate(340,140)">
+          <rect x="0" y="0" width="90" height="34" rx="17" fill="#00B14F"/>
+          <text x="45" y="22" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="Nunito,sans-serif">Gratis Daftar!</text>
+        </g>
+
+        <!-- LABEL SEGAR -->
+        <g transform="translate(60,170)">
+          <rect x="0" y="0" width="80" height="30" rx="15" fill="#22C55E"/>
+          <text x="40" y="20" text-anchor="middle" fill="white" font-size="12" font-weight="800" font-family="Nunito,sans-serif">🌿 Segar!</text>
+        </g>
+
+        <!-- BINTANG DEKORATIF -->
+        <g fill="#FFD60A" opacity="0.8">
+          <polygon points="70,60 73,70 83,70 75,76 78,86 70,80 62,86 65,76 57,70 67,70" transform="scale(0.7) translate(30,20)"/>
+          <polygon points="420,80 423,90 433,90 425,96 428,106 420,100 412,106 415,96 407,90 417,90" transform="scale(0.5) translate(40,60)"/>
+          <polygon points="440,300 443,310 453,310 445,316 448,326 440,320 432,326 435,316 427,310 437,310" transform="scale(0.6) translate(-20,10)"/>
+        </g>
+
+        <!-- GELEMBUNG KECIL DEKORATIF -->
+        <circle cx="95" cy="200" r="6" fill="rgba(0,177,79,.2)" opacity="0.8"/>
+        <circle cx="400" cy="180" r="8" fill="rgba(249,115,22,.2)" opacity="0.8"/>
+        <circle cx="420" cy="260" r="5" fill="rgba(34,197,94,.3)" opacity="0.8"/>
+        <circle cx="80" cy="300" r="7" fill="rgba(255,214,10,.25)" opacity="0.8"/>
+
+      </svg>
+
+      <!-- Floating badge atas -->
+      <div style="position:absolute;top:30px;right:10px;background:#fff;border:2px solid var(--green-border);border-radius:14px;padding:10px 16px;box-shadow:0 8px 24px rgba(0,177,79,.15);animation:floatBadge 3s ease-in-out infinite;">
+        <div style="font-size:.68rem;font-weight:800;color:var(--green-dark);text-transform:uppercase;letter-spacing:.06em;">⚡ Toko Aktif</div>
+        <div style="font-size:1.1rem;font-weight:900;color:var(--text);">3–10 Hari</div>
+      </div>
+
+      <!-- Floating badge bawah -->
+      <div style="position:absolute;bottom:40px;left:10px;background:#fff;border:2px solid var(--green-border);border-radius:14px;padding:10px 16px;box-shadow:0 8px 24px rgba(0,177,79,.15);animation:floatBadge 3s ease-in-out infinite;animation-delay:1.5s;">
+        <div style="font-size:.68rem;font-weight:800;color:var(--green-dark);text-transform:uppercase;letter-spacing:.06em;">💰 Pembayaran</div>
+        <div style="font-size:1.1rem;font-weight:900;color:var(--text);">Maks. 3 Hari</div>
+      </div>
+
     </div>
   </div>
 </section>
