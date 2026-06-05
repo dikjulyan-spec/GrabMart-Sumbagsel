@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grabmart-sumbagsel.com/sitemap.xml
