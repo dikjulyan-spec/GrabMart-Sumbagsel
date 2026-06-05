@@ -1249,12 +1249,24 @@ async function loadKontak() {
     const btnContainer = waBubble.querySelector('.wa-kota-btns');
     if (!btnContainer) return;
 
-    btnContainer.innerHTML = data.map(k => `
-      <button onclick="sendWA('${k.wa}','${k.pesan}')"
-        style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;width:100%;">
-        📍 Daftar di ${k.kota}
-      </button>
-    `).join('');
+    const ikonKota = {
+      'palembang': '🏙️', 'Palembang': '🏙️',
+      'lampung': '🌊', 'Lampung': '🌊', 'Bandar Lampung': '🌊',
+      'jambi': '🌿', 'Jambi': '🌿',
+      'bengkulu': '🌺', 'Bengkulu': '🌺',
+      'pangkal pinang': '🏝️', 'Pangkal Pinang': '🏝️', 'pangkalpinang': '🏝️'
+    };
+
+    btnContainer.innerHTML = data.map(k => {
+      const kl = k.kota ? k.kota.toLowerCase() : '';
+      const icon = ikonKota[k.kota] || ikonKota[kl] || '📍';
+      return `
+        <button onclick="sendWA('${k.wa}','${k.pesan}')"
+          style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;width:100%;">
+          ${icon} Daftar di ${k.kota}
+        </button>
+      `;
+    }).join('');
   } catch(e) {
     console.log('Kontak fallback');
   }
