@@ -1,1 +1,97 @@
+backend:
+  name: github
+  repo: dikjulyan-spec/GrabMart-Sumbagsel
+  branch: main
+  auth_scope: repo
 
+media_folder: "images"
+public_folder: "/images"
+
+locale: 'id'
+
+collections:
+  - name: "pengumuman"
+    label: "📢 Pengumuman"
+    folder: "_data/pengumuman"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Teks Pengumuman", name: "teks", widget: "text"}
+      - {label: "Status", name: "status", widget: "select", options: ["aktif", "nonaktif"]}
+      - {label: "Link Tombol", name: "link", widget: "string", default: "https://grb.to/PendaftaranGM"}
+      - {label: "Teks Tombol", name: "btn", widget: "string", default: "Daftar Sekarang →"}
+
+  - name: "merchant"
+    label: "🏪 Merchant Sukses"
+    folder: "_data/merchant"
+    create: true
+    slug: "{{nama}}"
+    fields:
+      - {label: "Nama Merchant", name: "nama", widget: "string"}
+      - {label: "Lokasi / Kota", name: "lokasi", widget: "string"}
+      - {label: "Kategori", name: "kategori", widget: "select", options: ["GrabMart", "GrabFood"]}
+      - {label: "Kutipan Testimoni", name: "kutipan", widget: "text"}
+      - {label: "Nama Pemilik", name: "pemilik", widget: "string"}
+      - {label: "Status", name: "status", widget: "select", options: ["tampil", "sembunyikan"]}
+
+  - name: "faq"
+    label: "❓ FAQ"
+    folder: "_data/faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Pertanyaan", name: "pertanyaan", widget: "string"}
+      - {label: "Jawaban", name: "jawaban", widget: "text"}
+      - {label: "Status", name: "status", widget: "select", options: ["tampil", "sembunyikan"]}
+
+  - name: "promo"
+    label: "🎯 Promo Aktif"
+    folder: "_data/promo"
+    create: true
+    slug: "{{judul}}"
+    fields:
+      - {label: "Judul Promo", name: "judul", widget: "string"}
+      - {label: "Deskripsi", name: "deskripsi", widget: "text"}
+      - {label: "Periode", name: "periode", widget: "string"}
+      - {label: "Status", name: "status", widget: "select", options: ["aktif", "nonaktif"]}
+
+  - name: "kontak"
+    label: "📞 Info Kontak"
+    folder: "_data/kontak"
+    create: false
+    files:
+      - label: "Kontak per Kota"
+        name: "kontak"
+        file: "_data/kontak/kontak.yml"
+        fields:
+          - label: "WhatsApp Palembang"
+            name: "wa_palembang"
+            widget: "string"
+            default: "6281282102509"
+          - label: "PIC Palembang"
+            name: "pic_palembang"
+            widget: "string"
+          - label: "WhatsApp Lampung"
+            name: "wa_lampung"
+            widget: "string"
+          - label: "PIC Lampung"
+            name: "pic_lampung"
+            widget: "string"
+          - label: "WhatsApp Jambi"
+            name: "wa_jambi"
+            widget: "string"
+          - label: "PIC Jambi"
+            name: "pic_jambi"
+            widget: "string"
+          - label: "WhatsApp Bengkulu"
+            name: "wa_bengkulu"
+            widget: "string"
+          - label: "PIC Bengkulu"
+            name: "pic_bengkulu"
+            widget: "string"
+          - label: "WhatsApp Pangkal Pinang"
+            name: "wa_pangkal"
+            widget: "string"
+          - label: "PIC Pangkal Pinang"
+            name: "pic_pangkal"
+            widget: "string"
