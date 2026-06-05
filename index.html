@@ -99,6 +99,25 @@
 }
 </script>
 
+<!-- ═══ GOOGLE ANALYTICS ═══ -->
+<!-- Ganti G-XXXXXXXXXX dengan ID Google Analytics Mas Didik -->
+<!-- Daftar di: analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+  
+  // Track klik tombol daftar
+  function trackDaftar(source) {
+    gtag('event', 'click_daftar', {
+      'event_category': 'CTA',
+      'event_label': source
+    });
+  }
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -1014,12 +1033,26 @@ document.querySelectorAll('.why-card').forEach((c,i)=>{c.style.transitionDelay=(
 document.querySelectorAll('.testi-card').forEach((c,i)=>{c.style.transitionDelay=(i*0.06)+'s'});
 </script>
 
-<!-- SEO HIDDEN KEYWORDS -->
-<div style="display:none;" aria-hidden="true">
-  Daftar GrabMart Palembang · Daftar GrabMart Bandar Lampung · Daftar GrabMart Jambi · 
-  Daftar GrabMart Bengkulu · Daftar GrabMart Pangkal Pinang · Merchant GrabMart Sumatera Selatan · 
-  Cara Daftar GrabMart Sumbagsel · Onboarding GrabMart Palembang · Jualan Online di GrabMart · 
-  Grab Merchant Palembang · GrabMart Sumsel · Toko Online Palembang · Daftar Grab Merchant Lampung
-</div>
-</body>
-</html>
+<!-- ═══ WHATSAPP FLOATING WIDGET ═══ -->
+<!-- PENTING: Ganti 6281234567890 dengan nomor WA Mas Didik (format: 628xxxxxxxxx) -->
+<div id="wa-widget" style="position:fixed;bottom:28px;right:28px;z-index:9998;display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+
+  <div id="wa-bubble" style="display:none;background:#fff;border-radius:18px;padding:18px 20px;box-shadow:0 8px 32px rgba(0,0,0,.15);max-width:290px;animation:fadeUp .3s ease;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #f0f4f0;">
+      <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#00B14F,#00D15F);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">👨‍💼</div>
+      <div>
+        <div style="font-weight:800;font-size:.87rem;color:#1A2E1A;">Tim GrabMart Sumbagsel</div>
+        <div style="font-size:.71rem;color:#6B8F6B;display:flex;align-items:center;gap:4px;margin-top:2px;"><span style="width:6px;height:6px;border-radius:50%;background:#25D366;display:inline-block;"></span>Siap Membantu</div>
+      </div>
+      <button onclick="toggleWA()" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#A0BBA0;font-size:1rem;padding:4px;">✕</button>
+    </div>
+    <p style="font-size:.83rem;color:#2D472D;line-height:1.65;margin-bottom:14px;font-weight:600;">Halo! 👋 Mau daftar <strong>GrabMart</strong> di kota Anda? Pilih kota atau langsung chat!</p>
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
+      <button onclick="sendWA('Halo kak, saya mau daftar jadi merchant GrabMart di Palembang. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🏙️ Daftar di Palembang</button>
+      <button onclick="sendWA('Halo kak, saya mau daftar jadi merchant GrabMart di Lampung. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🌊 Daftar di Lampung</button>
+      <button onclick="sendWA('Halo kak, saya mau daftar jadi merchant GrabMart di Jambi. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🌿 Daftar di Jambi</button>
+      <button onclick="sendWA('Halo kak, saya mau daftar jadi merchant GrabMart di Bengkulu. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🌺 Daftar di Bengkulu</button>
+      <button onclick="sendWA('Halo kak, saya mau tanya-tanya dulu soal GrabMart Sumbagsel.')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">💬 Tanya-tanya dulu</button>
+    </div>
+    <a href="https://wa.me/6281282102509?text=Halo+Tim+GrabMart+Sumbagsel%2C+saya+ingin+info+pendaftaran+merchant+GrabMart" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:12px;font-weight:800;font-size:.87rem;text-decoration:none;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.
