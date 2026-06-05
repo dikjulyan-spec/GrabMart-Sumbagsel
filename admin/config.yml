@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: dikjulyan-spec/GrabMart-Sumbagsel
+  name: git-gateway
   branch: main
-  auth_scope: repo
 
 media_folder: "images"
 public_folder: "/images"
@@ -56,42 +54,19 @@ collections:
       - {label: "Status", name: "status", widget: "select", options: ["aktif", "nonaktif"]}
 
   - name: "kontak"
-    label: "📞 Info Kontak"
-    folder: "_data/kontak"
-    create: false
+    label: "📞 Kontak per Kota"
     files:
       - label: "Kontak per Kota"
         name: "kontak"
-        file: "_data/kontak/kontak.yml"
+        file: "_data/kontak.yml"
         fields:
-          - label: "WhatsApp Palembang"
-            name: "wa_palembang"
-            widget: "string"
-            default: "6281282102509"
-          - label: "PIC Palembang"
-            name: "pic_palembang"
-            widget: "string"
-          - label: "WhatsApp Lampung"
-            name: "wa_lampung"
-            widget: "string"
-          - label: "PIC Lampung"
-            name: "pic_lampung"
-            widget: "string"
-          - label: "WhatsApp Jambi"
-            name: "wa_jambi"
-            widget: "string"
-          - label: "PIC Jambi"
-            name: "pic_jambi"
-            widget: "string"
-          - label: "WhatsApp Bengkulu"
-            name: "wa_bengkulu"
-            widget: "string"
-          - label: "PIC Bengkulu"
-            name: "pic_bengkulu"
-            widget: "string"
-          - label: "WhatsApp Pangkal Pinang"
-            name: "wa_pangkal"
-            widget: "string"
-          - label: "PIC Pangkal Pinang"
-            name: "pic_pangkal"
-            widget: "string"
+          - {label: "WA Palembang", name: "wa_palembang", widget: "string", default: "6281282102509"}
+          - {label: "PIC Palembang", name: "pic_palembang", widget: "string"}
+          - {label: "WA Lampung", name: "wa_lampung", widget: "string"}
+          - {label: "PIC Lampung", name: "pic_lampung", widget: "string"}
+          - {label: "WA Jambi", name: "wa_jambi", widget: "string"}
+          - {label: "PIC Jambi", name: "pic_jambi", widget: "string"}
+          - {label: "WA Bengkulu", name: "wa_bengkulu", widget: "string"}
+          - {label: "PIC Bengkulu", name: "pic_bengkulu", widget: "string"}
+          - {label: "WA Pangkal Pinang", name: "wa_pangkal", widget: "string"}
+          - {label: "PIC Pangkal Pinang", name: "pic_pangkal", widget: "string"}
