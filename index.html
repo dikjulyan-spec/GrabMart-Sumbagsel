@@ -1055,4 +1055,83 @@ document.querySelectorAll('.testi-card').forEach((c,i)=>{c.style.transitionDelay
       <button onclick="sendWA('Halo kak, saya mau tanya-tanya dulu soal GrabMart Sumbagsel.')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">💬 Tanya-tanya dulu</button>
     </div>
     <a href="https://wa.me/6281282102509?text=Halo+Tim+GrabMart+Sumbagsel%2C+saya+ingin+info+pendaftaran+merchant+GrabMart" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;border-radius:10px;padding:12px;font-weight:800;font-size:.87rem;text-decoration:none;">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat WhatsApp Sekarang
+    </a>
+  </div>
+
+  <button onclick="toggleWA()" id="wa-btn" style="width:62px;height:62px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(37,211,102,.4);transition:all .25s;position:relative;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 10px 28px rgba(37,211,102,.5)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 6px 20px rgba(37,211,102,.4)'">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span style="position:absolute;top:-3px;right:-3px;background:#FF4136;color:#fff;border-radius:50%;width:20px;height:20px;font-size:.64rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff;animation:pulse 2s infinite;" id="wa-notif">1</span>
+  </button>
+</div>
+
+<!-- ═══ MODAL TERIMA KASIH ═══ -->
+<div id="modal-thanks" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:24px;padding:36px 32px;max-width:460px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.2);position:relative;">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;background:#F5FBF5;border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;font-size:.9rem;color:#6B8F6B;font-weight:800;">✕</button>
+    <div style="width:80px;height:80px;background:linear-gradient(135deg,#00B14F,#00D15F);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:2.5rem;box-shadow:0 8px 24px rgba(0,177,79,.3);">🎉</div>
+    <h2 style="font-family:'Poppins',sans-serif;font-size:1.45rem;font-weight:900;color:#1A2E1A;margin-bottom:8px;">Siap Bergabung! 🚀</h2>
+    <p style="color:#6B8F6B;font-size:.88rem;line-height:1.7;margin-bottom:22px;font-weight:600;">Anda akan diarahkan ke halaman pendaftaran resmi GrabMart. Siapkan dokumen berikut agar proses lebih cepat:</p>
+    <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:14px;padding:16px;margin-bottom:20px;text-align:left;">
+      <div style="font-size:.75rem;font-weight:800;color:#009040;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">📋 Dokumen yang Perlu Disiapkan:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ KTP Pemilik</div>
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ Selfie + KTP</div>
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ Foto Luar Toko</div>
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ Foto Dalam Toko</div>
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ Info Rekening Bank</div>
+        <div style="font-size:.79rem;color:#2D472D;font-weight:700;">✅ Daftar Produk</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="https://grb.to/PendaftaranGM" target="_blank" onclick="closeModal()" style="flex:1;background:linear-gradient(135deg,#00B14F,#00D15F);color:#fff;padding:13px 10px;border-radius:12px;font-weight:800;font-size:.88rem;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 4px 14px rgba(0,177,79,.3);">🛒 Daftar Sekarang</a>
+      <a href="https://wa.me/6281282102509?text=Halo+kak%2C+saya+mau+daftar+GrabMart+Sumbagsel.+Bisa+bantu+prosesnya%3F" target="_blank" onclick="closeModal()" style="flex:1;background:#25D366;color:#fff;padding:13px 10px;border-radius:12px;font-weight:800;font-size:.88rem;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;">💬 Tanya WA Dulu</a>
+    </div>
+    <p style="color:#A0BBA0;font-size:.71rem;margin-top:12px;font-weight:600;">Butuh bantuan? Hubungi kami di +62 21 8064 8787</p>
+  </div>
+</div>
+
+<script>
+// WA Widget
+let waOpen=false;
+function toggleWA(){
+  waOpen=!waOpen;
+  document.getElementById('wa-bubble').style.display=waOpen?'block':'none';
+  if(waOpen) document.getElementById('wa-notif').style.display='none';
+}
+function sendWA(msg){
+  const num='6281282102509'; // GANTI nomor WA Mas Didik
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
+}
+// Auto buka setelah 30 detik
+setTimeout(()=>{if(!waOpen)toggleWA()},30000);
+
+// Modal
+function showModal(){
+  document.getElementById('modal-thanks').style.display='flex';
+}
+function closeModal(){
+  document.getElementById('modal-thanks').style.display='none';
+}
+document.getElementById('modal-thanks').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+
+// Track klik daftar
+document.querySelectorAll('a[href*="grb.to"]').forEach(a=>{
+  a.addEventListener('click',()=>{
+    if(typeof gtag!=='undefined') gtag('event','click_daftar',{'event_category':'CTA'});
+  });
+});
+</script>
+
+<!-- SEO HIDDEN KEYWORDS -->
+<div style="display:none;" aria-hidden="true">
+  Daftar GrabMart Palembang · Daftar GrabMart Bandar Lampung · Daftar GrabMart Jambi · 
+  Daftar GrabMart Bengkulu · Daftar GrabMart Pangkal Pinang · Merchant GrabMart Sumatera Selatan · 
+  Cara Daftar GrabMart Sumbagsel · Onboarding GrabMart Palembang · Jualan Online di GrabMart · 
+  Grab Merchant Palembang · GrabMart Sumsel · Toko Online Palembang · Daftar Grab Merchant Lampung
+</div>
+</body>
+</html>
