@@ -394,34 +394,140 @@ input:checked+.slider::before{transform:translateX(20px)}
       <!-- KONTAK -->
       <div class="panel" id="panel-kontak">
         <div class="card">
-          <div class="card-title"><span class="ct-ico">📞</span> Update Info Kontak</div>
+          <div class="card-title"><span class="ct-ico">📞</span> Kontak Umum</div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Nomor WhatsApp</label>
-              <input type="text" id="kontakWA" value="6281282102509" placeholder="628xxxxxxxxx">
-            </div>
             <div class="form-group">
               <label>Hotline Grab</label>
               <input type="text" id="kontakHotline" value="+62 21 2350 7042">
             </div>
-          </div>
-          <div class="form-row">
             <div class="form-group">
               <label>Mitra GrabMerchant</label>
               <input type="text" id="kontakMitra" value="+62 21 8064 8787">
             </div>
+          </div>
+          <div class="form-row">
             <div class="form-group">
               <label>Email Support</label>
               <input type="text" id="kontakEmail" value="support@grab.com">
             </div>
+            <div class="form-group">
+              <label>Link Pendaftaran Resmi</label>
+              <input type="text" id="kontakDaftar" value="https://grb.to/PendaftaranGM">
+            </div>
           </div>
-          <div class="form-group">
-            <label>Link Pendaftaran Resmi</label>
-            <input type="text" id="kontakDaftar" value="https://grb.to/PendaftaranGM">
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="ct-ico">📱</span> Nomor WhatsApp per Kota</div>
+          <p style="font-size:.8rem;color:#6B8F6B;margin-bottom:16px;font-weight:600;">Isi nomor WA penanggung jawab di setiap kota. Format: 628xxxxxxxxx (tanpa + atau spasi)</p>
+
+          <div style="display:flex;flex-direction:column;gap:14px;">
+
+            <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:12px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-size:1.3rem;">🏙️</span>
+                <span style="font-weight:800;font-size:.92rem;color:#1A2E1A;">Palembang</span>
+                <span style="font-size:.7rem;color:#6B8F6B;font-weight:600;">— Sumatera Selatan</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nomor WA</label>
+                  <input type="text" id="waPalembang" value="6281282102509" placeholder="628xxxxxxxxx">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nama PIC</label>
+                  <input type="text" id="picPalembang" placeholder="Nama penanggung jawab">
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:12px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-size:1.3rem;">🌊</span>
+                <span style="font-weight:800;font-size:.92rem;color:#1A2E1A;">Bandar Lampung</span>
+                <span style="font-size:.7rem;color:#6B8F6B;font-weight:600;">— Lampung</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nomor WA</label>
+                  <input type="text" id="waLampung" placeholder="628xxxxxxxxx">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nama PIC</label>
+                  <input type="text" id="picLampung" placeholder="Nama penanggung jawab">
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:12px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-size:1.3rem;">🌿</span>
+                <span style="font-weight:800;font-size:.92rem;color:#1A2E1A;">Jambi</span>
+                <span style="font-size:.7rem;color:#6B8F6B;font-weight:600;">— Provinsi Jambi</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nomor WA</label>
+                  <input type="text" id="waJambi" placeholder="628xxxxxxxxx">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nama PIC</label>
+                  <input type="text" id="picJambi" placeholder="Nama penanggung jawab">
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:12px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-size:1.3rem;">🌺</span>
+                <span style="font-weight:800;font-size:.92rem;color:#1A2E1A;">Bengkulu</span>
+                <span style="font-size:.7rem;color:#6B8F6B;font-weight:600;">— Provinsi Bengkulu</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nomor WA</label>
+                  <input type="text" id="waBengkulu" placeholder="628xxxxxxxxx">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nama PIC</label>
+                  <input type="text" id="picBengkulu" placeholder="Nama penanggung jawab">
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:12px;padding:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span style="font-size:1.3rem;">🏝️</span>
+                <span style="font-weight:800;font-size:.92rem;color:#1A2E1A;">Pangkal Pinang</span>
+                <span style="font-size:.7rem;color:#6B8F6B;font-weight:600;">— Bangka Belitung</span>
+              </div>
+              <div class="form-row">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nomor WA</label>
+                  <input type="text" id="waPangkal" placeholder="628xxxxxxxxx">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                  <label>Nama PIC</label>
+                  <input type="text" id="picPangkal" placeholder="Nama penanggung jawab">
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div class="form-group">
-            <label>Pesan Default WhatsApp</label>
-            <textarea id="kontakWAMsg" placeholder="Halo kak, saya mau daftar GrabMart Sumbagsel...">Halo kak, saya mau daftar jadi merchant GrabMart di wilayah Sumbagsel. Bisa bantu prosesnya?</textarea>
+
+          <div style="margin-top:16px;background:#FFF8E7;border:1.5px solid #FFD60A;border-radius:10px;padding:12px 14px;font-size:.78rem;color:#8B6000;font-weight:600;">
+            ⚠️ Setelah mengisi nomor WA per kota, klik <strong>"Simpan Semua"</strong> lalu update file <strong>index.html</strong> di GitHub agar WA widget website otomatis menggunakan nomor per kota yang benar.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="ct-ico">💬</span> Pesan Default WhatsApp per Kota</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="form-group"><label>🏙️ Pesan Palembang</label><input type="text" id="msgPalembang" value="Halo kak, saya mau daftar jadi merchant GrabMart di Palembang. Bisa bantu prosesnya?"></div>
+            <div class="form-group"><label>🌊 Pesan Lampung</label><input type="text" id="msgLampung" value="Halo kak, saya mau daftar jadi merchant GrabMart di Lampung. Bisa bantu prosesnya?"></div>
+            <div class="form-group"><label>🌿 Pesan Jambi</label><input type="text" id="msgJambi" value="Halo kak, saya mau daftar jadi merchant GrabMart di Jambi. Bisa bantu prosesnya?"></div>
+            <div class="form-group"><label>🌺 Pesan Bengkulu</label><input type="text" id="msgBengkulu" value="Halo kak, saya mau daftar jadi merchant GrabMart di Bengkulu. Bisa bantu prosesnya?"></div>
+            <div class="form-group"><label>🏝️ Pesan Pangkal Pinang</label><input type="text" id="msgPangkal" value="Halo kak, saya mau daftar jadi merchant GrabMart di Pangkal Pinang. Bisa bantu prosesnya?"></div>
           </div>
         </div>
       </div>
@@ -693,10 +799,16 @@ function saveAll(){
       btn: document.getElementById('pengumumanBtn').value,
     },
     kontak: {
-      wa: document.getElementById('kontakWA').value,
       hotline: document.getElementById('kontakHotline').value,
       email: document.getElementById('kontakEmail').value,
       daftar: document.getElementById('kontakDaftar').value,
+    },
+    waPerKota: {
+      palembang: { wa: document.getElementById('waPalembang').value, pic: document.getElementById('picPalembang').value, msg: document.getElementById('msgPalembang').value },
+      lampung:   { wa: document.getElementById('waLampung').value,   pic: document.getElementById('picLampung').value,   msg: document.getElementById('msgLampung').value },
+      jambi:     { wa: document.getElementById('waJambi').value,     pic: document.getElementById('picJambi').value,     msg: document.getElementById('msgJambi').value },
+      bengkulu:  { wa: document.getElementById('waBengkulu').value,  pic: document.getElementById('picBengkulu').value,  msg: document.getElementById('msgBengkulu').value },
+      pangkal:   { wa: document.getElementById('waPangkal').value,   pic: document.getElementById('picPangkal').value,   msg: document.getElementById('msgPangkal').value },
     },
     seo: {
       title: document.getElementById('seoTitle').value,
