@@ -173,7 +173,8 @@ input:checked+.slider::before{transform:translateX(20px)}
       <div class="topbar-title" id="topbarTitle">🏠 Beranda</div>
       <div class="topbar-right">
         <div class="topbar-user">👤 <span id="adminName">Admin</span></div>
-        <button class="save-btn" onclick="saveAll()">💾 Simpan Semua</button>
+        <button class="save-btn" onclick="downloadBackup()" style="background:#6B8F6B;margin-right:6px;">📥 Backup</button>
+        <button class="save-btn" onclick="saveAll()">💾 Simpan</button>
       </div>
     </div>
 
@@ -789,7 +790,7 @@ function gantiAkun(){
   showToast('✅ Akun berhasil diperbarui!');
 }
 
-// ═══ SAVE ALL ═══
+// ═══ SAVE ALL (tanpa download) ═══
 function saveAll(){
   const data = {
     pengumuman: {
@@ -819,15 +820,21 @@ function saveAll(){
     savedAt: new Date().toLocaleString('id-ID')
   };
   localStorage.setItem('grabmartAdminData', JSON.stringify(data));
+  showToast('✅ Data berhasil disimpan!');
+}
 
-  // Download JSON backup
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+// ═══ DOWNLOAD BACKUP ═══
+function downloadBackup(){
+  const saved = localStorage.getItem('grabmartAdminData');
+  if(!saved){ showToast('⚠️ Simpan data dulu sebelum backup!'); return; }
+  const blob = new Blob([saved], {type:'application/json'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'grabmart-admin-backup.json';
-  a.click(); URL.revokeObjectURL(url);
-
-  showToast('✅ Data tersimpan & file backup diunduh!');
+  a.href = url;
+  a.download = 'grabmart-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('📥 File backup berhasil diunduh!');
 }
 
 // ═══ TOAST ═══
