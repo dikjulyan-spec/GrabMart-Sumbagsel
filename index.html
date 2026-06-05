@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <meta name="theme-color" content="#00B14F">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- ═══ SEO PRIMARY ═══ -->
 <title>Daftar GrabMart Sumbagsel | Merchant Palembang, Lampung, Jambi, Bengkulu, Pangkal Pinang</title>
@@ -737,13 +738,12 @@ footer{background:linear-gradient(135deg,#0D2010,#1A3A1A);padding:44px 5vw;displ
   <div class="sec-chip">✦ Merchant Sukses</div>
   <h2 class="sec-t">Kisah Nyata dari <span class="g">Merchant Kami</span></h2>
   <p class="sec-d">Dikutip langsung dari halaman resmi grab.com/id/en/merchant — bukan rekayasa.</p>
-  <div class="testi-grid reveal">
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Setelah bergabung dengan GrabMart, penjualan saya meningkat lebih dari 4,5 kali lipat. Saya bisa memberikan lapangan kerja bagi keluarga dan mengembangkan bisnis saya."</div><div class="testi-who">Rizal Bumbu</div><div class="testi-loc">📍 Pasar Tomang Barat — GrabMart</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div></div>
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Kini pedagang pasar tradisional seperti saya bisa melayani pembeli secara online dan menjangkau lebih banyak pelanggan."</div><div class="testi-who">Toko MB Dita</div><div class="testi-loc">📍 Pasar Leg — GrabMart</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div></div>
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Sejak bergabung dengan GrabFood, omzet meroket 200-300%! Dari 1 cabang, sekarang punya 3 cabang dan 10 karyawan!"</div><div class="testi-who">Yodhi M. Ahyad</div><div class="testi-loc">📍 Asli Geprek — GrabFood</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant/food</div></div>
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Omzet naik drastis jadi Rp3-4 juta/hari! Dari 2 karyawan menjadi 20 orang hanya dalam 3 bulan bergabung."</div><div class="testi-who">Ferry Atmaja / Sri Halimah</div><div class="testi-loc">📍 Ikan Bakar Halimah — GrabFood</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant/food</div></div>
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Teknologi Grab sangat tepat untuk membantu menguji pasar yang luas dan menemukan strategi bisnis yang tepat."</div><div class="testi-who">Ilham Mahendra Yamin</div><div class="testi-loc">📍 The Coach Coffee Shop Indonesia</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant/food</div></div>
-    <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"GrabFood selalu menyediakan promo untuk merchant, itu sangat membantu. Sejak memanfaatkannya, penjualan terus meningkat."</div><div class="testi-who">Pak Amin</div><div class="testi-loc">📍 Mie Ayam Garuda — GrabFood</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div></div>
+  <div class="testi-grid reveal" id="merchant-container">
+    <!-- Loading state -->
+    <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">
+      <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+      <div style="font-weight:600;">Memuat data merchant...</div>
+    </div>
   </div>
 </section>
 
@@ -989,16 +989,11 @@ footer{background:linear-gradient(135deg,#0D2010,#1A3A1A);padding:44px 5vw;displ
   <div class="sec-chip">✦ FAQ</div>
   <h2 class="sec-t">Pertanyaan yang <span class="g">Sering Ditanyakan</span></h2>
   <p class="sec-d">Jawaban berdasarkan FAQ resmi grab.com/id/en/merchant dan help.grab.com/merchant/id-id</p>
-  <div class="faq-wrap reveal">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Apakah ada biaya pendaftaran untuk menjadi merchant GrabMart?<span class="faq-arr">▼</span></button><div class="faq-a">Tidak ada biaya pendaftaran. <strong>Pendaftaran sepenuhnya GRATIS</strong>. Dikonfirmasi langsung dari grab.com/id/en/merchant: "Tidak ada biaya pendaftaran." Grab hanya mengambil komisi dari setiap transaksi yang berhasil.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Berapa lama toko bisa mulai aktif menerima pesanan setelah daftar?<span class="faq-arr">▼</span></button><div class="faq-a">Berdasarkan informasi resmi grab.com/id/en/merchant: <strong>"Daftar dan mulai terima pesanan dalam 3 hingga 10 hari kerja."</strong> Proses bisa lebih cepat jika semua dokumen lengkap sejak awal pendaftaran.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Kapan saya menerima pembayaran pertama?<span class="faq-arr">▼</span></button><div class="faq-a">Berdasarkan halaman resmi grab.com/id/en/merchant/mart: <strong>"Pembayaran pertama Anda akan diterima maksimal 3 hari setelah pesanan pertama selesai."</strong> Pastikan rekening bank sudah benar dan aktif.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Produk apa saja yang bisa dijual di GrabMart?<span class="faq-arr">▼</span></button><div class="faq-a">GrabMart menerima: produk segar (sayur/buah/daging/ikan), produk susu/telur, perlengkapan rumah, perlengkapan bayi, makanan beku, perawatan diri & kecantikan, camilan, produk kesehatan, produk hewan peliharaan, dan produk 18+/21+ dengan izin yang sesuai.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Apakah bisa daftar tanpa toko fisik (jualan dari rumah)?<span class="faq-arr">▼</span></button><div class="faq-a">Ya! Berdasarkan FAQ resmi Grab Indonesia: <strong>"Ya, bisa — selama dokumen yang diperlukan tersedia."</strong> Bisnis rumahan dan penjual berbasis media sosial juga bisa mendaftar.<br><br><strong>Khusus penjual Instagram:</strong> Jika berjualan via Profil Bisnis Instagram, bisa melampirkan tangkapan layar profil Instagram sebagai pengganti foto tampak luar toko. Panduan lengkap di help.grab.com/merchant/id-id.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Bagaimana cara menambah outlet baru ke akun yang sudah ada?<span class="faq-arr">▼</span></button><div class="faq-a">Berdasarkan FAQ resmi: <strong>"Anda bisa menambahkan outlet baru ke toko yang sudah ada dengan mengisi formulir dan memilih tambah outlet baru."</strong><br><br>Buka link <a href="https://grb.to/PendaftaranGM" target="_blank" style="color:var(--green);font-weight:800;">grb.to/PendaftaranGM</a> → pilih <strong>"Tambah Outlet Baru"</strong> → isi data outlet baru selengkap mungkin.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Di mana saya bisa mendapatkan bantuan jika ada kendala?<span class="faq-arr">▼</span></button><div class="faq-a">Saluran bantuan resmi Grab Indonesia:<br><br>• Pusat Bantuan di Aplikasi GrabMerchant<br>• Website: help.grab.com<br>• Hotline: +62 21 2350 7042<br>• Mitra GrabMerchant: +62 21 8064 8787<br>• Email: support@grab.com</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Apakah fitur Ambil Sendiri (Self Pick-Up) tersedia?<span class="faq-arr">▼</span></button><div class="faq-a">Ya! Berdasarkan halaman resmi: <strong>"Semua merchant kami bisa menerima pesanan Ambil Sendiri sejak hari pertama, untuk memberi Anda akses ke lebih banyak peluang pesanan."</strong> Fitur ini langsung aktif otomatis tanpa perlu aktivasi tambahan.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Apa perbedaan Aplikasi GrabMerchant dan Portal Web?<span class="faq-arr">▼</span></button><div class="faq-a"><strong>Aplikasi (HP):</strong> terima pesanan, perbarui stok, komunikasi pengemudi, pantau omzet langsung.<br><br><strong>Portal (merchant.grab.com/portal):</strong> unggah produk massal, unduh laporan Excel/PDF, pengaturan akun, analisis performa, kelola banyak outlet.</div></div>
+  <div class="faq-wrap reveal" id="faq-container">
+    <div style="text-align:center;padding:32px;color:var(--text-3);">
+      <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+      <div style="font-weight:600;">Memuat FAQ...</div>
+    </div>
   </div>
 </section>
 
@@ -1102,7 +1097,7 @@ document.querySelectorAll('.testi-card').forEach((c,i)=>{c.style.transitionDelay
       <button onclick="toggleWA()" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#A0BBA0;font-size:1rem;padding:4px;">✕</button>
     </div>
     <p style="font-size:.83rem;color:#2D472D;line-height:1.65;margin-bottom:14px;font-weight:600;">Halo! 👋 Mau daftar <strong>GrabMart</strong> di kota Anda? Pilih kota untuk chat langsung!</p>
-    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
+    <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;" class="wa-kota-btns">
       <button onclick="sendWA('6281282102509','Halo kak, saya mau daftar jadi merchant GrabMart di Palembang. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🏙️ Daftar di Palembang</button>
       <button onclick="sendWA('6281282102509','Halo kak, saya mau daftar jadi merchant GrabMart di Lampung. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🌊 Daftar di Lampung</button>
       <button onclick="sendWA('6281282102509','Halo kak, saya mau daftar jadi merchant GrabMart di Jambi. Bisa bantu prosesnya?')" style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;">🌿 Daftar di Jambi</button>
@@ -1173,11 +1168,127 @@ document.getElementById('modal-thanks').addEventListener('click',function(e){
   if(e.target===this)closeModal();
 });
 
-// Track klik daftar
-document.querySelectorAll('a[href*="grb.to"]').forEach(a=>{
-  a.addEventListener('click',()=>{
-    if(typeof gtag!=='undefined') gtag('event','click_daftar',{'event_category':'CTA'});
-  });
+// ═══ GOOGLE SHEETS DATA LOADER ═══
+const GS_API = 'https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
+
+// Load Merchant dari Google Sheets
+async function loadMerchant() {
+  try {
+    const res = await fetch(GS_API + '?sheet=merchant');
+    const data = await res.json();
+    const container = document.getElementById('merchant-container');
+    
+    if (!data || data.error || data.length === 0) {
+      container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--text-3);font-weight:600;">Data merchant belum tersedia.</div>';
+      return;
+    }
+
+    const tampil = data.filter(d => d.status === 'tampil');
+    container.innerHTML = tampil.map(m => `
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div>
+        <div class="testi-q">"${m.kutipan}"</div>
+        <div class="testi-who">${m.nama}</div>
+        <div class="testi-loc">📍 ${m.lokasi} — ${m.kategori}</div>
+        <div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div>
+      </div>
+    `).join('');
+  } catch(e) {
+    // Fallback ke data statis jika API gagal
+    document.getElementById('merchant-container').innerHTML = `
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Setelah bergabung dengan GrabMart, penjualan saya meningkat lebih dari 4,5 kali lipat."</div><div class="testi-who">Rizal Bumbu</div><div class="testi-loc">📍 Pasar Tomang Barat — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Kini pedagang pasar tradisional seperti saya bisa melayani pembeli secara online."</div><div class="testi-who">Toko MB Dita</div><div class="testi-loc">📍 Pasar Leg — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Sejak bergabung GrabFood, omzet meroket 200-300%! Dari 1 cabang jadi 3 cabang dan 10 karyawan!"</div><div class="testi-who">Yodhi M. Ahyad</div><div class="testi-loc">📍 Asli Geprek — GrabFood</div><div class="testi-src">🔗 grab.com/id/en/merchant/food</div></div>
+    `;
+  }
+}
+
+// Load FAQ dari Google Sheets
+async function loadFaq() {
+  try {
+    const res = await fetch(GS_API + '?sheet=faq');
+    const data = await res.json();
+    const container = document.getElementById('faq-container');
+
+    if (!data || data.error || data.length === 0) {
+      container.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text-3);font-weight:600;">Data FAQ belum tersedia.</div>';
+      return;
+    }
+
+    const tampil = data.filter(d => d.status === 'tampil');
+    container.innerHTML = tampil.map(f => `
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ${f.pertanyaan}<span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">${f.jawaban}</div>
+      </div>
+    `).join('');
+  } catch(e) {
+    // Fallback FAQ statis
+    document.getElementById('faq-container').innerHTML = `
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Apakah ada biaya pendaftaran untuk menjadi merchant GrabMart?<span class="faq-arr">▼</span></button><div class="faq-a">Tidak ada biaya pendaftaran. <strong>Pendaftaran sepenuhnya GRATIS.</strong> Grab hanya mengambil komisi dari setiap transaksi yang berhasil.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Berapa lama toko bisa mulai aktif menerima pesanan setelah daftar?<span class="faq-arr">▼</span></button><div class="faq-a">Daftar dan mulai terima pesanan dalam <strong>3 hingga 10 hari kerja</strong> setelah dokumen lengkap.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Kapan saya menerima pembayaran pertama?<span class="faq-arr">▼</span></button><div class="faq-a">Pembayaran pertama akan diterima <strong>maksimal 3 hari</strong> setelah pesanan pertama selesai.</div></div>
+    `;
+  }
+}
+
+// Load WA per kota dari Google Sheets
+async function loadKontak() {
+  try {
+    const res = await fetch(GS_API + '?sheet=kontak');
+    const data = await res.json();
+    if (!data || data.error || data.length === 0) return;
+
+    // Update WA buttons di widget
+    const waBubble = document.getElementById('wa-bubble');
+    if (!waBubble) return;
+
+    const btnContainer = waBubble.querySelector('.wa-kota-btns');
+    if (!btnContainer) return;
+
+    btnContainer.innerHTML = data.map(k => `
+      <button onclick="sendWA('${k.wa}','${k.pesan}')"
+        style="background:#F5FBF5;border:1.5px solid #B8E8CC;border-radius:9px;padding:8px 12px;font-size:.78rem;color:#1A2E1A;cursor:pointer;text-align:left;font-weight:700;width:100%;">
+        📍 Daftar di ${k.kota}
+      </button>
+    `).join('');
+  } catch(e) {
+    console.log('Kontak fallback');
+  }
+}
+
+// Load Pengumuman dari Google Sheets
+async function loadPengumuman() {
+  try {
+    const res = await fetch(GS_API + '?sheet=pengumuman');
+    const data = await res.json();
+    if (!data || data.error || data.length === 0) return;
+
+    const aktif = data.find(d => d.status === 'aktif');
+    if (!aktif) return;
+
+    // Tampilkan banner pengumuman di atas navbar
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:#00B14F;color:#fff;text-align:center;padding:10px 5vw;font-size:.83rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;';
+    banner.innerHTML = `
+      <span>${aktif.teks}</span>
+      <a href="${aktif.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:5px 14px;border-radius:50px;font-weight:700;font-size:.78rem;text-decoration:none;white-space:nowrap;">${aktif.btn}</a>
+    `;
+    document.body.insertBefore(banner, document.body.firstChild);
+  } catch(e) {
+    console.log('Pengumuman fallback');
+  }
+}
+
+// Jalankan semua loader saat halaman siap
+document.addEventListener('DOMContentLoaded', () => {
+  loadMerchant();
+  loadFaq();
+  loadKontak();
+  loadPengumuman();
 });
 </script>
 
