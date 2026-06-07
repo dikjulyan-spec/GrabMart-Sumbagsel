@@ -1302,23 +1302,58 @@ async function loadPengumuman() {
     const data = await res.json();
     if (!data || data.error || data.length === 0) return;
 
-    const aktif = data.find(d => d.status === 'aktif');
-    if (!aktif) return;
+    const aktif = data.filter(d => d.status === 'aktif');
+    if (aktif.length === 0) return;
 
     const banner = document.createElement('div');
     banner.id = 'gs-banner';
-    banner.style.cssText = 'background:#00B14F;color:#fff;text-align:center;padding:9px 5vw;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:var(--nav-h);';
+    banner.style.cssText = 'background:#00B14F;color:#fff;text-align:center;padding:9px 5vw;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;overflow:hidden;min-height:40px;';
+
     banner.innerHTML = `
-      <span>${aktif.teks}</span>
-      <a href="${aktif.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${aktif.btn}</a>
-      <button onclick="document.getElementById('gs-banner').remove();document.querySelector('.hero').style.marginTop=''" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0;flex-shrink:0;">✕</button>
+      <div id="banner-slot" style="display:flex;align-items:center;justify-content:center;gap:10px;flex:1;flex-wrap:wrap;transition:opacity .4s ease,transform .4s ease;">
+        <span id="banner-teks"></span>
+        <a id="banner-link" href="#" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;"></a>
+      </div>
+      <button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0;flex-shrink:0;margin-left:8px;">✕</button>
     `;
-    // Sisipkan di awal body — hero pakai padding-top jadi tidak tertutup nav
+
     document.body.insertBefore(banner, document.body.firstChild);
-    
-    // Kurangi padding hero karena banner sudah mengisi ruang nav
-    const hero = document.querySelector('.hero');
-    if(hero) hero.style.marginTop = '-var(--nav-h)';
+
+    const slot = document.getElementById('banner-slot');
+    const teksEl = document.getElementById('banner-teks');
+    const linkEl = document.getElementById('banner-link');
+
+    let idx = 0;
+
+    function tampilSlide(i) {
+      const item = aktif[i];
+      slot.style.opacity = '0';
+      slot.style.transform = 'translateY(-8px)';
+      setTimeout(() => {
+        teksEl.textContent = item.teks;
+        linkEl.textContent = item.btn;
+        linkEl.href = item.link;
+        linkEl.style.display = item.btn ? 'inline-block' : 'none';
+        slot.style.opacity = '1';
+        slot.style.transform = 'translateY(0)';
+      }, 400);
+    }
+
+    slot.style.transition = 'none';
+    slot.style.opacity = '1';
+    slot.style.transform = 'translateY(0)';
+    teksEl.textContent = aktif[0].teks;
+    linkEl.textContent = aktif[0].btn;
+    linkEl.href = aktif[0].link;
+    linkEl.style.display = aktif[0].btn ? 'inline-block' : 'none';
+    slot.style.transition = 'opacity .4s ease,transform .4s ease';
+
+    if (aktif.length > 1) {
+      setInterval(() => {
+        idx = (idx + 1) % aktif.length;
+        tampilSlide(idx);
+      }, 2000);
+    }
 
   } catch(e) {
     console.log('Pengumuman fallback');
