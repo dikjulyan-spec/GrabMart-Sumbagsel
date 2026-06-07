@@ -1307,17 +1307,27 @@ async function loadPengumuman() {
 
     const banner = document.createElement('div');
     banner.id = 'gs-banner';
-    banner.style.cssText = 'background:#00B14F;color:#fff;text-align:center;padding:9px 5vw;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;overflow:hidden;min-height:40px;';
+    banner.style.cssText = 'background:#00B14F;color:#fff;text-align:center;padding:9px 5vw;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:fixed;top:var(--nav-h);left:0;right:0;z-index:899;overflow:hidden;min-height:40px;';
 
     banner.innerHTML = `
       <div id="banner-slot" style="display:flex;align-items:center;justify-content:center;gap:10px;flex:1;flex-wrap:wrap;transition:opacity .4s ease,transform .4s ease;">
         <span id="banner-teks"></span>
         <a id="banner-link" href="#" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;"></a>
       </div>
-      <button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0;flex-shrink:0;margin-left:8px;">✕</button>
+      <button onclick="closeBanner()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0;flex-shrink:0;margin-left:8px;">✕</button>
     `;
 
     document.body.insertBefore(banner, document.body.firstChild);
+
+    // Geser hero ke bawah agar tidak tertutup banner
+    const bannerH = banner.offsetHeight || 40;
+    const hero = document.querySelector('.hero');
+    if (hero) hero.style.paddingTop = 'calc(var(--nav-h) + ' + bannerH + 'px + 60px)';
+
+    window.closeBanner = function() {
+      document.getElementById('gs-banner').remove();
+      if (hero) hero.style.paddingTop = '';
+    };
 
     const slot = document.getElementById('banner-slot');
     const teksEl = document.getElementById('banner-teks');
@@ -1339,6 +1349,7 @@ async function loadPengumuman() {
       }, 400);
     }
 
+    // Tampil slide pertama
     slot.style.transition = 'none';
     slot.style.opacity = '1';
     slot.style.transform = 'translateY(0)';
