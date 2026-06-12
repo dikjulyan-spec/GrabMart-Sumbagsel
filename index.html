@@ -340,7 +340,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 @media(max-width:600px){
   :root{--nav-h:60px}
   nav{padding:0 4vw}
-  .hero{padding:calc(var(--nav-h)+20px) 4vw 0}
+  .hero{padding:calc(var(--nav-h) + 20px) 4vw 0}
   h1{font-size:1.85rem}
   .hero-desc{font-size:.9rem}
   .hero-btns{flex-direction:column;align-items:stretch}
@@ -1078,25 +1078,25 @@ async function loadPengumuman(){
       wrap.appendChild(dotsWrap);
     }
 
-    // Push body content down so banner doesn't cover hero
+    // Push hero content down so banner doesn't cover it
     document.body.appendChild(wrap);
-    const hero=document.querySelector('.hero');
+    const heroInner=document.querySelector('.hero-inner');
 
     function adjustHeroPadding(){
-      const bannerH=wrap.offsetHeight;
-      if(hero) hero.style.paddingTop=`calc(var(--nav-h) + ${bannerH}px + 24px)`;
+      const bannerH=wrap.getBoundingClientRect().height;
+      if(heroInner) heroInner.style.marginTop=`${bannerH + 16}px`;
     }
     adjustHeroPadding();
-    // Re-measure after fonts/layout settle
     requestAnimationFrame(adjustHeroPadding);
     setTimeout(adjustHeroPadding, 100);
-    setTimeout(adjustHeroPadding, 500);
+    setTimeout(adjustHeroPadding, 400);
+    setTimeout(adjustHeroPadding, 1000);
     window.addEventListener('resize', adjustHeroPadding);
 
     closeBtn.onclick=()=>{
       wrap.remove();
       window.removeEventListener('resize', adjustHeroPadding);
-      if(hero) hero.style.paddingTop='calc(var(--nav-h) + 40px)';
+      if(heroInner) heroInner.style.marginTop='0';
     };
 
     let current=0;
