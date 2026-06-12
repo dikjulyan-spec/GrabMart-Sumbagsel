@@ -340,6 +340,9 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 @media(max-width:600px){
   :root{--nav-h:60px}
   nav{padding:0 4vw}
+  #gs-banner{padding:8px 10px!important;font-size:.74rem!important;gap:6px!important}
+  #gs-banner > div:first-child{font-size:.74rem;text-align:center;justify-content:center;width:100%}
+  #gs-banner a{font-size:.7rem!important;padding:3px 10px!important}
   .hero{padding:calc(var(--nav-h)+20px) 4vw 0}
   h1{font-size:1.85rem}
   .hero-desc{font-size:.9rem}
@@ -1040,11 +1043,11 @@ async function loadPengumuman(){
     if(!aktifList.length)return;
     const banner=document.createElement('div');
     banner.id='gs-banner';
-    banner.style.cssText='background:#00B14F;color:#fff;text-align:center;padding:10px 14px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;position:relative;min-height:42px;box-sizing:border-box;';
+    banner.style.cssText='background:#00B14F;color:#fff;text-align:center;padding:10px 14px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;position:relative;min-height:42px;box-sizing:border-box;width:100%;max-width:100vw;overflow:hidden;';
     function renderBanner(index){
       const item=aktifList[index];
       const dots=aktifList.map((_,i)=>`<span style="width:7px;height:7px;border-radius:50%;background:${i===index?'#fff':'rgba(255,255,255,.4)'};display:inline-block;transition:background .3s;cursor:pointer;" onclick="goToSlide(${i})"></span>`).join('');
-      banner.innerHTML=`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;flex:1;min-width:0;"><span style="word-break:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${item.btn}</a></div>${aktifList.length>1?`<div style="display:flex;gap:5px;align-items:center;flex-shrink:0;">${dots}</div>`:''}<button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0 4px;flex-shrink:0;line-height:1;">✕</button>`;
+      banner.innerHTML=`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;flex:1 1 auto;min-width:0;max-width:100%;"><span style="word-break:break-word;overflow-wrap:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${item.btn}</a></div>${aktifList.length>1?`<div style="display:flex;gap:5px;align-items:center;flex-shrink:0;">${dots}</div>`:''}<button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0 4px;flex-shrink:0;line-height:1;">✕</button>`;
     }
     let current=0;
     renderBanner(current);
