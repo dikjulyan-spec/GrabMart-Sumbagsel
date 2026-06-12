@@ -1080,12 +1080,22 @@ async function loadPengumuman(){
 
     // Push body content down so banner doesn't cover hero
     document.body.appendChild(wrap);
-    const bannerH=wrap.offsetHeight;
     const hero=document.querySelector('.hero');
-    if(hero) hero.style.paddingTop=`calc(var(--nav-h) + ${bannerH}px + 40px)`;
+
+    function adjustHeroPadding(){
+      const bannerH=wrap.offsetHeight;
+      if(hero) hero.style.paddingTop=`calc(var(--nav-h) + ${bannerH}px + 24px)`;
+    }
+    adjustHeroPadding();
+    // Re-measure after fonts/layout settle
+    requestAnimationFrame(adjustHeroPadding);
+    setTimeout(adjustHeroPadding, 100);
+    setTimeout(adjustHeroPadding, 500);
+    window.addEventListener('resize', adjustHeroPadding);
 
     closeBtn.onclick=()=>{
       wrap.remove();
+      window.removeEventListener('resize', adjustHeroPadding);
       if(hero) hero.style.paddingTop='calc(var(--nav-h) + 40px)';
     };
 
@@ -1095,6 +1105,7 @@ async function loadPengumuman(){
       wrap.querySelectorAll('[data-i]').forEach((d,i)=>{
         d.style.background=i===current?'#fff':'rgba(255,255,255,.4)';
       });
+      setTimeout(adjustHeroPadding, 550);
     }
     window.goToSlide=function(i){current=i;updateSlide()};
     if(aktifList.length>1){
