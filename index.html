@@ -1039,16 +1039,15 @@ async function loadPengumuman(){
     const aktifList=data.filter(d=>d.status==='aktif');
     if(!aktifList.length)return;
 
-    // Outer wrapper - clips overflow
+    // Outer wrapper - fixed below navbar, clips overflow
     const wrap=document.createElement('div');
     wrap.id='gs-banner';
-    wrap.style.cssText='background:#00B14F;color:#fff;position:relative;width:100%;overflow:hidden;box-sizing:border-box;';
+    wrap.style.cssText='background:#00B14F;color:#fff;position:fixed;left:0;right:0;top:var(--nav-h);width:100%;overflow:hidden;box-sizing:border-box;z-index:880;box-shadow:0 2px 8px rgba(0,0,0,.1);';
 
-    // Close button (fixed, top-right of wrapper)
+    // Close button
     const closeBtn=document.createElement('button');
     closeBtn.innerHTML='✕';
-    closeBtn.style.cssText='position:absolute;top:6px;right:8px;background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.85rem;width:22px;height:22px;border-radius:50%;line-height:1;z-index:5;display:flex;align-items:center;justify-content:center;';
-    closeBtn.onclick=()=>wrap.remove();
+    closeBtn.style.cssText='position:absolute;top:6px;right:8px;background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.8rem;width:20px;height:20px;border-radius:50%;line-height:1;z-index:5;display:flex;align-items:center;justify-content:center;';
 
     // Sliding track
     const track=document.createElement('div');
@@ -1057,8 +1056,8 @@ async function loadPengumuman(){
 
     aktifList.forEach(item=>{
       const slide=document.createElement('div');
-      slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:12px 40px 12px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:54px;`;
-      slide.innerHTML=`<span style="font-size:.82rem;font-weight:600;line-height:1.4;word-break:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.78rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
+      slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:10px 36px 22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;`;
+      slide.innerHTML=`<span style="font-size:.8rem;font-weight:600;line-height:1.4;word-break:break-word;max-width:100%;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.76rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
       track.appendChild(slide);
     });
 
@@ -1068,16 +1067,27 @@ async function loadPengumuman(){
     // Dots indicator
     if(aktifList.length>1){
       const dotsWrap=document.createElement('div');
-      dotsWrap.style.cssText='display:flex;justify-content:center;gap:6px;padding:0 0 8px;';
+      dotsWrap.style.cssText='position:absolute;bottom:6px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:5;';
       aktifList.forEach((_,i)=>{
         const dot=document.createElement('span');
         dot.dataset.i=i;
-        dot.style.cssText=`width:7px;height:7px;border-radius:50%;background:${i===0?'#fff':'rgba(255,255,255,.4)'};display:inline-block;cursor:pointer;transition:background .3s;`;
+        dot.style.cssText=`width:6px;height:6px;border-radius:50%;background:${i===0?'#fff':'rgba(255,255,255,.4)'};display:inline-block;cursor:pointer;transition:background .3s;`;
         dot.onclick=()=>goToSlide(i);
         dotsWrap.appendChild(dot);
       });
       wrap.appendChild(dotsWrap);
     }
+
+    // Push body content down so banner doesn't cover hero
+    document.body.appendChild(wrap);
+    const bannerH=wrap.offsetHeight;
+    const hero=document.querySelector('.hero');
+    if(hero) hero.style.paddingTop=`calc(var(--nav-h) + ${bannerH}px + 40px)`;
+
+    closeBtn.onclick=()=>{
+      wrap.remove();
+      if(hero) hero.style.paddingTop='calc(var(--nav-h) + 40px)';
+    };
 
     let current=0;
     function updateSlide(){
@@ -1090,9 +1100,6 @@ async function loadPengumuman(){
     if(aktifList.length>1){
       setInterval(()=>{current=(current+1)%aktifList.length;updateSlide()},5000);
     }
-
-    const nav=document.querySelector('nav');
-    nav.insertAdjacentElement('afterend',wrap);
   }catch(e){console.log('Pengumuman fallback')}
 }
 
