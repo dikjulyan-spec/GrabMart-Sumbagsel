@@ -340,9 +340,6 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 @media(max-width:600px){
   :root{--nav-h:60px}
   nav{padding:0 4vw}
-  #gs-banner{padding:8px 10px!important;font-size:.74rem!important;gap:6px!important}
-  #gs-banner > div:first-child{font-size:.74rem;text-align:center;justify-content:center;width:100%}
-  #gs-banner a{font-size:.7rem!important;padding:3px 10px!important}
   .hero{padding:calc(var(--nav-h)+20px) 4vw 0}
   h1{font-size:1.85rem}
   .hero-desc{font-size:.9rem}
@@ -1041,20 +1038,61 @@ async function loadPengumuman(){
     if(!data||data.error||data.length===0)return;
     const aktifList=data.filter(d=>d.status==='aktif');
     if(!aktifList.length)return;
-    const banner=document.createElement('div');
-    banner.id='gs-banner';
-    banner.style.cssText='background:#00B14F;color:#fff;text-align:center;padding:10px 14px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;position:relative;min-height:42px;box-sizing:border-box;width:100%;max-width:100vw;overflow:hidden;';
-    function renderBanner(index){
-      const item=aktifList[index];
-      const dots=aktifList.map((_,i)=>`<span style="width:7px;height:7px;border-radius:50%;background:${i===index?'#fff':'rgba(255,255,255,.4)'};display:inline-block;transition:background .3s;cursor:pointer;" onclick="goToSlide(${i})"></span>`).join('');
-      banner.innerHTML=`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;flex:1 1 auto;min-width:0;max-width:100%;"><span style="word-break:break-word;overflow-wrap:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${item.btn}</a></div>${aktifList.length>1?`<div style="display:flex;gap:5px;align-items:center;flex-shrink:0;">${dots}</div>`:''}<button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0 4px;flex-shrink:0;line-height:1;">✕</button>`;
+
+    // Outer wrapper - clips overflow
+    const wrap=document.createElement('div');
+    wrap.id='gs-banner';
+    wrap.style.cssText='background:#00B14F;color:#fff;position:relative;width:100%;overflow:hidden;box-sizing:border-box;';
+
+    // Close button (fixed, top-right of wrapper)
+    const closeBtn=document.createElement('button');
+    closeBtn.innerHTML='✕';
+    closeBtn.style.cssText='position:absolute;top:6px;right:8px;background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.85rem;width:22px;height:22px;border-radius:50%;line-height:1;z-index:5;display:flex;align-items:center;justify-content:center;';
+    closeBtn.onclick=()=>wrap.remove();
+
+    // Sliding track
+    const track=document.createElement('div');
+    track.id='gs-track';
+    track.style.cssText=`display:flex;width:${aktifList.length*100}%;transition:transform .5s ease;`;
+
+    aktifList.forEach(item=>{
+      const slide=document.createElement('div');
+      slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:12px 40px 12px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:54px;`;
+      slide.innerHTML=`<span style="font-size:.82rem;font-weight:600;line-height:1.4;word-break:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.78rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
+      track.appendChild(slide);
+    });
+
+    wrap.appendChild(track);
+    wrap.appendChild(closeBtn);
+
+    // Dots indicator
+    if(aktifList.length>1){
+      const dotsWrap=document.createElement('div');
+      dotsWrap.style.cssText='display:flex;justify-content:center;gap:6px;padding:0 0 8px;';
+      aktifList.forEach((_,i)=>{
+        const dot=document.createElement('span');
+        dot.dataset.i=i;
+        dot.style.cssText=`width:7px;height:7px;border-radius:50%;background:${i===0?'#fff':'rgba(255,255,255,.4)'};display:inline-block;cursor:pointer;transition:background .3s;`;
+        dot.onclick=()=>goToSlide(i);
+        dotsWrap.appendChild(dot);
+      });
+      wrap.appendChild(dotsWrap);
     }
+
     let current=0;
-    renderBanner(current);
-    window.goToSlide=function(i){current=i;renderBanner(current)};
-    if(aktifList.length>1)setInterval(()=>{current=(current+1)%aktifList.length;renderBanner(current)},5000);
+    function updateSlide(){
+      track.style.transform=`translateX(-${current*(100/aktifList.length)}%)`;
+      wrap.querySelectorAll('[data-i]').forEach((d,i)=>{
+        d.style.background=i===current?'#fff':'rgba(255,255,255,.4)';
+      });
+    }
+    window.goToSlide=function(i){current=i;updateSlide()};
+    if(aktifList.length>1){
+      setInterval(()=>{current=(current+1)%aktifList.length;updateSlide()},5000);
+    }
+
     const nav=document.querySelector('nav');
-    nav.insertAdjacentElement('afterend',banner);
+    nav.insertAdjacentElement('afterend',wrap);
   }catch(e){console.log('Pengumuman fallback')}
 }
 
