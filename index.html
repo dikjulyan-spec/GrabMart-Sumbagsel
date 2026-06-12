@@ -1040,16 +1040,16 @@ async function loadPengumuman(){
     if(!aktifList.length)return;
     const banner=document.createElement('div');
     banner.id='gs-banner';
-    banner.style.cssText='background:#00B14F;color:#fff;text-align:center;padding:9px 5vw;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;min-height:42px;';
+    banner.style.cssText='background:#00B14F;color:#fff;text-align:center;padding:10px 14px;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;position:relative;min-height:42px;box-sizing:border-box;';
     function renderBanner(index){
       const item=aktifList[index];
       const dots=aktifList.map((_,i)=>`<span style="width:7px;height:7px;border-radius:50%;background:${i===index?'#fff':'rgba(255,255,255,.4)'};display:inline-block;transition:background .3s;cursor:pointer;" onclick="goToSlide(${i})"></span>`).join('');
-      banner.innerHTML=`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;flex:1;"><span>${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${item.btn}</a></div>${aktifList.length>1?`<div style="display:flex;gap:5px;align-items:center;flex-shrink:0;">${dots}</div>`:''}<button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0;flex-shrink:0;">✕</button>`;
+      banner.innerHTML=`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;flex:1;min-width:0;"><span style="word-break:break-word;">${item.teks}</span><a href="${item.link}" target="_blank" style="background:rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:50px;font-weight:700;font-size:.75rem;text-decoration:none;white-space:nowrap;flex-shrink:0;">${item.btn}</a></div>${aktifList.length>1?`<div style="display:flex;gap:5px;align-items:center;flex-shrink:0;">${dots}</div>`:''}<button onclick="document.getElementById('gs-banner').remove()" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1rem;padding:0 4px;flex-shrink:0;line-height:1;">✕</button>`;
     }
     let current=0;
     renderBanner(current);
     window.goToSlide=function(i){current=i;renderBanner(current)};
-    if(aktifList.length>1)setInterval(()=>{current=(current+1)%aktifList.length;renderBanner(current)},4000);
+    if(aktifList.length>1)setInterval(()=>{current=(current+1)%aktifList.length;renderBanner(current)},5000);
     const nav=document.querySelector('nav');
     nav.insertAdjacentElement('afterend',banner);
   }catch(e){console.log('Pengumuman fallback')}
