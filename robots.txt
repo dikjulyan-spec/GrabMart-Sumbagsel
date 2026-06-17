@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://grabmart-sumbagsel.com/sitemap.xml
+Sitemap: https://mitrasumbagsel.com/sitemap.xml
 
 # Block unnecessary files
 Disallow: /node_modules/
