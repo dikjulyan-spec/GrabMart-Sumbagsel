@@ -113,6 +113,21 @@ h1 .g{color:var(--green)}
 .hero-wave svg{display:block;width:100%}
 
 /* ── KENAPA GRABMART ── */
+/* ── MERCHANT BARU AKTIF ── */
+.mbaru-section{background:var(--green-bg);padding:60px 5vw}
+.mbaru-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mbaru-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;text-decoration:none;display:block;color:inherit}
+.mbaru-card:hover{border-color:var(--green);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+.mbaru-img-wrap{position:relative;width:100%;aspect-ratio:9/16;background:#1B4332;overflow:hidden}
+.mbaru-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.mbaru-badge{position:absolute;top:10px;left:10px;background:var(--green);color:#fff;font-size:.66rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.mbaru-body{padding:14px}
+.mbaru-nm{font-weight:800;font-size:.88rem;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbaru-loc{font-size:.76rem;color:var(--text-3);font-weight:600;margin-bottom:8px}
+.mbaru-link{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--green-light);border:1.5px solid var(--border);color:var(--green-dark);border-radius:8px;padding:7px;font-weight:700;font-size:.77rem;transition:all .2s}
+.mbaru-card:hover .mbaru-link{background:var(--green);color:#fff;border-color:var(--green)}
+.mbaru-empty{grid-column:1/-1;text-align:center;padding:36px;color:var(--text-3);font-weight:600}
+
 .why-section{background:#fff;padding:72px 5vw}
 .section-header{text-align:center;margin-bottom:48px}
 .section-chip{display:inline-block;background:var(--green-light);border:1.5px solid var(--border);color:var(--green-dark);padding:4px 14px;border-radius:50px;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
@@ -317,6 +332,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 @media(max-width:960px){
   .nav-links{display:none}
   #ham-btn{display:flex}
+  .mbaru-grid{grid-template-columns:1fr 1fr}
   .why-grid{grid-template-columns:1fr 1fr}
   .stats-grid{grid-template-columns:1fr 1fr}
   .steps-grid{grid-template-columns:1fr}
@@ -340,6 +356,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 @media(max-width:600px){
   :root{--nav-h:60px}
   nav{padding:0 4vw}
+  .mbaru-grid{grid-template-columns:1fr 1fr;gap:12px}
   .hero{padding:calc(var(--nav-h) + 20px) 4vw 0}
   h1{font-size:1.85rem}
   .hero-desc{font-size:.9rem}
@@ -436,6 +453,21 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
       <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#00B14F"/>
       <path d="M0,55 C360,20 720,70 1080,30 C1260,10 1380,50 1440,55 L1440,80 L0,80 Z" fill="#1B5E20" opacity=".7"/>
     </svg>
+  </div>
+</section>
+
+<!-- MERCHANT BARU AKTIF -->
+<section id="merchant-baru" class="mbaru-section">
+  <div class="section-header reveal">
+    <div class="section-chip">✦ Baru Saja Bergabung</div>
+    <h2 class="sec-t">Merchant Baru <span class="g">Aktif Berjualan</span></h2>
+    <p class="sec-d">Toko-toko yang baru saja resmi aktif di GrabMart wilayah Sumbagsel — yuk dukung dengan order pertama!</p>
+  </div>
+  <div class="mbaru-grid reveal" id="merchant-baru-container">
+    <div class="mbaru-empty">
+      <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
+      <div>Memuat data...</div>
+    </div>
   </div>
 </section>
 
@@ -887,8 +919,35 @@ async function loadMerchant(){
     if(!data||data.error||data.length===0){container.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--text-3);font-weight:600;">Data merchant belum tersedia.</div>';return;}
     const tampil=data.filter(d=>d.status==='tampil');
     container.innerHTML=tampil.map(m=>`<div class="testi-card">${m.foto?`<img src="${m.foto}" alt="${m.nama}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none'">`:''}<div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"${m.kutipan}"</div><div class="testi-who">${m.nama}</div><div class="testi-loc">📍 ${m.lokasi} — ${m.kategori}</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div></div>`).join('');
+async function loadMerchantBaru(){
+  try{
+    const res=await fetch(GS_API+'?sheet=merchant_baru');
+    const data=await res.json();
+    const container=document.getElementById('merchant-baru-container');
+    if(!data||data.error||data.length===0){
+      container.innerHTML='<div class="mbaru-empty">Belum ada merchant baru yang diposting.</div>';
+      return;
+    }
+    const aktif=data.filter(d=>d.status==='aktif');
+    if(aktif.length===0){
+      container.innerHTML='<div class="mbaru-empty">Belum ada merchant baru yang diposting.</div>';
+      return;
+    }
+    container.innerHTML=aktif.map(m=>`
+      <a href="${m.link_toko}" target="_blank" class="mbaru-card" onclick="trackDaftar('merchant-baru')">
+        <div class="mbaru-img-wrap">
+          <span class="mbaru-badge">🆕 Baru Aktif</span>
+          ${m.screenshot?`<img src="${m.screenshot}" alt="${m.nama_toko}" loading="lazy">`:''}
+        </div>
+        <div class="mbaru-body">
+          <div class="mbaru-nm">${m.nama_toko}</div>
+          <div class="mbaru-loc">📍 ${m.lokasi} ${m.tanggal?'· '+m.tanggal:''}</div>
+          <div class="mbaru-link">🛍️ Lihat Toko</div>
+        </div>
+      </a>
+    `).join('');
   }catch(e){
-    document.getElementById('merchant-container').innerHTML=`<div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Setelah bergabung dengan GrabMart, penjualan saya meningkat lebih dari 4,5 kali lipat."</div><div class="testi-who">Rizal Bumbu</div><div class="testi-loc">📍 Pasar Tomang Barat — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Kini pedagang pasar tradisional seperti saya bisa melayani pembeli secara online."</div><div class="testi-who">Toko MB Dita</div><div class="testi-loc">📍 Pasar Leg — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Sejak bergabung GrabFood, omzet meroket 200-300%!"</div><div class="testi-who">Yodhi M. Ahyad</div><div class="testi-loc">📍 Asli Geprek — GrabFood</div><div class="testi-src">🔗 grab.com/id/en/merchant/food</div></div>`;
+    document.getElementById('merchant-baru-container').innerHTML='<div class="mbaru-empty">Gagal memuat data merchant baru.</div>';
   }
 }
 
@@ -1004,6 +1063,7 @@ async function loadPengumuman(){
 
 document.addEventListener('DOMContentLoaded',()=>{
   loadMerchant();
+  loadMerchantBaru();
   loadFaq();
   loadKontak();
   loadPengumuman();
