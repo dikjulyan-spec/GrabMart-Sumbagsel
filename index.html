@@ -919,6 +919,11 @@ async function loadMerchant(){
     if(!data||data.error||data.length===0){container.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--text-3);font-weight:600;">Data merchant belum tersedia.</div>';return;}
     const tampil=data.filter(d=>d.status==='tampil');
     container.innerHTML=tampil.map(m=>`<div class="testi-card">${m.foto?`<img src="${m.foto}" alt="${m.nama}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:14px;" onerror="this.style.display='none'">`:''}<div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"${m.kutipan}"</div><div class="testi-who">${m.nama}</div><div class="testi-loc">📍 ${m.lokasi} — ${m.kategori}</div><div class="testi-src">🔗 Sumber resmi: grab.com/id/en/merchant</div></div>`).join('');
+  }catch(e){
+    document.getElementById('merchant-container').innerHTML=`<div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Setelah bergabung dengan GrabMart, penjualan saya meningkat lebih dari 4,5 kali lipat."</div><div class="testi-who">Rizal Bumbu</div><div class="testi-loc">📍 Pasar Tomang Barat — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Kini pedagang pasar tradisional seperti saya bisa melayani pembeli secara online."</div><div class="testi-who">Toko MB Dita</div><div class="testi-loc">📍 Pasar Leg — GrabMart</div><div class="testi-src">🔗 grab.com/id/en/merchant</div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-chip">⭐ Ditampilkan oleh Grab Indonesia</div><div class="testi-q">"Sejak bergabung GrabFood, omzet meroket 200-300%!"</div><div class="testi-who">Yodhi M. Ahyad</div><div class="testi-loc">📍 Asli Geprek — GrabFood</div><div class="testi-src">🔗 grab.com/id/en/merchant/food</div></div>`;
+  }
+}
+
 async function loadMerchantBaru(){
   try{
     const res=await fetch(GS_API+'?sheet=merchant_baru');
