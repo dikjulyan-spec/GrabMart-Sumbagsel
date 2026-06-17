@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Posting Merchant Sukses — Admin GrabMart Sumbagsel</title>
+<title>Posting Merchant Baru — Admin GrabMart Sumbagsel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332;min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* LOGIN SCREEN */
 .login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
 .login-card{background:#fff;border:1.5px solid #B7DFB7;border-radius:20px;padding:36px 30px;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,100,50,.1);text-align:center}
 .login-logo{font-size:2.4rem;margin-bottom:10px}
@@ -23,7 +22,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 .login-btn:hover{background:#008C3E}
 .login-err{color:#E53935;font-size:.8rem;margin-top:10px;display:none;font-weight:700}
 
-/* APP SCREEN */
 .app{display:none;max-width:560px;margin:0 auto;padding:24px 16px 60px}
 .app-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding:0 4px}
 .app-header .logo{width:42px;height:42px;background:#00B14F;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
@@ -31,44 +29,39 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 .app-header p{font-size:.78rem;color:#52796F;font-weight:600}
 .logout-link{margin-left:auto;font-size:.78rem;color:#52796F;font-weight:700;cursor:pointer;text-decoration:underline;flex-shrink:0}
 
-/* POST CARD (mirip composer status FB) */
 .composer{background:#fff;border:1.5px solid #B7DFB7;border-radius:18px;padding:20px;box-shadow:0 2px 10px rgba(0,100,50,.06);margin-bottom:20px}
 .composer-label{font-size:.78rem;font-weight:800;color:#2D6A4F;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.04em}
-.composer input[type=text],.composer textarea,.composer select{width:100%;background:#F1F8F1;border:1.5px solid #B7DFB7;border-radius:10px;padding:12px 13px;font-family:inherit;font-size:.9rem;color:#1B4332;outline:none;margin-bottom:16px;transition:border-color .2s}
-.composer input[type=text]:focus,.composer textarea:focus,.composer select:focus{border-color:#00B14F}
-.composer textarea{resize:vertical;min-height:80px;line-height:1.5}
+.composer input[type=text],.composer input[type=url]{width:100%;background:#F1F8F1;border:1.5px solid #B7DFB7;border-radius:10px;padding:12px 13px;font-family:inherit;font-size:.9rem;color:#1B4332;outline:none;margin-bottom:16px;transition:border-color .2s}
+.composer input[type=text]:focus,.composer input[type=url]:focus{border-color:#00B14F}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hint{font-size:.72rem;color:#52796F;margin-top:-12px;margin-bottom:16px;font-weight:500}
 
-/* PHOTO UPLOAD ZONE */
-.photo-zone{border:2px dashed #B7DFB7;border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;background:#F1F8F1;position:relative;overflow:hidden}
+.photo-zone{border:2px dashed #B7DFB7;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;background:#F1F8F1;position:relative;overflow:hidden}
 .photo-zone:hover{border-color:#00B14F;background:#E8F5E9}
 .photo-zone.has-image{padding:0;border-style:solid}
 .photo-zone input[type=file]{display:none}
-.photo-zone .pz-icon{font-size:2rem;margin-bottom:6px}
+.photo-zone .pz-icon{font-size:2.2rem;margin-bottom:6px}
 .photo-zone .pz-text{font-size:.85rem;font-weight:700;color:#2D6A4F}
 .photo-zone .pz-sub{font-size:.74rem;color:#52796F;margin-top:3px;font-weight:500}
-.photo-preview{width:100%;max-height:280px;object-fit:cover;display:block;border-radius:12px}
+.photo-preview{width:100%;max-height:320px;object-fit:contain;display:block;background:#1B4332}
 .photo-remove{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;z-index:2}
 
-/* SUBMIT BUTTON */
 .submit-btn{width:100%;background:#00B14F;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:.95rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;box-shadow:0 4px 14px rgba(0,177,79,.3)}
 .submit-btn:hover{background:#008C3E;transform:translateY(-1px)}
 .submit-btn:disabled{background:#A0BBA0;cursor:not-allowed;transform:none;box-shadow:none}
 
-/* RECENT POSTS LIST */
 .recent-title{font-size:.85rem;font-weight:800;color:#2D6A4F;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.04em}
-.recent-item{background:#fff;border:1.5px solid #B7DFB7;border-radius:14px;padding:14px;display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.recent-item img{width:50px;height:50px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#F1F8F1}
-.recent-item .ri-noimg{width:50px;height:50px;border-radius:10px;background:#E8F5E9;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.recent-item{background:#fff;border:1.5px solid #B7DFB7;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.recent-item img{width:54px;height:54px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#F1F8F1}
+.recent-item .ri-noimg{width:54px;height:54px;border-radius:10px;background:#E8F5E9;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
 .recent-item .ri-name{font-weight:800;font-size:.86rem}
-.recent-item .ri-loc{font-size:.75rem;color:#52796F;font-weight:600;margin-top:1px}
+.recent-item .ri-loc{font-size:.74rem;color:#52796F;font-weight:600;margin-top:1px}
+.recent-item .ri-date{font-size:.7rem;color:#95A5A0;font-weight:600;margin-top:2px}
 
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1B4332;color:#fff;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.2);opacity:0;transition:all .35s;z-index:9999;max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.error{background:#C62828}
 
-/* SPINNER */
 .spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -79,11 +72,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="login-logo">🏪</div>
-    <div class="login-title">Posting Merchant Sukses</div>
+    <div class="login-logo">🆕</div>
+    <div class="login-title">Posting Merchant Baru Aktif</div>
     <div class="login-sub">Khusus admin GrabMart Sumbagsel</div>
     <input type="password" id="loginPass" placeholder="Masukkan password" onkeypress="if(event.key==='Enter')doLogin()">
     <button class="login-btn" onclick="doLogin()">🔓 Masuk</button>
@@ -91,53 +83,39 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
   </div>
 </div>
 
-<!-- APP -->
 <div class="app" id="app">
   <div class="app-header">
-    <div class="logo">🏪</div>
+    <div class="logo">🆕</div>
     <div>
-      <h1>Posting Merchant Sukses</h1>
-      <p>Langsung tayang di website</p>
+      <h1>Merchant Baru Aktif</h1>
+      <p>Langsung tayang di halaman depan</p>
     </div>
     <span class="logout-link" onclick="doLogout()">Keluar</span>
   </div>
 
   <div class="composer">
-    <label class="composer-label">📸 Foto Merchant</label>
+    <label class="composer-label">📸 Screenshot Halaman Toko di GrabMart</label>
     <div class="photo-zone" id="photoZone" onclick="document.getElementById('photoInput').click()">
       <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
       <div id="photoPlaceholder">
-        <div class="pz-icon">🖼️</div>
-        <div class="pz-text">Tap untuk pilih foto</div>
-        <div class="pz-sub">JPG / PNG, maks 5MB</div>
+        <div class="pz-icon">📱</div>
+        <div class="pz-text">Tap untuk pilih screenshot</div>
+        <div class="pz-sub">Screenshot tampilan toko di app/web Grab</div>
       </div>
     </div>
 
-    <label class="composer-label">Nama Merchant</label>
-    <input type="text" id="fNama" placeholder="Contoh: Warung Pecel Bu Sri">
+    <label class="composer-label">Nama Toko</label>
+    <input type="text" id="fNamaToko" placeholder="Contoh: Sayur Segar Bu Linda">
 
-    <div class="row2">
-      <div>
-        <label class="composer-label">Lokasi</label>
-        <input type="text" id="fLokasi" placeholder="Contoh: Palembang">
-      </div>
-      <div>
-        <label class="composer-label">Kategori</label>
-        <select id="fKategori">
-          <option value="GrabMart">GrabMart</option>
-          <option value="GrabFood">GrabFood</option>
-        </select>
-      </div>
-    </div>
+    <label class="composer-label">Lokasi</label>
+    <input type="text" id="fLokasi" placeholder="Contoh: Palembang">
 
-    <label class="composer-label">Kutipan / Testimoni</label>
-    <textarea id="fKutipan" placeholder="Tulis testimoni merchant, contoh: Sejak bergabung, omzet saya naik 2x lipat..."></textarea>
+    <label class="composer-label">Link Toko di GrabMart</label>
+    <input type="url" id="fLinkToko" placeholder="https://grab.com/...">
+    <div class="hint">Tempel link halaman toko dari app/web Grab di sini</div>
 
-    <label class="composer-label">Nama Pemilik</label>
-    <input type="text" id="fPemilik" placeholder="Contoh: Ibu Sri Wahyuni">
-
-    <button class="submit-btn" id="submitBtn" onclick="submitMerchant()">
-      🚀 <span id="submitText">Posting Sekarang</span>
+    <button class="submit-btn" id="submitBtn" onclick="submitMerchantBaru()">
+      🚀 <span id="submitText">Posting ke Halaman Depan</span>
     </button>
   </div>
 
@@ -151,16 +129,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 
 <script>
 const GS_API = 'https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
-const ADMIN_PASS_CHECK = 'sumbagsel2026'; // hanya untuk gate UI, validasi asli tetap di server
+const ADMIN_PASS_CHECK = 'sumbagsel2026';
 
 let photoBase64 = null;
 let photoMimeType = null;
 
-// ═══ AUTH ═══
 function doLogin(){
   const pass = document.getElementById('loginPass').value;
   if(pass === ADMIN_PASS_CHECK){
-    sessionStorage.setItem('merchantAdminPass', pass);
+    sessionStorage.setItem('merchantBaruAdminPass', pass);
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     loadRecent();
@@ -169,17 +146,16 @@ function doLogin(){
   }
 }
 function doLogout(){
-  sessionStorage.removeItem('merchantAdminPass');
+  sessionStorage.removeItem('merchantBaruAdminPass');
   document.getElementById('loginScreen').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
   document.getElementById('loginPass').value = '';
 }
-if(sessionStorage.getItem('merchantAdminPass') === ADMIN_PASS_CHECK){
+if(sessionStorage.getItem('merchantBaruAdminPass') === ADMIN_PASS_CHECK){
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
 }
 
-// ═══ PHOTO HANDLING ═══
 function handlePhoto(e){
   const file = e.target.files[0];
   if(!file) return;
@@ -212,41 +188,39 @@ function removePhoto(e){
   zone.innerHTML = `
     <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
     <div id="photoPlaceholder">
-      <div class="pz-icon">🖼️</div>
-      <div class="pz-text">Tap untuk pilih foto</div>
-      <div class="pz-sub">JPG / PNG, maks 5MB</div>
+      <div class="pz-icon">📱</div>
+      <div class="pz-text">Tap untuk pilih screenshot</div>
+      <div class="pz-sub">Screenshot tampilan toko di app/web Grab</div>
     </div>
   `;
 }
 
-// ═══ SUBMIT ═══
-async function submitMerchant(){
-  const nama = document.getElementById('fNama').value.trim();
+async function submitMerchantBaru(){
+  const namaToko = document.getElementById('fNamaToko').value.trim();
   const lokasi = document.getElementById('fLokasi').value.trim();
-  const kategori = document.getElementById('fKategori').value;
-  const kutipan = document.getElementById('fKutipan').value.trim();
-  const pemilik = document.getElementById('fPemilik').value.trim();
+  const linkToko = document.getElementById('fLinkToko').value.trim();
 
-  if(!nama || !lokasi || !kutipan || !pemilik){
+  if(!namaToko || !lokasi || !linkToko){
     showToast('❌ Lengkapi semua field dulu ya!', true);
+    return;
+  }
+  if(!photoBase64){
+    showToast('❌ Screenshot toko wajib diupload!', true);
     return;
   }
 
   const btn = document.getElementById('submitBtn');
-  const btnText = document.getElementById('submitText');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> <span>Mengirim...</span>';
 
   try{
     const payload = {
-      password: sessionStorage.getItem('merchantAdminPass'),
-      action: 'addMerchant',
-      nama, lokasi, kategori, kutipan, pemilik
+      password: sessionStorage.getItem('merchantBaruAdminPass'),
+      action: 'addMerchantBaru',
+      namaToko, lokasi, linkToko,
+      fotoBase64: photoBase64,
+      fotoMimeType: photoMimeType
     };
-    if(photoBase64){
-      payload.fotoBase64 = photoBase64;
-      payload.fotoMimeType = photoMimeType;
-    }
 
     const res = await fetch(GS_API, {
       method: 'POST',
@@ -255,7 +229,7 @@ async function submitMerchant(){
     const data = await res.json();
 
     if(data.success){
-      showToast('✅ Merchant berhasil diposting!');
+      showToast('✅ Berhasil diposting ke halaman depan!');
       resetForm();
       loadRecent();
     } else {
@@ -265,36 +239,34 @@ async function submitMerchant(){
     showToast('❌ Gagal terhubung ke server', true);
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '🚀 <span id="submitText">Posting Sekarang</span>';
+    btn.innerHTML = '🚀 <span id="submitText">Posting ke Halaman Depan</span>';
   }
 }
 
 function resetForm(){
-  document.getElementById('fNama').value = '';
+  document.getElementById('fNamaToko').value = '';
   document.getElementById('fLokasi').value = '';
-  document.getElementById('fKutipan').value = '';
-  document.getElementById('fPemilik').value = '';
-  document.getElementById('fKategori').value = 'GrabMart';
+  document.getElementById('fLinkToko').value = '';
   removePhoto({stopPropagation:()=>{}});
 }
 
-// ═══ RECENT LIST ═══
 async function loadRecent(){
   try{
-    const res = await fetch(GS_API + '?sheet=merchant');
+    const res = await fetch(GS_API + '?sheet=merchant_baru');
     const data = await res.json();
     const list = document.getElementById('recentList');
     if(!data || data.error || data.length === 0){
-      list.innerHTML = '<div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;">Belum ada merchant.</div>';
+      list.innerHTML = '<div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;">Belum ada postingan.</div>';
       return;
     }
-    const recent = data.slice(-5).reverse();
+    const recent = data.slice(0, 5);
     list.innerHTML = recent.map(m => `
       <div class="recent-item">
-        ${m.foto ? `<img src="${m.foto}" onerror="this.outerHTML='<div class=&quot;ri-noimg&quot;>🏪</div>'">` : '<div class="ri-noimg">🏪</div>'}
+        ${m.screenshot ? `<img src="${m.screenshot}" onerror="this.outerHTML='<div class=&quot;ri-noimg&quot;>🏪</div>'">` : '<div class="ri-noimg">🏪</div>'}
         <div>
-          <div class="ri-name">${m.nama}</div>
-          <div class="ri-loc">📍 ${m.lokasi} · ${m.kategori}</div>
+          <div class="ri-name">${m.nama_toko}</div>
+          <div class="ri-loc">📍 ${m.lokasi}</div>
+          <div class="ri-date">🕐 ${m.tanggal}</div>
         </div>
       </div>
     `).join('');
@@ -303,7 +275,6 @@ async function loadRecent(){
   }
 }
 
-// ═══ TOAST ═══
 function showToast(msg, isError){
   const t = document.getElementById('toast');
   t.textContent = msg;
