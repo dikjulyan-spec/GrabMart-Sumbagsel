@@ -7,6 +7,7 @@
 <title>Posting Merchant Baru — Admin GrabMart Sumbagsel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332;min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -20,6 +21,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 .login-card input:focus{border-color:#00B14F}
 .login-btn{width:100%;background:#00B14F;color:#fff;border:none;border-radius:10px;padding:13px;font-weight:800;font-size:.95rem;cursor:pointer;font-family:inherit;transition:all .2s}
 .login-btn:hover{background:#008C3E}
+.login-btn:disabled{background:#A0BBA0;cursor:not-allowed}
 .login-err{color:#E53935;font-size:.8rem;margin-top:10px;display:none;font-weight:700}
 
 .app{display:none;max-width:560px;margin:0 auto;padding:24px 16px 60px}
@@ -70,6 +72,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 }
 </style>
 </head>
+
 <body>
 
 <div class="login-screen" id="loginScreen">
@@ -78,7 +81,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
     <div class="login-title">Posting Merchant Baru Aktif</div>
     <div class="login-sub">Khusus admin GrabMart Sumbagsel</div>
     <input type="password" id="loginPass" placeholder="Masukkan password" onkeypress="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">🔓 Masuk</button>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">🔓 Masuk</button>
     <div class="login-err" id="loginErr">❌ Password salah, coba lagi!</div>
   </div>
 </div>
@@ -96,7 +99,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
   <div class="composer">
     <label class="composer-label">📸 Screenshot Halaman Toko di GrabMart</label>
     <div class="photo-zone" id="photoZone" onclick="document.getElementById('photoInput').click()">
-      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
+      <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" onchange="handlePhoto(event)">
       <div id="photoPlaceholder">
         <div class="pz-icon">📱</div>
         <div class="pz-text">Tap untuk pilih screenshot</div>
@@ -129,64 +132,125 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332
 
 <script>
 const GS_API = 'https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
-const ADMIN_PASS_CHECK = 'sumbagsel2026';
 
 let photoBase64 = null;
 let photoMimeType = null;
 
-function doLogin(){
-  const pass = document.getElementById('loginPass').value;
-  if(pass === ADMIN_PASS_CHECK){
-    sessionStorage.setItem('merchantBaruAdminPass', pass);
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    loadRecent();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-  }
-}
-function doLogout(){
-  sessionStorage.removeItem('merchantBaruAdminPass');
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginPass').value = '';
-}
-if(sessionStorage.getItem('merchantBaruAdminPass') === ADMIN_PASS_CHECK){
+function showApp(){
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
+  loadRecent();
+}
+
+function showLogin(){
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+function getToken(){
+  return sessionStorage.getItem('merchantBaruAdminToken');
+}
+
+async function doLogin(){
+  const pass = document.getElementById('loginPass').value.trim();
+  const err = document.getElementById('loginErr');
+  const btn = document.getElementById('loginBtn');
+
+  err.style.display = 'none';
+
+  if(!pass){
+    err.textContent = '❌ Password wajib diisi';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Memeriksa...';
+
+  try{
+    const res = await fetch(GS_API, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'login',
+        password: pass
+      })
+    });
+
+    const data = await res.json();
+
+    if(data.success && data.token){
+      sessionStorage.setItem('merchantBaruAdminToken', data.token);
+      document.getElementById('loginPass').value = '';
+      showApp();
+    } else {
+      err.textContent = '❌ ' + (data.message || 'Password salah, coba lagi!');
+      err.style.display = 'block';
+    }
+  } catch(e){
+    showToast('❌ Gagal terhubung ke server', true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🔓 Masuk';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('merchantBaruAdminToken');
+  document.getElementById('loginPass').value = '';
+  showLogin();
+}
+
+if(getToken()){
+  showApp();
 }
 
 function handlePhoto(e){
   const file = e.target.files[0];
   if(!file) return;
+
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+  if(!allowedTypes.includes(file.type)){
+    showToast('❌ Format foto harus JPG, PNG, atau WEBP', true);
+    e.target.value = '';
+    return;
+  }
+
   if(file.size > 5 * 1024 * 1024){
     showToast('❌ Ukuran foto maksimal 5MB', true);
     e.target.value = '';
     return;
   }
+
   photoMimeType = file.type;
+
   const reader = new FileReader();
   reader.onload = function(ev){
     const result = ev.target.result;
     photoBase64 = result.split(',')[1];
+
     const zone = document.getElementById('photoZone');
     zone.classList.add('has-image');
     zone.innerHTML = `
       <img src="${result}" class="photo-preview">
       <button class="photo-remove" onclick="removePhoto(event)">✕</button>
-      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)" style="display:none">
+      <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" onchange="handlePhoto(event)" style="display:none">
     `;
   };
+
   reader.readAsDataURL(file);
 }
+
 function removePhoto(e){
   e.stopPropagation();
+
   photoBase64 = null;
   photoMimeType = null;
+
   const zone = document.getElementById('photoZone');
   zone.classList.remove('has-image');
   zone.innerHTML = `
-    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
+    <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" onchange="handlePhoto(event)">
     <div id="photoPlaceholder">
       <div class="pz-icon">📱</div>
       <div class="pz-text">Tap untuk pilih screenshot</div>
@@ -196,6 +260,14 @@ function removePhoto(e){
 }
 
 async function submitMerchantBaru(){
+  const token = getToken();
+
+  if(!token){
+    showToast('❌ Session habis, silakan login ulang', true);
+    doLogout();
+    return;
+  }
+
   const namaToko = document.getElementById('fNamaToko').value.trim();
   const lokasi = document.getElementById('fLokasi').value.trim();
   const linkToko = document.getElementById('fLinkToko').value.trim();
@@ -204,6 +276,12 @@ async function submitMerchantBaru(){
     showToast('❌ Lengkapi semua field dulu ya!', true);
     return;
   }
+
+  if(!/^https:\/\/.+/i.test(linkToko)){
+    showToast('❌ Link toko harus diawali https://', true);
+    return;
+  }
+
   if(!photoBase64){
     showToast('❌ Screenshot toko wajib diupload!', true);
     return;
@@ -215,9 +293,11 @@ async function submitMerchantBaru(){
 
   try{
     const payload = {
-      password: sessionStorage.getItem('merchantBaruAdminPass'),
       action: 'addMerchantBaru',
-      namaToko, lokasi, linkToko,
+      token: token,
+      namaToko: namaToko,
+      lokasi: lokasi,
+      linkToko: linkToko,
       fotoBase64: photoBase64,
       fotoMimeType: photoMimeType
     };
@@ -226,6 +306,7 @@ async function submitMerchantBaru(){
       method: 'POST',
       body: JSON.stringify(payload)
     });
+
     const data = await res.json();
 
     if(data.success){
@@ -234,6 +315,10 @@ async function submitMerchantBaru(){
       loadRecent();
     } else {
       showToast('❌ ' + (data.message || 'Gagal posting'), true);
+
+      if(String(data.message || '').toLowerCase().includes('session')){
+        doLogout();
+      }
     }
   } catch(err){
     showToast('❌ Gagal terhubung ke server', true);
@@ -255,18 +340,21 @@ async function loadRecent(){
     const res = await fetch(GS_API + '?sheet=merchant_baru');
     const data = await res.json();
     const list = document.getElementById('recentList');
+
     if(!data || data.error || data.length === 0){
       list.innerHTML = '<div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;">Belum ada postingan.</div>';
       return;
     }
+
     const recent = data.slice(0, 5);
+
     list.innerHTML = recent.map(m => `
       <div class="recent-item">
         ${m.screenshot ? `<img src="${m.screenshot}" onerror="this.outerHTML='<div class=&quot;ri-noimg&quot;>🏪</div>'">` : '<div class="ri-noimg">🏪</div>'}
         <div>
-          <div class="ri-name">${m.nama_toko}</div>
-          <div class="ri-loc">📍 ${m.lokasi}</div>
-          <div class="ri-date">🕐 ${m.tanggal}</div>
+          <div class="ri-name">${m.nama_toko || '-'}</div>
+          <div class="ri-loc">📍 ${m.lokasi || '-'}</div>
+          <div class="ri-date">🕐 ${m.tanggal || '-'}</div>
         </div>
       </div>
     `).join('');
@@ -279,8 +367,12 @@ function showToast(msg, isError){
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show' + (isError ? ' error' : '');
-  setTimeout(()=>{ t.className = 'toast'; }, 3500);
+
+  setTimeout(()=>{
+    t.className = 'toast';
+  }, 3500);
 }
 </script>
+
 </body>
 </html>
