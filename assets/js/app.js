@@ -212,3 +212,21 @@ function createBackToTop(){
 fetchSheet('pengumuman').then(createAnnouncement).catch(()=>{});
 fetchSheet('kontak').then(createWhatsAppHub).catch(()=>createWhatsAppHub(kontakFallback()));
 createBackToTop();
+
+// Step 7 - mobile sticky CTA and safer outbound handling
+function createMobileStickyCta(){
+  if(document.querySelector('.mobile-sticky-cta'))return;
+  const bar=document.createElement('div');
+  bar.className='mobile-sticky-cta';
+  bar.innerHTML='<a class="sticky-primary" href="https://grb.to/PendaftaranGM" target="_blank" rel="noopener" onclick="trackDaftar(\'sticky-mobile-daftar\')">Daftar Gratis</a><a class="sticky-secondary" href="#kontak" onclick="trackDaftar(\'sticky-mobile-kontak\')">Chat Kota</a>';
+  document.body.appendChild(bar);
+}
+function hardenOutboundLinks(){
+  document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+    const rel=new Set(String(a.getAttribute('rel')||'').split(/\s+/).filter(Boolean));
+    rel.add('noopener');rel.add('noreferrer');
+    a.setAttribute('rel',Array.from(rel).join(' '));
+  });
+}
+createMobileStickyCta();
+hardenOutboundLinks();
