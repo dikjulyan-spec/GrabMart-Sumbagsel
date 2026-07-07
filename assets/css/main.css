@@ -247,3 +247,33 @@ body.has-announcement{--announcement-space:120px}
   .hero-actions .btn{font-size:.92rem;min-height:52px}
   .mobile-sticky-cta{box-shadow:0 18px 56px rgba(15,23,42,.16)}
 }
+
+/* Step 7.7 - Banner no-crop desktop fit for 1920x320 artwork */
+@media (min-width: 981px){
+  body.has-announcement{--announcement-space:clamp(160px,16.666vw,300px)}
+  .announcement-wrap{
+    height:clamp(160px,16.666vw,300px);
+    background:#062015;
+    box-shadow:0 12px 32px rgba(15,23,42,.14);
+  }
+  .announcement-slide,
+  .announcement-slide.has-banner{
+    min-height:clamp(160px,16.666vw,300px);
+    background-size:cover;
+    background-position:center center;
+  }
+  .announcement-controls{
+    right:18px;
+    background:linear-gradient(90deg,rgba(6,32,21,0),rgba(6,32,21,.36) 38%,rgba(6,32,21,.72));
+  }
+  .nav-shell{top:calc(18px + var(--announcement-space,0px))}
+  .nav-shell.scrolled{top:calc(10px + var(--announcement-space,0px))}
+  .hero{padding-top:calc(112px + var(--announcement-space,0px))}
+}
+
+@media (min-width: 981px) and (max-width: 1240px){
+  body.has-announcement{--announcement-space:clamp(150px,16.666vw,220px)}
+  .announcement-wrap{height:clamp(150px,16.666vw,220px)}
+  .announcement-slide,
+  .announcement-slide.has-banner{min-height:clamp(150px,16.666vw,220px)}
+}
