@@ -36,11 +36,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="preload" href="assets/css/variables.css?v=12.6" as="style">
-<link rel="preload" href="assets/css/main.css?v=12.6" as="style">
+<link rel="preload" href="assets/css/variables.css?v=13.0" as="style">
+<link rel="preload" href="assets/css/main.css?v=13.0" as="style">
 <link rel="preload" href="assets/images/toko-grabmart.png" as="image" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/variables.css?v=12.6">
-<link rel="stylesheet" href="assets/css/main.css?v=12.6">
+<link rel="stylesheet" href="assets/css/variables.css?v=13.0">
+<link rel="stylesheet" href="assets/css/main.css?v=13.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18JEGL9G5V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-18JEGL9G5V');</script>
 </head>
@@ -62,8 +62,8 @@
       <a class="gm-topbar-link" data-topbar-link href="daftar.html" target="_blank" rel="noopener noreferrer">Daftar GrabMart Gratis, Aktif 3-10 hari kerja</a>
     </div>
     <div class="gm-topbar-controls" aria-label="Kontrol banner">
-      <button type="button" data-campaign-prev aria-label="Banner sebelumnya">&lsaquo;</button>
-      <button type="button" data-campaign-next aria-label="Banner berikutnya">&rsaquo;</button>
+      <button type="button" data-campaign-prev aria-label="Banner sebelumnya"><span class="css-arrow css-arrow-left" aria-hidden="true"></span></button>
+      <button type="button" data-campaign-next aria-label="Banner berikutnya"><span class="css-arrow css-arrow-right" aria-hidden="true"></span></button>
     </div>
   </div>
 </header>
@@ -101,21 +101,21 @@
   <section class="gm-hero-modern" aria-label="Hero GrabMart Sumbagsel">
     <div class="container">
       <div class="gm-campaign" id="campaign-slider">
-        <button class="gm-campaign-arrow gm-campaign-prev" type="button" data-campaign-prev aria-label="Banner sebelumnya">&lsaquo;</button>
+        <button class="gm-campaign-arrow gm-campaign-prev" type="button" data-campaign-prev aria-label="Banner sebelumnya"><span class="css-arrow css-arrow-left" aria-hidden="true"></span></button>
         <div class="gm-campaign-track" data-campaign-track>
           <a class="gm-campaign-slide is-active gm-campaign-fallback" href="daftar.html" onclick="trackDaftar('campaign-fallback')">
             <div class="gm-campaign-content">
               <span>Onboarding Merchant</span>
               <h1>Daftar <em>GrabMart</em> Gratis</h1>
               <p>Aktif 3-10 hari kerja</p>
-              <div class="gm-campaign-cta">Daftar Sekarang <strong>&rsaquo;</strong></div>
+              <div class="gm-campaign-cta">Daftar Sekarang <strong aria-hidden="true"><span class="css-arrow css-arrow-right"></span></strong></div>
             </div>
             <div class="gm-campaign-visual" aria-hidden="true">
               <img src="assets/images/toko-grabmart.png" alt="" width="720" height="560" loading="eager" decoding="async" fetchpriority="high">
             </div>
           </a>
         </div>
-        <button class="gm-campaign-arrow gm-campaign-next" type="button" data-campaign-next aria-label="Banner berikutnya">&rsaquo;</button>
+        <button class="gm-campaign-arrow gm-campaign-next" type="button" data-campaign-next aria-label="Banner berikutnya"><span class="css-arrow css-arrow-right" aria-hidden="true"></span></button>
         <div class="gm-campaign-dots" data-campaign-dots aria-label="Indikator banner"><button class="is-active" type="button" aria-label="Banner 1"></button></div>
       </div>
 
@@ -399,7 +399,7 @@
         </div>
         <div class="final-cta-actions">
           <a class="btn" href="daftar.html" onclick="trackDaftar('final-cta')">Daftar Sekarang</a>
-          <a class="btn ghost" href="#kontak">Chat Tim Kota</a>
+          <a class="btn ghost" href="#merchant-baru">Merchant Baru</a>
         </div>
       </div>
     </div>
@@ -418,6 +418,6 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js?v=12.6" defer></script>
+<script src="assets/js/app.js?v=13.0" defer></script>
 </body>
 </html>
