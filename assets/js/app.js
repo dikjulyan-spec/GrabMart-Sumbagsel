@@ -39,7 +39,7 @@ function trackDaftar(source){if(typeof gtag!=='undefined')gtag('event','click_da
 window.trackDaftar=trackDaftar;
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function escAttr(v){return esc(v);}
-function safeUrl(url){const u=String(url||'').trim();return /^https:\/\//i.test(u)?u:'#';}
+function safeUrl(url){const u=String(url||'').trim();if(/^https:\/\//i.test(u))return u;if(/^(daftar|index|privacy|terms|404)[\w\-.]*\.html(\?.*)?$/i.test(u))return u;return '#';}
 function short(v,n=80){v=String(v??'');return v.length>n?v.slice(0,n-1)+'…':v;}
 function cacheKey(sheet){return 'grabmart_sheet_'+sheet;}
 function readCache(sheet){try{const raw=sessionStorage.getItem(cacheKey(sheet));if(!raw)return null;const cached=JSON.parse(raw);if(Date.now()-cached.time>CACHE_TTL)return null;return cached.data;}catch(e){return null;}}
@@ -70,10 +70,10 @@ async function fetchSheet(sheet){
   return data;
 }
 function merchantFallback(){return [
-  {nama_toko:'Merchant baru GrabMart',lokasi:'Palembang',tanggal:'Aktif',link_toko:'https://grb.to/PendaftaranGM',screenshot:''},
-  {nama_toko:'Toko siap go digital',lokasi:'Lampung',tanggal:'Aktif',link_toko:'https://grb.to/PendaftaranGM',screenshot:''},
-  {nama_toko:'Mitra GrabMart Sumbagsel',lokasi:'Jambi',tanggal:'Aktif',link_toko:'https://grb.to/PendaftaranGM',screenshot:''},
-  {nama_toko:'Bergabung sekarang',lokasi:'Bengkulu',tanggal:'Aktif',link_toko:'https://grb.to/PendaftaranGM',screenshot:''}
+  {nama_toko:'Merchant baru GrabMart',lokasi:'Palembang',tanggal:'Aktif',link_toko:'https://mitrasumbagsel.com/daftar.html',screenshot:''},
+  {nama_toko:'Toko siap go digital',lokasi:'Lampung',tanggal:'Aktif',link_toko:'https://mitrasumbagsel.com/daftar.html',screenshot:''},
+  {nama_toko:'Mitra GrabMart Sumbagsel',lokasi:'Jambi',tanggal:'Aktif',link_toko:'https://mitrasumbagsel.com/daftar.html',screenshot:''},
+  {nama_toko:'Bergabung sekarang',lokasi:'Bengkulu',tanggal:'Aktif',link_toko:'https://mitrasumbagsel.com/daftar.html',screenshot:''}
 ];}
 function renderMerchantBaru(rows){
   const box=document.getElementById('merchant-baru-container');
@@ -82,7 +82,7 @@ function renderMerchantBaru(rows){
   const data=aktif.length?aktif:merchantFallback();
   box.innerHTML=data.map((m,i)=>{
     const img=m.screenshot?`<img src="${esc(safeUrl(m.screenshot))}" alt="${esc(m.nama_toko||'Merchant GrabMart')}" loading="lazy" decoding="async" onerror="this.style.display='none'">`:'';
-    return `<a class="merchant-card" href="${esc(safeUrl(m.link_toko||'https://grb.to/PendaftaranGM'))}" target="_blank" rel="noopener" onclick="trackDaftar('merchant-baru-card')" aria-label="Lihat toko ${esc(m.nama_toko||'Merchant GrabMart')}">
+    return `<a class="merchant-card" href="${esc(safeUrl(m.link_toko||'https://mitrasumbagsel.com/daftar.html'))}" target="_blank" rel="noopener" onclick="trackDaftar('merchant-baru-card')" aria-label="Lihat toko ${esc(m.nama_toko||'Merchant GrabMart')}">
       <div class="merchant-shot"><span class="merchant-badge">Baru Aktif</span>${img}</div>
       <div class="merchant-info"><h3>${esc(short(m.nama_toko||m.nama||'Merchant GrabMart',48))}</h3><p>${esc(m.lokasi||'Sumbagsel')} ${m.tanggal?'· '+esc(m.tanggal):''}</p><div class="merchant-link">Lihat Toko</div></div>
     </a>`;
@@ -172,7 +172,7 @@ function createAnnouncement(rows){
   const slides=items.map((item,i)=>{
     const text=esc(item.teks||item.judul||item.pesan||'Informasi terbaru GrabMart Sumbagsel');
     const btn=esc(item.btn||item.tombol||'Lihat Info');
-    const link=safeUrl(item.link||'https://grb.to/PendaftaranGM');
+    const link=safeUrl(item.link||'https://mitrasumbagsel.com/daftar.html');
     const banner=safeUrl(item.banner||item.gambar||item.image||item.foto||'');
     const hasBanner=banner && banner !== '#';
     const bg=hasBanner?` style="background-image:url('${escAttr(banner)}')"`:'';
@@ -254,10 +254,10 @@ function createBackToTop(){
 // Step 8.1 - top announcement + clean clickable campaign slider
 function initCampaignAnnouncements(rows){
   const items=activeRows(rows).slice(0,8);
-  const normalized=(items.length?items:[{teks:'Daftar GrabMart Gratis, Aktif 3-10 hari kerja',btn:'Daftar Sekarang',link:'https://grb.to/PendaftaranGM',banner:''}]).map(item=>({
+  const normalized=(items.length?items:[{teks:'Daftar GrabMart Gratis, Aktif 3-10 hari kerja',btn:'Daftar Sekarang',link:'https://mitrasumbagsel.com/daftar.html',banner:''}]).map(item=>({
     text:String(item.teks||item.judul||item.pesan||'Daftar GrabMart Gratis, Aktif 3-10 hari kerja'),
     btn:String(item.btn||item.tombol||'Daftar Sekarang'),
-    link:safeUrl(item.link||'https://grb.to/PendaftaranGM'),
+    link:safeUrl(item.link||'https://mitrasumbagsel.com/daftar.html'),
     banner:safeUrl(item.banner||item.gambar||item.image||item.foto||'')
   }));
   const topLink=document.querySelector('[data-topbar-link]');
@@ -329,7 +329,7 @@ function createMobileStickyCta(){
   if(document.querySelector('.mobile-sticky-cta'))return;
   const bar=document.createElement('div');
   bar.className='mobile-sticky-cta';
-  bar.innerHTML='<a class="sticky-primary" href="https://grb.to/PendaftaranGM" target="_blank" rel="noopener" onclick="trackDaftar(\'sticky-mobile-daftar\')">Daftar Gratis</a><a class="sticky-secondary" href="#kontak" onclick="trackDaftar(\'sticky-mobile-kontak\')">Chat Kota</a>';
+  bar.innerHTML='<a class="sticky-primary" href="daftar.html" onclick="trackDaftar(\'sticky-mobile-daftar\')">Daftar Gratis</a><a class="sticky-secondary" href="#kontak" onclick="trackDaftar(\'sticky-mobile-kontak\')">Chat Kota</a>';
   document.body.appendChild(bar);
 }
 function hardenOutboundLinks(){
