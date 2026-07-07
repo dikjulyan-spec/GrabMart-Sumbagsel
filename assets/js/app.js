@@ -358,3 +358,43 @@ hardenOutboundLinks();
   }
   document.addEventListener('click', toggleWaLauncher, true);
 })();
+// Step 13 - final responsive helpers and cache-safe UI states
+(function(){
+  if(window.__grabmartStep13Polish) return;
+  window.__grabmartStep13Polish = true;
+  function setViewportVars(){
+    document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+    var header = document.querySelector('.gm-header');
+    if(header) document.documentElement.style.setProperty('--gm-header-h', header.offsetHeight + 'px');
+  }
+  setViewportVars();
+  window.addEventListener('resize', setViewportVars, {passive:true});
+  window.addEventListener('orientationchange', function(){setTimeout(setViewportVars, 220);}, {passive:true});
+
+  // Keep mobile drawer clean after tapping navigation links or resizing to desktop.
+  document.querySelectorAll('.mobile-menu a').forEach(function(link){
+    link.addEventListener('click', function(){ document.querySelector('[data-mobile-menu]')?.classList.remove('open'); });
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 960) document.querySelector('[data-mobile-menu]')?.classList.remove('open');
+  }, {passive:true});
+
+  // Remove any mojibake characters that may come from stale CMS text or old cached markup.
+  function cleanMojibake(root){
+    var scope = root || document;
+    var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    var bad = /[\u9200-\u9FFF]\uFFFD?|\uFFFD/g;
+    var nodes = [];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(node){
+      if(bad.test(node.nodeValue)) node.nodeValue = node.nodeValue.replace(bad, '').replace(/\s{2,}/g, ' ').trim();
+    });
+  }
+  cleanMojibake(document.body);
+  var mo = new MutationObserver(function(mutations){
+    mutations.forEach(function(m){
+      m.addedNodes && m.addedNodes.forEach(function(n){ if(n.nodeType === 1) cleanMojibake(n); });
+    });
+  });
+  mo.observe(document.body, {childList:true, subtree:true});
+})();
