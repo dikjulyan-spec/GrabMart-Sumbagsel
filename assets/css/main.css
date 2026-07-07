@@ -345,3 +345,46 @@ body.has-announcement{--announcement-space:0px!important}
 .footer-contact-city a{font-variant-numeric:tabular-nums;white-space:nowrap}
 @media(max-width:960px){.gm-brand img{width:128px}}
 @media(max-width:520px){.gm-brand img{width:118px}}
+
+/* Step 8.3 - Mobile campaign slider landscape fix */
+@media (max-width: 960px){
+  .gm-hero-modern{padding:18px 0 42px}
+  .gm-campaign{
+    min-height:0!important;
+    height:auto!important;
+    aspect-ratio:2.45/1;
+    border-radius:24px;
+    box-shadow:0 18px 46px rgba(10,56,37,.14);
+  }
+  .gm-campaign-track{
+    min-height:0!important;
+    height:100%!important;
+  }
+  .gm-campaign-slide{
+    min-height:0!important;
+    height:100%!important;
+  }
+  .gm-campaign-slide.has-image{
+    background-size:cover!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+  }
+  .gm-campaign-slide.has-image:before{display:none!important}
+  .gm-campaign-dots{bottom:12px;gap:8px}
+  .gm-campaign-dots button{width:9px;height:9px;background:rgba(255,255,255,.46)}
+  .gm-campaign-dots button.is-active{background:#fff;transform:scale(1.12)}
+}
+@media (max-width: 520px){
+  .gm-hero-modern{padding:14px 0 34px}
+  .gm-campaign{
+    aspect-ratio:2.05/1;
+    border-radius:22px;
+  }
+  .gm-campaign-track,
+  .gm-campaign-slide{height:100%!important;min-height:0!important}
+  .gm-campaign-arrow{display:none!important}
+  .gm-campaign-dots{bottom:11px}
+}
+@media (max-width: 390px){
+  .gm-campaign{aspect-ratio:1.92/1}
+}
