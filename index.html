@@ -899,7 +899,7 @@ function toggleWA(){
 function sendWA(num,msg){
   window.open('https://wa.me/'+num+'?text='+encodeURIComponent(msg),'_blank');
 }
-setTimeout(()=>{if(!waOpen)toggleWA()},30000);
+// Popup WhatsApp tidak lagi tampil otomatis. Bubble hanya muncul saat tombol WhatsApp diklik.
 
 // Modal
 function showModal(){document.getElementById('modal-thanks').style.display='flex'}
