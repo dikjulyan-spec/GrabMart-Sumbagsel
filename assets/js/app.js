@@ -158,32 +158,35 @@ initDynamicSections();
 
 
 // Step 6 - announcement bar, WhatsApp quick hub, and back-to-top helper
-function activeRows(rows, field='status', active='aktif'){
-  return (Array.isArray(rows)?rows:[]).filter(row=>String(row?.[field]||active).toLowerCase()===active);
+function activeRows(rows, field='status'){
+  const ok=new Set(['','aktif','active','tampil','show','publish','published']);
+  return (Array.isArray(rows)?rows:[]).filter(row=>ok.has(String(row?.[field]??'aktif').trim().toLowerCase()));
 }
 function createAnnouncement(rows){
-  const items=activeRows(rows).slice(0,5);
+  const items=activeRows(rows).slice(0,8);
   if(!items.length || sessionStorage.getItem('grabmart_announcement_closed')==='1')return;
-  const wrap=document.createElement('div');
+  const existing=document.querySelector('.announcement-wrap');
+  const wrap=existing||document.createElement('div');
   wrap.className='announcement-wrap';
-  let idx=0;
-  function current(){return items[idx]||items[0];}
-  function paint(){
-    const item=current();
-    const text=esc(item.teks||item.judul||item.pesan||'Informasi terbaru GrabMart Sumbagsel');
-    const link=safeUrl(item.link||'https://grb.to/PendaftaranGM');
-    const btn=esc(item.btn||item.tombol||'Lihat Info');
-    wrap.innerHTML=`<div class="announcement-card" role="status" aria-live="polite"><div class="announcement-copy"><span class="announcement-dot"></span><span class="announcement-text">${text}</span></div><div class="announcement-actions"><a class="announcement-link" href="${esc(link)}" target="_blank" rel="noopener">${btn}</a><button class="announcement-close" type="button" aria-label="Tutup pengumuman">×</button></div></div>`;
-    wrap.querySelector('.announcement-close')?.addEventListener('click',()=>{sessionStorage.setItem('grabmart_announcement_closed','1');wrap.classList.add('hidden');setTimeout(()=>wrap.remove(),260);});
-  }
-  paint();
-  document.body.appendChild(wrap);
-  if(items.length>1){setInterval(()=>{idx=(idx+1)%items.length;paint();},6200);}
+  const first=items[0]||{};
+  const btn=esc(first.btn||first.tombol||'Lihat Info');
+  const link=safeUrl(first.link||'https://grb.to/PendaftaranGM');
+  const messages=items.map(item=>esc(item.teks||item.judul||item.pesan||'Informasi terbaru GrabMart Sumbagsel'));
+  const loop=[...messages,...messages].map((text,i)=>`<span class="announcement-item"><span class="announcement-dot" aria-hidden="true"></span>${text}</span><span class="announcement-sep" aria-hidden="true">•</span>`).join('');
+  wrap.innerHTML=`<div class="announcement-card" role="status" aria-live="polite"><div class="announcement-marquee"><div class="announcement-track">${loop}</div></div><div class="announcement-actions"><a class="announcement-link" href="${esc(link)}" target="_blank" rel="noopener noreferrer">${btn}</a><button class="announcement-close" type="button" aria-label="Tutup pengumuman">×</button></div></div>`;
+  wrap.querySelector('.announcement-close')?.addEventListener('click',()=>{
+    sessionStorage.setItem('grabmart_announcement_closed','1');
+    document.body.classList.remove('has-announcement');
+    wrap.classList.add('hidden');
+    setTimeout(()=>wrap.remove(),260);
+  });
+  if(!existing)document.body.prepend(wrap);
+  document.body.classList.add('has-announcement');
 }
 function createWhatsAppHub(rows){
-  if(document.querySelector('.wa-launcher'))return;
-  const list=(Array.isArray(rows)&&rows.length?rows:kontakFallback()).filter(x=>String(x.status||'aktif').toLowerCase()!=='nonaktif').slice(0,8);
-  const launcher=document.createElement('div');
+  const existing=document.querySelector('.wa-launcher');
+  const list=(Array.isArray(rows)&&rows.length?rows:kontakFallback()).filter(x=>String(x.status||'aktif').trim().toLowerCase()!=='nonaktif').slice(0,8);
+  const launcher=existing||document.createElement('div');
   launcher.className='wa-launcher';
   const cityButtons=list.map(k=>{
     const kota=k.kota||k.nama||'Sumbagsel';
@@ -192,11 +195,14 @@ function createWhatsAppHub(rows){
     return `<a class="wa-city" href="https://wa.me/${esc(wa)}?text=${encodeURIComponent(pesan)}" target="_blank" rel="noopener" onclick="trackDaftar('floating-wa-${esc(kota)}')"><span>${cityIcon(kota)} ${esc(kota)}</span><small>Chat</small></a>`;
   }).join('');
   launcher.innerHTML=`<div class="wa-panel" data-wa-panel><div class="wa-head"><div class="wa-avatar">GM</div><div><strong>Tim GrabMart Sumbagsel</strong><span>Siap bantu pendaftaran</span></div></div><p>Pilih kota untuk tanya alur daftar, dokumen, dan onboarding merchant GrabMart.</p><div class="wa-city-list">${cityButtons}</div></div><button class="wa-main" data-wa-toggle type="button" aria-label="Buka bantuan WhatsApp"><span class="wa-ping" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.051 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26C2.168 6.442 6.603 2.008 12.055 2.008c2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885"/></svg></button>`;
-  document.body.appendChild(launcher);
+  if(!existing)document.body.appendChild(launcher);
   const panel=launcher.querySelector('[data-wa-panel]');
   const btn=launcher.querySelector('[data-wa-toggle]');
-  btn?.addEventListener('click',()=>{panel?.classList.toggle('open');launcher.querySelector('.wa-ping')?.remove();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')panel?.classList.remove('open');});
+  if(!launcher.dataset.bound){
+    btn?.addEventListener('click',()=>{panel?.classList.toggle('open');launcher.querySelector('.wa-ping')?.remove();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')panel?.classList.remove('open');});
+    launcher.dataset.bound='1';
+  }
 }
 function createBackToTop(){
   const btn=document.createElement('button');
@@ -210,7 +216,8 @@ function createBackToTop(){
 }
 
 fetchSheet('pengumuman').then(createAnnouncement).catch(()=>{});
-fetchSheet('kontak').then(createWhatsAppHub).catch(()=>createWhatsAppHub(kontakFallback()));
+createWhatsAppHub(kontakFallback());
+fetchSheet('kontak').then(createWhatsAppHub).catch(()=>{});
 createBackToTop();
 
 // Step 7 - mobile sticky CTA and safer outbound handling
