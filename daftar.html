@@ -198,47 +198,53 @@ useMyLocationBtn.addEventListener('click',function(){
 });
 
 function submitLeadToGoogleSheet(data){
-  return new Promise(function(resolve){
-    const iframeName='leadSubmitFrame_'+Date.now();
-    const iframe=document.createElement('iframe');
-    iframe.name=iframeName;
-    iframe.style.display='none';
-    document.body.appendChild(iframe);
+  return new Promise(function(resolve,reject){
+    const callbackName='gmLeadCallback_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const script=document.createElement('script');
+    const params=new URLSearchParams();
 
-    const form=document.createElement('form');
-    form.method='POST';
-    form.action=GS_API;
-    form.target=iframeName;
-    form.style.display='none';
-
-    function add(name,value){
-      const input=document.createElement('input');
-      input.type='hidden';
-      input.name=name;
-      input.value=value;
-      form.appendChild(input);
-    }
-
-    add('action','submitRegistration');
-    add('data',JSON.stringify(data));
-
-    let done=false;
-    function finish(){
-      if(done)return;
-      done=true;
-      setTimeout(function(){
-        try{form.remove();iframe.remove();}catch(e){}
-      },500);
-      resolve({success:true});
-    }
-
-    iframe.addEventListener('load',function(){
-      finish();
+    params.set('action','submitRegistration');
+    params.set('callback',callbackName);
+    Object.keys(data).forEach(function(key){
+      params.set(key, data[key] || '');
     });
 
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(finish,1800);
+    let done=false;
+    let timer=null;
+
+    function cleanup(){
+      if(timer)clearTimeout(timer);
+      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+      try{script.remove();}catch(e){}
+    }
+
+    window[callbackName]=function(response){
+      if(done)return;
+      done=true;
+      cleanup();
+      if(response && response.success){
+        resolve(response);
+      }else{
+        reject(new Error((response && response.message) || 'Data belum berhasil masuk Google Sheet'));
+      }
+    };
+
+    script.onerror=function(){
+      if(done)return;
+      done=true;
+      cleanup();
+      reject(new Error('Tidak bisa menghubungi Google Apps Script. Cek deployment Web App.'));
+    };
+
+    timer=setTimeout(function(){
+      if(done)return;
+      done=true;
+      cleanup();
+      reject(new Error('Submit timeout. Cek izin deployment Google Apps Script.'));
+    },10000);
+
+    script.src=GS_API+'?'+params.toString();
+    document.body.appendChild(script);
   });
 }
 
@@ -268,7 +274,7 @@ document.getElementById('registerForm').addEventListener('submit',async function
 
   try{
     await submitLeadToGoogleSheet(data);
-    setRegisterStatus('Data dikirim ke Google Sheet. Membuka WhatsApp...', 'success');
+    setRegisterStatus('Data berhasil masuk Google Sheet. Membuka WhatsApp...', 'success');
     if(typeof gtag!=='undefined')gtag('event','submit_internal_daftar',{event_category:'Lead',event_label:data.kotaKabupaten});
     const msg=buildWhatsAppMessage(data);
     setTimeout(function(){
