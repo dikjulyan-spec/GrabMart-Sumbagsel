@@ -224,10 +224,19 @@ function createWhatsAppHub(rows){
   if(!existing)document.body.appendChild(launcher);
   const panel=launcher.querySelector('[data-wa-panel]');
   const btn=launcher.querySelector('[data-wa-toggle]');
-  if(!launcher.dataset.bound){
-    btn?.addEventListener('click',()=>{panel?.classList.toggle('open');launcher.querySelector('.wa-ping')?.remove();});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')panel?.classList.remove('open');});
-    launcher.dataset.bound='1';
+  if(btn){
+    btn.onclick=(e)=>{
+      e.preventDefault();
+      e.stopPropagation();
+      panel?.classList.toggle('open');
+      launcher.querySelector('.wa-ping')?.remove();
+    };
+  }
+  launcher.onclick=(e)=>e.stopPropagation();
+  if(!window.__grabmartWaGlobalBound){
+    document.addEventListener('click',()=>document.querySelector('[data-wa-panel]')?.classList.remove('open'));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelector('[data-wa-panel]')?.classList.remove('open');});
+    window.__grabmartWaGlobalBound=true;
   }
 }
 function createBackToTop(){
