@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="canonical" href="https://mitrasumbagsel.com/daftar.html">
+<meta name="robots" content="index, follow">
+<title>Mulai Daftar GrabMart Sumbagsel | Pilih Kota & Chat Tim Onboarding</title>
+<meta name="description" content="Mulai pendaftaran GrabMart Sumbagsel langsung dari website. Pilih kota, isi data toko, data otomatis tersimpan ke Google Sheet pendaftaran, lalu lanjut chat WhatsApp tim onboarding Palembang, Lampung, Jambi, Bengkulu, atau Pangkal Pinang.">
+<meta name="keywords" content="daftar GrabMart Sumbagsel, daftar GrabMart Palembang, daftar GrabMart Lampung, daftar GrabMart Jambi, daftar GrabMart Bengkulu, daftar GrabMart Pangkal Pinang">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mitrasumbagsel.com/daftar.html">
+<meta property="og:title" content="Mulai Daftar GrabMart Sumbagsel">
+<meta property="og:description" content="Isi data toko, simpan otomatis ke Google Sheet pendaftaran, lalu lanjut chat tim onboarding GrabMart Sumbagsel.">
+<meta property="og:image" content="https://mitrasumbagsel.com/assets/images/logo.png">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="GrabMart Sumbagsel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mulai Daftar GrabMart Sumbagsel">
+<meta name="twitter:description" content="Isi data toko, simpan otomatis ke Google Sheet pendaftaran, lalu lanjut chat tim onboarding GrabMart Sumbagsel.">
+<meta name="twitter:image" content="https://mitrasumbagsel.com/assets/images/logo.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Mulai Daftar GrabMart Sumbagsel","url":"https://mitrasumbagsel.com/daftar.html","description":"Mulai pendaftaran GrabMart Sumbagsel langsung dari website. Data tersimpan otomatis ke Google Sheet pendaftaran lalu lanjut ke WhatsApp tim onboarding.","inLanguage":"id-ID"},{"@type":"Organization","name":"GrabMart Sumbagsel","url":"https://mitrasumbagsel.com/","areaServed":[{"@type":"City","name":"Palembang"},{"@type":"City","name":"Bandar Lampung"},{"@type":"City","name":"Jambi"},{"@type":"City","name":"Bengkulu"},{"@type":"City","name":"Pangkal Pinang"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apakah data di halaman daftar ini langsung tersimpan?","acceptedAnswer":{"@type":"Answer","text":"Ya. Data dari halaman daftar tersimpan otomatis ke Google Sheet pendaftaran, lalu calon merchant diarahkan ke WhatsApp tim kota yang dipilih."}},{"@type":"Question","name":"Apakah pendaftaran GrabMart Sumbagsel gratis?","acceptedAnswer":{"@type":"Answer","text":"Pendaftaran merchant GrabMart tidak dikenakan biaya pendaftaran. Waspadai pihak yang meminta transfer biaya pendaftaran."}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/variables.css?v=10.0">
+<link rel="stylesheet" href="assets/css/main.css?v=10.0">
+</head>
+<body class="city-page register-page">
+<header class="register-hero">
+  <div class="container">
+    <nav class="city-nav register-nav" aria-label="Navigasi pendaftaran">
+      <a href="index.html" aria-label="Kembali ke Beranda"><img src="assets/images/logo.png" alt="GrabMart Sumbagsel" width="164" height="54"></a>
+      <div><a href="index.html">Beranda</a><a href="index.html#kontak">Kontak Wilayah</a></div>
+    </nav>
+    <div class="register-hero-grid">
+      <div class="register-copy">
+        <span class="city-eyebrow">Pendaftaran Internal Website</span>
+        <h1>Mulai daftar <span>GrabMart</span> dari website ini.</h1>
+        <p>Pilih kota, isi ringkasan data toko, lalu kirim otomatis ke WhatsApp tim onboarding wilayah. Lebih cepat, rapi, dan tidak perlu keluar-masuk banyak halaman.</p>
+        <div class="register-badges" aria-label="Keunggulan pendaftaran">
+          <span>Gratis daftar</span><span>Masuk Google Sheet</span><span>Tim kota sesuai wilayah</span><span>Dokumen dipandu</span>
+        </div>
+      </div>
+      <div class="register-card" aria-label="Form pendaftaran awal">
+        <div class="register-card-head">
+          <div><strong>Form awal calon merchant</strong><span>Data masuk Google Sheet, lalu lanjut WhatsApp.</span></div>
+          <b>Step 1</b>
+        </div>
+        <form id="registerForm">
+          <label>Nama toko<input type="text" id="namaToko" placeholder="Contoh: Toko Sumber Segar" autocomplete="organization" required></label>
+          <label>Kota / wilayah<select id="kota" required>
+            <option value="Palembang">Palembang</option>
+            <option value="Lampung">Lampung / Bandar Lampung</option>
+            <option value="Jambi">Jambi</option>
+            <option value="Bengkulu">Bengkulu</option>
+            <option value="Pangkal Pinang">Pangkal Pinang</option>
+          </select></label>
+          <label>Kategori toko<select id="kategori">
+            <option value="Grocery / kebutuhan harian">Grocery / kebutuhan harian</option>
+            <option value="Minimarket / kelontong">Minimarket / kelontong</option>
+            <option value="Buah, sayur, dan fresh product">Buah, sayur, dan fresh product</option>
+            <option value="Frozen food">Frozen food</option>
+            <option value="Apotek / kesehatan">Apotek / kesehatan</option>
+            <option value="Pet shop">Pet shop</option>
+            <option value="Lainnya">Lainnya</option>
+          </select></label>
+          <label>Nama PIC / pemilik<input type="text" id="pic" placeholder="Nama yang bisa dihubungi" autocomplete="name" required></label>
+          <label>Nomor WhatsApp aktif<input type="tel" id="waUser" placeholder="Contoh: 0812xxxx" inputmode="tel" autocomplete="tel" required></label>
+          <label>Alamat lengkap toko<textarea id="alamat" rows="3" placeholder="Contoh: Jl. Sudirman, dekat ..." required></textarea></label>
+          <label>Link lokasi Google Maps <input type="url" id="linkLokasi" placeholder="https://www.google.com/maps?q=..." inputmode="url"></label>
+          <button type="submit" class="register-submit">Simpan Data & Lanjut WhatsApp</button>
+          <p class="register-note">Data akan masuk ke Google Sheet pendaftaran. Tidak ada biaya pendaftaran. Jangan transfer uang ke pihak yang mengatasnamakan pendaftaran.</p>
+          <p class="register-status" id="registerStatus" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="city-section register-section">
+    <div class="container">
+      <h2>Kontak cepat per kota</h2>
+      <p class="section-lead">Pilih kota sesuai lokasi toko agar dibantu oleh kontak wilayah yang tepat.</p>
+      <div class="register-city-grid">
+        <a href="https://wa.me/6281282102509?text=Halo%20kak%2C%20saya%20mau%20daftar%20jadi%20merchant%20GrabMart%20di%20Palembang.%20Bisa%20bantu%20prosesnya%3F" target="_blank" rel="noopener"><strong>Palembang</strong><span>0812-8210-2509</span></a>
+        <a href="https://wa.me/6288902083913?text=Halo%20kak%2C%20saya%20mau%20daftar%20jadi%20merchant%20GrabMart%20di%20Lampung.%20Bisa%20bantu%20prosesnya%3F" target="_blank" rel="noopener"><strong>Lampung</strong><span>0889-0208-3913</span></a>
+        <a href="https://wa.me/6281278578077?text=Halo%20kak%2C%20saya%20mau%20daftar%20jadi%20merchant%20GrabMart%20di%20Jambi.%20Bisa%20bantu%20prosesnya%3F" target="_blank" rel="noopener"><strong>Jambi</strong><span>0812-7857-8077</span></a>
+        <a href="https://wa.me/62895360938284?text=Halo%20kak%2C%20saya%20mau%20daftar%20jadi%20merchant%20GrabMart%20di%20Bengkulu.%20Bisa%20bantu%20prosesnya%3F" target="_blank" rel="noopener"><strong>Bengkulu</strong><span>0895-3609-38284</span></a>
+        <a href="https://wa.me/6281282102509?text=Halo%20kak%2C%20saya%20mau%20daftar%20jadi%20merchant%20GrabMart%20di%20Pangkal%20Pinang.%20Bisa%20bantu%20prosesnya%3F" target="_blank" rel="noopener"><strong>Pangkal Pinang</strong><span>0812-8210-2509</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="city-section">
+    <div class="container">
+      <h2>Siapkan dokumen sebelum chat</h2>
+      <div class="city-grid">
+        <article class="city-info"><h3>Identitas</h3><ul><li>KTP pemilik usaha</li><li>Selfie dengan KTP bila diminta</li><li>Nomor WhatsApp aktif</li></ul></article>
+        <article class="city-info"><h3>Data toko</h3><ul><li>Nama toko dan alamat lengkap</li><li>Foto luar toko</li><li>Foto dalam toko</li><li>Jam operasional</li></ul></article>
+        <article class="city-info"><h3>Produk & rekening</h3><ul><li>Daftar produk dan harga</li><li>Kategori produk</li><li>Informasi rekening pencairan</li></ul></article>
+      </div>
+    </div>
+  </section>
+  <section class="city-section register-warning-section">
+    <div class="container">
+      <div class="register-warning"><strong>Catatan keamanan:</strong> halaman ini hanya membantu calon merchant menghubungi tim kota lebih cepat. Pendaftaran GrabMart tidak dikenakan biaya pendaftaran. Waspadai pihak yang meminta transfer dengan alasan aktivasi toko.</div>
+    </div>
+  </section>
+</main>
+<footer class="city-footer">
+  <div class="container">
+    <div><strong>GrabMart Sumbagsel</strong><br><span>Portal informasi pendaftaran merchant wilayah Sumbagsel.</span></div>
+    <div><a href="index.html">Beranda</a><a href="daftar-grabmart-palembang.html">Palembang</a><a href="daftar-grabmart-lampung.html">Lampung</a><a href="daftar-grabmart-jambi.html">Jambi</a><a href="daftar-grabmart-bengkulu.html">Bengkulu</a><a href="daftar-grabmart-pangkal-pinang.html">Pangkal Pinang</a></div>
+  </div>
+</footer>
+<script>
+const GS_API='https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
+const cityContacts={
+  'Palembang':{wa:'6281282102509',label:'Palembang'},
+  'Lampung':{wa:'6288902083913',label:'Lampung'},
+  'Jambi':{wa:'6281278578077',label:'Jambi'},
+  'Bengkulu':{wa:'62895360938284',label:'Bengkulu'},
+  'Pangkal Pinang':{wa:'6281282102509',label:'Pangkal Pinang'}
+};
+const params=new URLSearchParams(location.search);
+const kotaParam=params.get('kota');
+if(kotaParam&&cityContacts[kotaParam])document.getElementById('kota').value=kotaParam;
+
+function setRegisterStatus(message,type){
+  const status=document.getElementById('registerStatus');
+  if(!status)return;
+  status.textContent=message||'';
+  status.className='register-status '+(type||'');
+}
+
+function buildWhatsAppMessage(data){
+  return [
+    'Halo kak, saya mau daftar jadi merchant GrabMart.',
+    '',
+    'Nama toko: '+data.namaToko,
+    'Kota: '+data.kotaKabupaten,
+    'Kategori: '+data.kategoriProduk,
+    data.namaPemilik?'PIC/Pemilik: '+data.namaPemilik:null,
+    data.nomorWhatsApp?'WA aktif: '+data.nomorWhatsApp:null,
+    data.alamatLengkap?'Alamat lengkap: '+data.alamatLengkap:null,
+    data.linkLokasi?'Link lokasi: '+data.linkLokasi:null,
+    '',
+    'Data saya sudah saya submit melalui website mitrasumbagsel.com.',
+    'Mohon dibantu proses pendaftarannya ya.'
+  ].filter(Boolean).join('\n');
+}
+
+document.getElementById('registerForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const form=this;
+  const btn=form.querySelector('button[type="submit"]');
+  const originalText=btn.textContent;
+  const data={
+    namaToko:document.getElementById('namaToko').value.trim(),
+    kotaKabupaten:document.getElementById('kota').value,
+    kategoriProduk:document.getElementById('kategori').value,
+    namaPemilik:document.getElementById('pic').value.trim(),
+    nomorWhatsApp:document.getElementById('waUser').value.trim(),
+    alamatLengkap:document.getElementById('alamat').value.trim(),
+    linkLokasi:document.getElementById('linkLokasi').value.trim(),
+    remark:'Lead dari halaman daftar.html'
+  };
+  if(!data.namaToko){document.getElementById('namaToko').focus();return;}
+  if(!data.nomorWhatsApp){document.getElementById('waUser').focus();return;}
+  if(!data.alamatLengkap){document.getElementById('alamat').focus();return;}
+
+  const kontak=cityContacts[data.kotaKabupaten]||cityContacts.Palembang;
+  btn.disabled=true;
+  btn.textContent='Menyimpan ke Google Sheet...';
+  setRegisterStatus('Menyimpan data pendaftaran...', 'loading');
+
+  try{
+    const res=await fetch(GS_API,{
+      method:'POST',
+      body:JSON.stringify({action:'submitRegistration',data:data})
+    });
+    const result=await res.json();
+    if(!result.success)throw new Error(result.message||'Gagal menyimpan data');
+    setRegisterStatus('Data berhasil masuk Google Sheet. Membuka WhatsApp...', 'success');
+    if(typeof gtag!=='undefined')gtag('event','submit_internal_daftar',{event_category:'Lead',event_label:data.kotaKabupaten});
+    const msg=buildWhatsAppMessage(data);
+    setTimeout(()=>{
+      window.open('https://wa.me/'+kontak.wa+'?text='+encodeURIComponent(msg),'_blank','noopener');
+    },450);
+  }catch(err){
+    setRegisterStatus('Data belum berhasil masuk Google Sheet: '+(err.message||'server error'), 'error');
+    alert('Data belum berhasil masuk Google Sheet. Coba lagi sebentar, atau chat tim kota melalui tombol kontak di bawah.');
+  }finally{
+    btn.disabled=false;
+    btn.textContent=originalText;
+  }
+});
+</script>
+</body>
+</html>
