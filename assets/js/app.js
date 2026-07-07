@@ -38,6 +38,7 @@ if('IntersectionObserver' in window){
 function trackDaftar(source){if(typeof gtag!=='undefined')gtag('event','click_daftar',{event_category:'CTA',event_label:source});}
 window.trackDaftar=trackDaftar;
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function escAttr(v){return esc(v);}
 function safeUrl(url){const u=String(url||'').trim();return /^https:\/\//i.test(u)?u:'#';}
 function short(v,n=80){v=String(v??'');return v.length>n?v.slice(0,n-1)+'…':v;}
 function cacheKey(sheet){return 'grabmart_sheet_'+sheet;}
@@ -167,14 +168,38 @@ function createAnnouncement(rows){
   if(!items.length || sessionStorage.getItem('grabmart_announcement_closed')==='1')return;
   const existing=document.querySelector('.announcement-wrap');
   const wrap=existing||document.createElement('div');
-  wrap.className='announcement-wrap';
-  const first=items[0]||{};
-  const btn=esc(first.btn||first.tombol||'Lihat Info');
-  const link=safeUrl(first.link||'https://grb.to/PendaftaranGM');
-  const messages=items.map(item=>esc(item.teks||item.judul||item.pesan||'Informasi terbaru GrabMart Sumbagsel'));
-  const loop=[...messages,...messages].map((text,i)=>`<span class="announcement-item"><span class="announcement-dot" aria-hidden="true"></span>${text}</span><span class="announcement-sep" aria-hidden="true">•</span>`).join('');
-  wrap.innerHTML=`<div class="announcement-card" role="status" aria-live="polite"><div class="announcement-marquee"><div class="announcement-track">${loop}</div></div><div class="announcement-actions"><a class="announcement-link" href="${esc(link)}" target="_blank" rel="noopener noreferrer">${btn}</a><button class="announcement-close" type="button" aria-label="Tutup pengumuman">×</button></div></div>`;
-  wrap.querySelector('.announcement-close')?.addEventListener('click',()=>{
+  wrap.className='announcement-wrap announcement-slider-wrap';
+  const slides=items.map((item,i)=>{
+    const text=esc(item.teks||item.judul||item.pesan||'Informasi terbaru GrabMart Sumbagsel');
+    const btn=esc(item.btn||item.tombol||'Lihat Info');
+    const link=safeUrl(item.link||'https://grb.to/PendaftaranGM');
+    const banner=safeUrl(item.banner||item.gambar||item.image||item.foto||'');
+    const hasBanner=banner && banner !== '#';
+    const bg=hasBanner?` style="background-image:url('${escAttr(banner)}')"`:'';
+    return `<a class="announcement-slide ${hasBanner?'has-banner':''} ${i===0?'is-active':''}" data-announcement-slide href="${escAttr(link)}" target="_blank" rel="noopener noreferrer" aria-label="${text}"${bg} onclick="trackDaftar('announcement-${i+1}')"><span class="announcement-dot" aria-hidden="true"></span><strong>${text}</strong><em>${btn}</em></a>`;
+  }).join('');
+  const dots=items.length>1?items.map((_,i)=>`<button class="announcement-dot-btn ${i===0?'is-active':''}" type="button" data-announcement-dot="${i}" aria-label="Tampilkan pengumuman ${i+1}"></button>`).join(''):'';
+  wrap.innerHTML=`<div class="announcement-card announcement-slider" role="region" aria-label="Pengumuman GrabMart"><div class="announcement-viewport">${slides}</div><div class="announcement-controls">${dots}<button class="announcement-close" type="button" aria-label="Tutup pengumuman">×</button></div></div>`;
+  const slideEls=[...wrap.querySelectorAll('[data-announcement-slide]')];
+  const dotEls=[...wrap.querySelectorAll('[data-announcement-dot]')];
+  let current=0;
+  let timer=null;
+  const showSlide=(idx)=>{
+    if(!slideEls.length)return;
+    current=(idx+slideEls.length)%slideEls.length;
+    slideEls.forEach((el,i)=>el.classList.toggle('is-active',i===current));
+    dotEls.forEach((el,i)=>el.classList.toggle('is-active',i===current));
+  };
+  const stop=()=>{if(timer){clearInterval(timer);timer=null}};
+  const startTimer=()=>{stop();if(slideEls.length>1)timer=setInterval(()=>showSlide(current+1),3000)};
+  dotEls.forEach((dot,i)=>dot.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();showSlide(i);startTimer();}));
+  wrap.addEventListener('mouseenter',stop);
+  wrap.addEventListener('mouseleave',startTimer);
+  wrap.addEventListener('focusin',stop);
+  wrap.addEventListener('focusout',startTimer);
+  wrap.querySelector('.announcement-close')?.addEventListener('click',(e)=>{
+    e.preventDefault();e.stopPropagation();
+    stop();
     sessionStorage.setItem('grabmart_announcement_closed','1');
     document.body.classList.remove('has-announcement');
     wrap.classList.add('hidden');
@@ -182,6 +207,7 @@ function createAnnouncement(rows){
   });
   if(!existing)document.body.prepend(wrap);
   document.body.classList.add('has-announcement');
+  startTimer();
 }
 function createWhatsAppHub(rows){
   const existing=document.querySelector('.wa-launcher');
