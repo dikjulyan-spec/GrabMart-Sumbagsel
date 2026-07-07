@@ -10,4 +10,12 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://mitrasumbagsel.com/"/>
   </url>
 
+  <url>
+    <loc>https://mitrasumbagsel.com/daftar.html</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="id" href="https://mitrasumbagsel.com/daftar.html"/>
+  </url>
+
 </urlset>
