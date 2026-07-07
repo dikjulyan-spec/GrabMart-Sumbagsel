@@ -46,6 +46,7 @@
       <a href="#testimoni">Testimoni</a>
       <a href="#cara-daftar">Cara Daftar</a>
       <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
     </div>
     <div class="nav-actions">
       <a class="btn btn-primary" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('navbar')">Daftar Sekarang</a>
@@ -60,6 +61,7 @@
   <a href="#testimoni" data-close-menu>Testimoni</a>
   <a href="#cara-daftar" data-close-menu>Cara Daftar</a>
   <a href="#faq" data-close-menu>FAQ</a>
+  <a href="#kontak" data-close-menu>Kontak</a>
   <a class="btn btn-primary" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('mobile-menu')">Daftar Sekarang</a>
 </div>
 
@@ -194,55 +196,149 @@
     </div>
   </section>
 
-  <section class="section process-section" id="cara-daftar">
+  <section class="section process-section process-premium" id="cara-daftar">
     <div class="container">
       <div class="section-head reveal">
         <div>
           <div class="section-kicker">Cara daftar</div>
-          <h2>Alur singkat, tidak bikin bingung.</h2>
+          <h2>Alur onboarding yang jelas dari daftar sampai toko aktif.</h2>
         </div>
+        <p class="section-lead">Step 3 merapikan bagian pendaftaran, dokumen, FAQ, kontak kota, CTA akhir, dan footer supaya conversion lebih kuat.</p>
       </div>
-      <div class="process-grid reveal">
-        <article><span>01</span><h3>Isi formulir resmi</h3><p>Klik tombol daftar dan lengkapi data toko melalui kanal pendaftaran GrabMerchant.</p></article>
-        <article><span>02</span><h3>Siapkan dokumen</h3><p>Siapkan KTP, foto toko, rekening, daftar produk, dan dokumen pendukung lain.</p></article>
-        <article><span>03</span><h3>Toko siap aktif</h3><p>Setelah verifikasi dan onboarding selesai, toko dapat mulai menerima pesanan.</p></article>
-      </div>
-      <div class="cta-strip reveal">
-        <div>
-          <h2>Siap go digital bersama GrabMart?</h2>
-          <p>Mulai dari pendaftaran gratis, lalu tim akan bantu proses onboarding.</p>
+
+      <div class="onboarding-shell reveal">
+        <div class="timeline-card">
+          <article class="timeline-item">
+            <span>01</span>
+            <div>
+              <h3>Isi formulir resmi GrabMerchant</h3>
+              <p>Gunakan link pendaftaran resmi, isi data pemilik usaha, nama toko, alamat, kategori, dan kontak aktif.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span>02</span>
+            <div>
+              <h3>Lengkapi dokumen toko</h3>
+              <p>Siapkan KTP, selfie KTP, foto tampak luar dan dalam toko, rekening bank, serta daftar produk dan harga.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span>03</span>
+            <div>
+              <h3>Verifikasi dan onboarding</h3>
+              <p>Data akan dicek sesuai proses Grab. Tim wilayah dapat membantu mengarahkan jika ada dokumen yang perlu diperbaiki.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span>04</span>
+            <div>
+              <h3>Toko aktif dan mulai berjualan</h3>
+              <p>Setelah proses selesai, merchant dapat mengelola produk, pesanan, jam buka, dan laporan melalui GrabMerchant.</p>
+            </div>
+          </article>
         </div>
-        <a class="btn" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('cta-strip')">Daftar Sekarang</a>
+
+        <aside class="ready-card">
+          <div class="ready-badge">Checklist cepat</div>
+          <h3>Siapkan ini sebelum klik daftar.</h3>
+          <ul class="ready-list">
+            <li><span>✓</span>KTP pemilik usaha</li>
+            <li><span>✓</span>Selfie memegang KTP</li>
+            <li><span>✓</span>Foto luar dan dalam toko</li>
+            <li><span>✓</span>Nomor rekening aktif</li>
+            <li><span>✓</span>Daftar produk dan harga</li>
+          </ul>
+          <a class="btn btn-primary ready-btn" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('checklist-card')">Mulai Pendaftaran</a>
+          <p>Estimasi aktivasi mengikuti kelengkapan dokumen dan proses verifikasi Grab.</p>
+        </aside>
       </div>
     </div>
   </section>
 
-  <section class="section faq-preview" id="faq">
+  <section class="section docs-section" id="dokumen">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Dokumen</div>
+          <h2>Persyaratan dibuat ringkas dan mudah dicek.</h2>
+        </div>
+        <p class="section-lead">Bagian ini membantu calon merchant memahami dokumen paling penting sebelum mengisi formulir.</p>
+      </div>
+      <div class="doc-bento reveal">
+        <article class="doc-card large"><span class="doc-icon">ID</span><h3>Identitas pemilik</h3><p>KTP pemilik usaha dan selfie sambil memegang KTP. Pastikan foto jelas, tidak buram, dan data terbaca.</p><b>Wajib</b></article>
+        <article class="doc-card"><span class="doc-icon">🏪</span><h3>Foto toko</h3><p>Tampak luar dan dalam toko untuk validasi lokasi dan aktivitas usaha.</p><b>Wajib</b></article>
+        <article class="doc-card"><span class="doc-icon">Rp</span><h3>Rekening bank</h3><p>Rekening aktif atas nama pemilik atau sesuai ketentuan pendaftaran.</p><b>Wajib</b></article>
+        <article class="doc-card"><span class="doc-icon">SKU</span><h3>Daftar produk</h3><p>Nama produk, harga, kategori, stok awal, dan foto produk bila tersedia.</p><b>Sangat membantu</b></article>
+        <article class="doc-card"><span class="doc-icon">NIB</span><h3>Izin usaha</h3><p>NIB atau dokumen legal lain akan membantu proses validasi bila tersedia.</p><b>Opsional</b></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-preview faq-premium" id="faq">
     <div class="container">
       <div class="section-head reveal">
         <div>
           <div class="section-kicker">FAQ</div>
-          <h2>Pertanyaan paling sering.</h2>
+          <h2>Jawaban cepat sebelum calon merchant bertanya.</h2>
         </div>
+        <p class="section-lead">FAQ sekarang mendukung data dari Google Sheet. Kalau CMS belum terisi, fallback tetap tampil rapi.</p>
       </div>
-      <div class="faq-grid reveal">
-        <details open><summary>Apakah pendaftaran GrabMart berbayar?</summary><p>Pendaftaran merchant tidak dikenakan biaya pendaftaran.</p></details>
-        <details><summary>Berapa lama toko bisa aktif?</summary><p>Estimasi toko aktif 3-10 hari kerja setelah data dan dokumen lengkap, mengikuti proses verifikasi.</p></details>
-        <details><summary>Wilayah mana saja yang dibantu?</summary><p>Palembang, Bandar Lampung, Jambi, Bengkulu, dan Pangkal Pinang.</p></details>
+      <div class="faq-toolbar reveal">
+        <label for="faq-search">Cari pertanyaan</label>
+        <input id="faq-search" data-faq-search type="search" placeholder="Contoh: biaya, dokumen, aktif, pembayaran...">
+      </div>
+      <div class="faq-grid reveal" id="faq-container">
+        <div class="faq-skeleton"></div>
+        <div class="faq-skeleton"></div>
+        <div class="faq-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="kontak">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Kontak wilayah</div>
+          <h2>Pilih kota dan hubungi tim GrabMart Sumbagsel.</h2>
+        </div>
+        <p class="section-lead">Nomor WhatsApp dapat diatur dari CMS/Google Sheet tab kontak. Tombol chat otomatis memakai pesan sesuai kota.</p>
+      </div>
+      <div class="contact-grid reveal" id="kontak-container">
+        <div class="contact-skeleton"></div>
+        <div class="contact-skeleton"></div>
+        <div class="contact-skeleton"></div>
+      </div>
+      <div class="safety-note reveal"><strong>Catatan keamanan:</strong> proses pendaftaran resmi tidak meminta transfer biaya pendaftaran. Selalu gunakan link resmi dan kontak wilayah yang terverifikasi.</div>
+    </div>
+  </section>
+
+  <section class="final-cta" aria-label="Daftar GrabMart">
+    <div class="container">
+      <div class="final-cta-card reveal">
+        <div>
+          <span>Mulai sekarang</span>
+          <h2>Siap membawa toko Anda masuk ke GrabMart?</h2>
+          <p>Daftar gratis melalui kanal resmi GrabMerchant Indonesia. Siapkan dokumen agar proses onboarding lebih lancar.</p>
+        </div>
+        <div class="final-cta-actions">
+          <a class="btn" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('final-cta')">Daftar Sekarang</a>
+          <a class="btn ghost" href="#kontak">Chat Tim Kota</a>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="footer" id="kontak">
+<footer class="footer premium-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><h3>GrabMart Sumbagsel</h3><p>Portal informasi dan onboarding merchant GrabMart untuk Palembang, Lampung, Jambi, Bengkulu, dan Pangkal Pinang.</p></div>
-      <div><h3>Navigasi</h3><a href="#benefit">Keuntungan</a><a href="#merchant-baru">Merchant Baru</a><a href="#cara-daftar">Cara Daftar</a></div>
-      <div><h3>Bantuan</h3><a href="#faq">FAQ</a><a href="https://help.grab.com/merchant/id-id" target="_blank">Pusat Bantuan Grab</a><a href="admin.html">Admin</a></div>
-      <div><h3>Daftar</h3><a href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('footer')">Daftar GrabMerchant</a></div>
+      <div class="footer-brand"><img src="assets/images/logo.png" alt="GrabMart Sumbagsel"><p>Portal informasi dan onboarding merchant GrabMart untuk Palembang, Lampung, Jambi, Bengkulu, dan Pangkal Pinang.</p></div>
+      <div><h3>Website</h3><a href="#benefit">Keuntungan</a><a href="#merchant-baru">Merchant Baru</a><a href="#testimoni">Testimoni</a><a href="#cara-daftar">Cara Daftar</a></div>
+      <div><h3>Bantuan</h3><a href="#faq">FAQ</a><a href="#kontak">Kontak wilayah</a><a href="https://help.grab.com/merchant/id-id" target="_blank">Pusat Bantuan Grab</a></div>
+      <div><h3>Admin</h3><a href="admin.html">CMS Admin</a><a href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('footer')">Daftar GrabMerchant</a></div>
     </div>
-    <div class="footer-bottom">© 2026 GrabMart Sumbagsel. Mengarah ke kanal pendaftaran resmi GrabMerchant Indonesia.</div>
+    <div class="footer-bottom"><span>© 2026 GrabMart Sumbagsel.</span><span>Custom domain: mitrasumbagsel.com</span></div>
   </div>
 </footer>
 
