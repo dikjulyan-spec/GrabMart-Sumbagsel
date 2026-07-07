@@ -336,3 +336,12 @@ body.has-announcement{--announcement-space:0px!important}
 @media(max-width:760px){
   .gm-campaign-slide.has-image{background-position:center center}
 }
+
+
+/* Step 8.2 - cleaner nav + footer contacts */
+.gm-brand{min-width:auto;gap:0}
+.gm-brand img{width:158px;max-height:48px;object-fit:contain}
+.gm-header-actions{gap:12px}
+.footer-contact-city a{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:960px){.gm-brand img{width:128px}}
+@media(max-width:520px){.gm-brand img{width:118px}}
