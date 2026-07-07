@@ -250,7 +250,55 @@ function createBackToTop(){
   window.addEventListener('scroll',()=>btn.classList.toggle('show',(window.scrollY||0)>700),{passive:true});
 }
 
-fetchSheet('pengumuman').then(createAnnouncement).catch(()=>{});
+
+// Step 8 - top announcement + large campaign slider inspired by Grab
+function initCampaignAnnouncements(rows){
+  const items=activeRows(rows).slice(0,8);
+  const normalized=(items.length?items:[{teks:'Daftar GrabMart Gratis, Aktif 3-10 hari kerja',btn:'Daftar Sekarang',link:'https://grb.to/PendaftaranGM',banner:''}]).map(item=>({
+    text:String(item.teks||item.judul||item.pesan||'Daftar GrabMart Gratis, Aktif 3-10 hari kerja'),
+    btn:String(item.btn||item.tombol||'Daftar Sekarang'),
+    link:safeUrl(item.link||'https://grb.to/PendaftaranGM'),
+    banner:safeUrl(item.banner||item.gambar||item.image||item.foto||'')
+  }));
+  const topLink=document.querySelector('[data-topbar-link]');
+  const track=document.querySelector('[data-campaign-track]');
+  const dots=document.querySelector('[data-campaign-dots]');
+  if(!track||!dots)return;
+  let current=0;
+  const fallbackVisual='assets/images/toko-grabmart.png';
+  track.innerHTML=normalized.map((item,i)=>{
+    const hasBanner=item.banner&&item.banner!=='#';
+    if(hasBanner){
+      return `<a class="gm-campaign-slide has-image ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" style="background-image:url('${escAttr(item.banner)}')" onclick="trackDaftar('campaign-banner-${i+1}')"><div class="gm-campaign-content"><span>Pengumuman Terbaru</span><h1>${esc(item.text)}</h1><div class="gm-campaign-cta">${esc(item.btn)} <strong>›</strong></div></div></a>`;
+    }
+    return `<a class="gm-campaign-slide gm-campaign-fallback ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" onclick="trackDaftar('campaign-text-${i+1}')"><div class="gm-campaign-content"><span>Onboarding Merchant</span><h1>${esc(item.text.split(',')[0]||'Daftar GrabMart Gratis')}</h1><p>${esc(item.text.includes(',')?item.text.split(',').slice(1).join(',').trim():'Aktif 3-10 hari kerja')}</p><div class="gm-campaign-cta">${esc(item.btn)} <strong>›</strong></div></div><div class="gm-campaign-visual" aria-hidden="true"><img src="${fallbackVisual}" alt="" width="720" height="560" loading="eager" decoding="async"></div></a>`;
+  }).join('');
+  dots.innerHTML=normalized.map((_,i)=>`<button class="${i===0?'is-active':''}" type="button" data-campaign-dot="${i}" aria-label="Banner ${i+1}"></button>`).join('');
+  const slides=[...track.querySelectorAll('.gm-campaign-slide')];
+  const dotBtns=[...dots.querySelectorAll('[data-campaign-dot]')];
+  const show=(idx)=>{
+    if(!slides.length)return;
+    current=(idx+slides.length)%slides.length;
+    slides.forEach((el,i)=>el.classList.toggle('is-active',i===current));
+    dotBtns.forEach((el,i)=>el.classList.toggle('is-active',i===current));
+    if(topLink){topLink.textContent=normalized[current].text;topLink.href=normalized[current].link;}
+  };
+  document.querySelectorAll('[data-campaign-prev]').forEach(btn=>{btn.onclick=(e)=>{e.preventDefault();show(current-1);restart();};});
+  document.querySelectorAll('[data-campaign-next]').forEach(btn=>{btn.onclick=(e)=>{e.preventDefault();show(current+1);restart();};});
+  dotBtns.forEach((btn,i)=>btn.addEventListener('click',()=>{show(i);restart();}));
+  let timer=null;
+  const stop=()=>{if(timer){clearInterval(timer);timer=null;}};
+  const start=()=>{stop();if(slides.length>1&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){timer=setInterval(()=>show(current+1),3000);}};
+  function restart(){start();}
+  const shell=document.getElementById('campaign-slider');
+  shell?.addEventListener('mouseenter',stop);
+  shell?.addEventListener('mouseleave',start);
+  shell?.addEventListener('focusin',stop);
+  shell?.addEventListener('focusout',start);
+  show(0);start();
+}
+
+fetchSheet('pengumuman').then(initCampaignAnnouncements).catch(()=>initCampaignAnnouncements([]));
 createWhatsAppHub(kontakFallback());
 fetchSheet('kontak').then(createWhatsAppHub).catch(()=>{});
 createBackToTop();
