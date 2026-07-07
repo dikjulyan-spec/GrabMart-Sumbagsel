@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="light">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="shortcut icon" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
@@ -21,23 +23,31 @@
 <meta property="og:locale" content="id_ID">
 <meta property="og:site_name" content="GrabMart Sumbagsel">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daftar GrabMart Sumbagsel | Merchant Palembang, Lampung, Jambi, Bengkulu">
+<meta name="twitter:description" content="Daftar gratis menjadi merchant GrabMart wilayah Sumbagsel. Dibantu onboarding, toko aktif 3-10 hari kerja.">
+<meta name="twitter:image" content="https://mitrasumbagsel.com/assets/images/logo.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://mitrasumbagsel.com/","name":"GrabMart Sumbagsel"},{"@type":"LocalBusiness","name":"GrabMart Sumbagsel","url":"https://mitrasumbagsel.com/","areaServed":[{"@type":"City","name":"Palembang"},{"@type":"City","name":"Bandar Lampung"},{"@type":"City","name":"Jambi"},{"@type":"City","name":"Bengkulu"},{"@type":"City","name":"Pangkal Pinang"}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/css/variables.css" as="style">
+<link rel="preload" href="assets/css/main.css" as="style">
+<link rel="preload" href="assets/images/toko-grabmart.png" as="image" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/variables.css">
 <link rel="stylesheet" href="assets/css/main.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18JEGL9G5V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-18JEGL9G5V');</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Lewati ke konten utama</a>
+<div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 <div class="site-bg"></div>
 <div class="noise"></div>
 
 <header class="nav-shell">
   <nav class="nav" aria-label="Navigasi utama">
     <a href="#" class="brand" aria-label="GrabMart Sumbagsel">
-      <img src="assets/images/logo.png" alt="GrabMart Sumbagsel">
+      <img src="assets/images/logo.png" alt="GrabMart Sumbagsel" width="160" height="52">
       <span class="brand-copy"><span class="brand-title">GrabMart</span><span class="brand-sub">Sumbagsel</span></span>
     </a>
     <div class="nav-links">
@@ -65,7 +75,7 @@
   <a class="btn btn-primary" href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('mobile-menu')">Daftar Sekarang</a>
 </div>
 
-<main>
+<main id="main">
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy reveal">
@@ -92,7 +102,7 @@
             <strong>Merchant Dashboard</strong>
           </div>
           <div class="screen">
-            <img src="assets/images/toko-grabmart.png" alt="Ilustrasi toko GrabMart">
+            <img src="assets/images/toko-grabmart.png" alt="Ilustrasi toko GrabMart" width="900" height="720" loading="eager" decoding="async" fetchpriority="high">
             <div class="screen-gradient"></div>
           </div>
         </div>
@@ -333,7 +343,7 @@
 <footer class="footer premium-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><img src="assets/images/logo.png" alt="GrabMart Sumbagsel"><p>Portal informasi dan onboarding merchant GrabMart untuk Palembang, Lampung, Jambi, Bengkulu, dan Pangkal Pinang.</p></div>
+      <div class="footer-brand"><img src="assets/images/logo.png" alt="GrabMart Sumbagsel" width="160" height="52"><p>Portal informasi dan onboarding merchant GrabMart untuk Palembang, Lampung, Jambi, Bengkulu, dan Pangkal Pinang.</p></div>
       <div><h3>Website</h3><a href="#benefit">Keuntungan</a><a href="#merchant-baru">Merchant Baru</a><a href="#testimoni">Testimoni</a><a href="#cara-daftar">Cara Daftar</a></div>
       <div><h3>Bantuan</h3><a href="#faq">FAQ</a><a href="#kontak">Kontak wilayah</a><a href="https://help.grab.com/merchant/id-id" target="_blank">Pusat Bantuan Grab</a></div>
       <div><h3>Admin</h3><a href="admin.html">CMS Admin</a><a href="https://grb.to/PendaftaranGM" target="_blank" onclick="trackDaftar('footer')">Daftar GrabMerchant</a></div>
@@ -342,6 +352,6 @@
   </div>
 </footer>
 
-<script src="assets/js/app.js"></script>
+<script src="assets/js/app.js" defer></script>
 </body>
 </html>
