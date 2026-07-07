@@ -59,8 +59,67 @@ function renderTestimonials(rows){
     <div class="testi-person"><div class="avatar">${esc(String(t.nama||'G').charAt(0).toUpperCase())}</div><div><strong>${esc(t.nama||'Merchant GrabMart')}</strong><span>${esc(t.lokasi||'Sumbagsel')}${t.kategori?' · '+esc(t.kategori):''}</span></div></div>
   </article>`).join('');
 }
+
+let cachedFaqRows=[];
+function faqFallback(){
+  return [
+    {pertanyaan:'Apakah pendaftaran GrabMart berbayar?',jawaban:'Pendaftaran merchant tidak dikenakan biaya pendaftaran. Tetap waspada terhadap pihak yang meminta transfer biaya pendaftaran.',status:'tampil'},
+    {pertanyaan:'Berapa lama toko bisa aktif?',jawaban:'Estimasi toko aktif sekitar 3-10 hari kerja setelah data dan dokumen lengkap, mengikuti proses verifikasi dan onboarding.',status:'tampil'},
+    {pertanyaan:'Dokumen apa saja yang perlu disiapkan?',jawaban:'Umumnya KTP pemilik, selfie KTP, foto luar toko, foto dalam toko, rekening bank, serta daftar produk dan harga.',status:'tampil'},
+    {pertanyaan:'Wilayah mana saja yang dibantu?',jawaban:'Wilayah Sumbagsel meliputi Palembang, Bandar Lampung, Jambi, Bengkulu, dan Pangkal Pinang.',status:'tampil'},
+    {pertanyaan:'Apakah saya bisa tanya dulu sebelum daftar?',jawaban:'Bisa. Pilih kontak kota pada bagian Kontak Wilayah untuk chat WhatsApp dengan tim yang sesuai.',status:'tampil'}
+  ];
+}
+function renderFaq(rows,query=''){
+  const box=document.getElementById('faq-container');
+  if(!box)return;
+  const source=(rows&&rows.length?rows:faqFallback()).filter(x=>String(x.status||'tampil').toLowerCase()==='tampil');
+  cachedFaqRows=source;
+  const q=String(query||'').toLowerCase().trim();
+  const data=q?source.filter(f=>(String(f.pertanyaan||'')+' '+String(f.jawaban||'')).toLowerCase().includes(q)):source;
+  if(!data.length){box.innerHTML='<div class="faq-empty">Belum ada FAQ yang cocok dengan pencarian tersebut.</div>';return;}
+  box.innerHTML=data.map((f,i)=>`<details ${i===0?'open':''}><summary>${esc(f.pertanyaan||'Pertanyaan GrabMart')}</summary><p>${esc(f.jawaban||'Jawaban akan ditampilkan di sini.')}</p></details>`).join('');
+}
+function kontakFallback(){
+  return [
+    {kota:'Palembang',wa:'6281282102509',pesan:'Halo kak, saya mau daftar jadi merchant GrabMart di Palembang. Bisa bantu prosesnya?'},
+    {kota:'Lampung',wa:'6288902083913',pesan:'Halo kak, saya mau daftar jadi merchant GrabMart di Lampung. Bisa bantu prosesnya?'},
+    {kota:'Jambi',wa:'6281278578077',pesan:'Halo kak, saya mau daftar jadi merchant GrabMart di Jambi. Bisa bantu prosesnya?'},
+    {kota:'Bengkulu',wa:'62895360938284',pesan:'Halo kak, saya mau daftar jadi merchant GrabMart di Bengkulu. Bisa bantu prosesnya?'},
+    {kota:'Pangkal Pinang',wa:'6281282102509',pesan:'Halo kak, saya mau daftar jadi merchant GrabMart di Pangkal Pinang. Bisa bantu prosesnya?'}
+  ];
+}
+function cityIcon(kota){
+  const k=String(kota||'').toLowerCase();
+  if(k.includes('palembang'))return '🏙️';
+  if(k.includes('lampung'))return '🌊';
+  if(k.includes('jambi'))return '🌿';
+  if(k.includes('bengkulu'))return '🌺';
+  if(k.includes('pangkal')||k.includes('pinang')||k.includes('bangka'))return '🏝️';
+  return '📍';
+}
+function normalizeWa(v){return String(v||'6281282102509').replace(/\D/g,'');}
+function renderKontak(rows){
+  const box=document.getElementById('kontak-container');
+  if(!box)return;
+  const source=(rows&&rows.length?rows:kontakFallback()).filter(x=>String(x.status||'aktif').toLowerCase()!=='nonaktif').slice(0,8);
+  const data=source.length?source:kontakFallback();
+  box.innerHTML=data.map(k=>{
+    const kota=k.kota||k.nama||'Sumbagsel';
+    const wa=normalizeWa(k.wa||k.whatsapp||k.nomor||k.phone);
+    const pesan=k.pesan||`Halo kak, saya mau daftar jadi merchant GrabMart di ${kota}. Bisa bantu prosesnya?`;
+    return `<article class="contact-card"><div class="city-icon">${cityIcon(kota)}</div><h3>${esc(kota)}</h3><p>Chat tim wilayah untuk tanya alur daftar, dokumen, dan proses onboarding GrabMart.</p><a href="https://wa.me/${esc(wa)}?text=${encodeURIComponent(pesan)}" target="_blank" onclick="trackDaftar('kontak-${esc(kota)}')">Chat WhatsApp</a></article>`;
+  }).join('');
+}
+
+document.addEventListener('input',e=>{
+  if(e.target&&e.target.matches('[data-faq-search]'))renderFaq(cachedFaqRows,e.target.value);
+});
+
 async function initDynamicSections(){
   try{renderMerchantBaru(await fetchSheet('merchant_baru'));}catch(e){renderMerchantBaru([]);}
   try{renderTestimonials(await fetchSheet('merchant'));}catch(e){renderTestimonials([]);}
+  try{renderFaq(await fetchSheet('faq'));}catch(e){renderFaq([]);}
+  try{renderKontak(await fetchSheet('kontak'));}catch(e){renderKontak([]);}
 }
 initDynamicSections();
