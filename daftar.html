@@ -25,8 +25,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/variables.css?v=10.0">
-<link rel="stylesheet" href="assets/css/main.css?v=10.0">
+<link rel="stylesheet" href="assets/css/variables.css?v=11.1">
+<link rel="stylesheet" href="assets/css/main.css?v=11.1">
 </head>
 <body class="city-page register-page">
 <header class="register-hero">
@@ -71,6 +71,11 @@
           <label>Nomor WhatsApp aktif<input type="tel" id="waUser" placeholder="Contoh: 0812xxxx" inputmode="tel" autocomplete="tel" required></label>
           <label>Alamat lengkap toko<textarea id="alamat" rows="3" placeholder="Contoh: Jl. Sudirman, dekat ..." required></textarea></label>
           <label>Link lokasi Google Maps <input type="url" id="linkLokasi" placeholder="https://www.google.com/maps?q=..." inputmode="url"></label>
+          <div class="location-tools" aria-label="Alat lokasi toko">
+            <button type="button" id="useMyLocation">📍 Tandai lokasi saya</button>
+            <a href="https://www.google.com/maps" id="openMapsBtn" target="_blank" rel="noopener">Buka Google Maps</a>
+          </div>
+          <p class="location-hint">Klik <strong>Tandai lokasi saya</strong> saat berada di toko. Browser akan meminta izin lokasi, lalu link Google Maps terisi otomatis.</p>
           <button type="submit" class="register-submit">Simpan Data & Lanjut WhatsApp</button>
           <p class="register-note">Data akan masuk ke Google Sheet pendaftaran. Tidak ada biaya pendaftaran. Jangan transfer uang ke pihak yang mengatasnamakan pendaftaran.</p>
           <p class="register-status" id="registerStatus" aria-live="polite"></p>
@@ -152,6 +157,91 @@ function buildWhatsAppMessage(data){
   ].filter(Boolean).join('\n');
 }
 
+const linkLokasiInput=document.getElementById('linkLokasi');
+const openMapsBtn=document.getElementById('openMapsBtn');
+const useMyLocationBtn=document.getElementById('useMyLocation');
+
+function updateOpenMapsButton(){
+  const val=linkLokasiInput.value.trim();
+  openMapsBtn.href=val||'https://www.google.com/maps';
+}
+
+linkLokasiInput.addEventListener('input',updateOpenMapsButton);
+
+useMyLocationBtn.addEventListener('click',function(){
+  if(!navigator.geolocation){
+    setRegisterStatus('Browser ini belum mendukung fitur lokasi. Buka Google Maps lalu salin link lokasi toko.', 'error');
+    return;
+  }
+  const original=this.textContent;
+  this.disabled=true;
+  this.textContent='Mengambil lokasi...';
+  setRegisterStatus('Mengambil titik lokasi toko. Izinkan akses lokasi jika diminta browser.', 'loading');
+  navigator.geolocation.getCurrentPosition(function(pos){
+    const lat=pos.coords.latitude.toFixed(7);
+    const lng=pos.coords.longitude.toFixed(7);
+    const url='https://www.google.com/maps?q='+lat+','+lng;
+    linkLokasiInput.value=url;
+    updateOpenMapsButton();
+    setRegisterStatus('Lokasi berhasil ditandai. Klik Buka Google Maps untuk cek titiknya.', 'success');
+    useMyLocationBtn.disabled=false;
+    useMyLocationBtn.textContent=original;
+  },function(err){
+    let msg='Gagal mengambil lokasi.';
+    if(err.code===1)msg='Izin lokasi ditolak. Aktifkan izin lokasi browser, atau buka Google Maps lalu salin link toko.';
+    if(err.code===2)msg='Lokasi belum tersedia. Coba nyalakan GPS/lokasi perangkat.';
+    if(err.code===3)msg='Pengambilan lokasi terlalu lama. Coba lagi atau salin link dari Google Maps.';
+    setRegisterStatus(msg, 'error');
+    useMyLocationBtn.disabled=false;
+    useMyLocationBtn.textContent=original;
+  },{enableHighAccuracy:true,timeout:15000,maximumAge:0});
+});
+
+function submitLeadToGoogleSheet(data){
+  return new Promise(function(resolve){
+    const iframeName='leadSubmitFrame_'+Date.now();
+    const iframe=document.createElement('iframe');
+    iframe.name=iframeName;
+    iframe.style.display='none';
+    document.body.appendChild(iframe);
+
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=GS_API;
+    form.target=iframeName;
+    form.style.display='none';
+
+    function add(name,value){
+      const input=document.createElement('input');
+      input.type='hidden';
+      input.name=name;
+      input.value=value;
+      form.appendChild(input);
+    }
+
+    add('action','submitRegistration');
+    add('data',JSON.stringify(data));
+
+    let done=false;
+    function finish(){
+      if(done)return;
+      done=true;
+      setTimeout(function(){
+        try{form.remove();iframe.remove();}catch(e){}
+      },500);
+      resolve({success:true});
+    }
+
+    iframe.addEventListener('load',function(){
+      finish();
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+    setTimeout(finish,1800);
+  });
+}
+
 document.getElementById('registerForm').addEventListener('submit',async function(e){
   e.preventDefault();
   const form=this;
@@ -177,21 +267,15 @@ document.getElementById('registerForm').addEventListener('submit',async function
   setRegisterStatus('Menyimpan data pendaftaran...', 'loading');
 
   try{
-    const res=await fetch(GS_API,{
-      method:'POST',
-      body:JSON.stringify({action:'submitRegistration',data:data})
-    });
-    const result=await res.json();
-    if(!result.success)throw new Error(result.message||'Gagal menyimpan data');
-    setRegisterStatus('Data berhasil masuk Google Sheet. Membuka WhatsApp...', 'success');
+    await submitLeadToGoogleSheet(data);
+    setRegisterStatus('Data dikirim ke Google Sheet. Membuka WhatsApp...', 'success');
     if(typeof gtag!=='undefined')gtag('event','submit_internal_daftar',{event_category:'Lead',event_label:data.kotaKabupaten});
     const msg=buildWhatsAppMessage(data);
-    setTimeout(()=>{
+    setTimeout(function(){
       window.open('https://wa.me/'+kontak.wa+'?text='+encodeURIComponent(msg),'_blank','noopener');
     },450);
   }catch(err){
-    setRegisterStatus('Data belum berhasil masuk Google Sheet: '+(err.message||'server error'), 'error');
-    alert('Data belum berhasil masuk Google Sheet. Coba lagi sebentar, atau chat tim kota melalui tombol kontak di bawah.');
+    setRegisterStatus('Gagal mengirim data: '+(err.message||'server error'), 'error');
   }finally{
     btn.disabled=false;
     btn.textContent=originalText;
