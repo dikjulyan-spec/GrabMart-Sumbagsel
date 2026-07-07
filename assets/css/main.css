@@ -174,3 +174,76 @@ body.has-announcement{--announcement-space:120px}
   .wa-main svg{width:27px;height:27px}
   .wa-panel{width:min(330px,calc(100vw - 28px));border-radius:24px;max-height:62vh;overflow:auto}
 }
+
+/* Step 7.6 - Professional desktop hero + banner + WhatsApp click layer */
+@media (min-width: 981px){
+  :root{--container:1120px}
+  body.has-announcement{--announcement-space:76px}
+  .announcement-wrap{height:76px;background:#062015;box-shadow:0 10px 28px rgba(15,23,42,.14)}
+  .announcement-slide{min-height:76px;background-position:center 52%;}
+  .announcement-slide.has-banner{background-size:cover;background-position:center 52%}
+  .announcement-controls{right:14px;gap:7px;padding-left:28px;background:linear-gradient(90deg,rgba(6,32,21,0),rgba(6,32,21,.65) 34%,rgba(6,32,21,.92))}
+  .announcement-dot-btn{height:6px;width:6px}
+  .announcement-dot-btn.is-active{width:22px}
+  .announcement-close{width:32px;height:32px;background:rgba(15,23,42,.46);backdrop-filter:blur(10px)}
+
+  .nav-shell{top:calc(16px + var(--announcement-space,0px))}
+  .nav-shell.scrolled{top:calc(10px + var(--announcement-space,0px))}
+  .nav{width:min(calc(100vw - 180px),1120px);height:70px;padding:0 16px 0 22px;background:rgba(255,255,255,.88);border-color:rgba(226,232,240,.92);box-shadow:0 18px 50px rgba(15,23,42,.08)}
+  .nav-shell.scrolled .nav{height:62px;background:rgba(255,255,255,.92)}
+  .brand img{height:38px;width:auto}
+  .brand-copy{padding-left:4px}
+  .brand-title{font-size:.9rem;line-height:1.02}
+  .brand-sub{font-size:.66rem;letter-spacing:.04em}
+  .nav-links{gap:4px}
+  .nav-links a{font-size:.8rem;padding:9px 11px;color:#334155}
+  .nav-actions .btn-primary{padding:12px 22px;font-size:.92rem;box-shadow:0 14px 30px rgba(0,177,79,.22)}
+
+  .hero{min-height:calc(100vh - var(--announcement-space,0px));padding-top:calc(106px + var(--announcement-space,0px));padding-bottom:52px;display:flex;align-items:center}
+  .hero-grid{width:min(calc(100% - 84px),1120px);grid-template-columns:.92fr .88fr;gap:56px;align-items:center}
+  .eyebrow{padding:8px 13px;font-size:.74rem;box-shadow:0 14px 34px rgba(0,177,79,.08)}
+  .hero h1{margin-top:20px;font-size:clamp(3.55rem,4.75vw,5.15rem);line-height:.96;letter-spacing:-.072em;max-width:660px}
+  .hero p{margin-top:22px;max-width:560px;font-size:1.03rem;line-height:1.68;color:#475569}
+  .hero-actions{margin-top:28px}
+  .hero-actions .btn{min-height:54px;padding-left:22px;padding-right:22px}
+  .trust-row{margin-top:26px;gap:12px;max-width:560px}
+  .trust-pill{padding:10px 14px;font-size:.78rem;background:rgba(255,255,255,.86)}
+  .hero-note{margin-top:20px;font-size:.78rem}
+
+  .visual{min-height:500px;transform:none}
+  .device-card{left:18px;right:0;top:34px;width:min(470px,100%);border-radius:34px;box-shadow:0 34px 90px rgba(15,23,42,.12)}
+  .device-top{height:54px;padding:0 22px}
+  .screen{min-height:410px;border-radius:24px}
+  .screen img{height:350px;margin-top:34px;object-fit:contain;opacity:.98}
+  .float-card{box-shadow:0 20px 50px rgba(15,23,42,.12)}
+  .fc-1{top:82px;left:-18px}
+  .fc-2{right:-8px;top:286px}
+  .fc-3{left:24px;bottom:28px}
+
+  .wa-launcher{z-index:2200;right:28px;bottom:26px;pointer-events:auto}
+  .wa-main{width:62px;height:62px;border-radius:22px;pointer-events:auto;position:relative;z-index:2}
+}
+
+@media (min-width: 981px) and (max-width: 1240px){
+  .nav{width:min(calc(100vw - 64px),1080px)}
+  .hero-grid{width:min(calc(100% - 64px),1080px);gap:42px}
+  .hero h1{font-size:clamp(3.25rem,4.55vw,4.6rem)}
+  .device-card{width:min(430px,100%)}
+  .screen img{height:318px}
+}
+
+@media (max-width: 980px){
+  .wa-launcher{z-index:2200;pointer-events:auto}
+  .wa-main{pointer-events:auto;position:relative;z-index:2}
+  .wa-panel{z-index:3}
+}
+
+@media (max-width: 760px){
+  .nav{background:rgba(255,255,255,.90);box-shadow:0 20px 54px rgba(15,23,42,.10)}
+  .hero{padding-top:calc(96px + var(--announcement-space,0px));}
+  .eyebrow{border-radius:22px;padding:10px 14px;font-size:.76rem;letter-spacing:.03em}
+  .hero h1{font-size:clamp(2.62rem,13.2vw,3.18rem);line-height:1;letter-spacing:-.058em}
+  .hero p{font-size:.96rem;line-height:1.7;color:#475569}
+  .hero-actions .btn{font-size:.92rem;min-height:52px}
+  .mobile-sticky-cta{box-shadow:0 18px 56px rgba(15,23,42,.16)}
+}
