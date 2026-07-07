@@ -251,7 +251,7 @@ function createBackToTop(){
 }
 
 
-// Step 8 - top announcement + large campaign slider inspired by Grab
+// Step 8.1 - top announcement + clean clickable campaign slider
 function initCampaignAnnouncements(rows){
   const items=activeRows(rows).slice(0,8);
   const normalized=(items.length?items:[{teks:'Daftar GrabMart Gratis, Aktif 3-10 hari kerja',btn:'Daftar Sekarang',link:'https://grb.to/PendaftaranGM',banner:''}]).map(item=>({
@@ -264,16 +264,33 @@ function initCampaignAnnouncements(rows){
   const track=document.querySelector('[data-campaign-track]');
   const dots=document.querySelector('[data-campaign-dots]');
   if(!track||!dots)return;
+
+  // Important: if a banner image exists, the image itself is the campaign creative.
+  // Do not print the Sheet text as a huge overlay on top of the image.
+  const bannerItems=normalized.filter(item=>item.banner&&item.banner!=='#');
+  const heroItems=bannerItems.length?bannerItems:normalized;
   let current=0;
   const fallbackVisual='assets/images/toko-grabmart.png';
-  track.innerHTML=normalized.map((item,i)=>{
+
+  function shortHeadline(text){
+    const clean=String(text||'').replace(/\s+/g,' ').trim();
+    if(!clean)return 'Daftar GrabMart Gratis';
+    return clean.length>48 ? clean.substring(0,46).trim()+'…' : clean;
+  }
+  function splitSubline(text){
+    const parts=String(text||'').split(',');
+    return parts.length>1 ? parts.slice(1).join(',').trim() : 'Aktif 3-10 hari kerja';
+  }
+
+  track.innerHTML=heroItems.map((item,i)=>{
     const hasBanner=item.banner&&item.banner!=='#';
     if(hasBanner){
-      return `<a class="gm-campaign-slide has-image ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" style="background-image:url('${escAttr(item.banner)}')" onclick="trackDaftar('campaign-banner-${i+1}')"><div class="gm-campaign-content"><span>Pengumuman Terbaru</span><h1>${esc(item.text)}</h1><div class="gm-campaign-cta">${esc(item.btn)} <strong>›</strong></div></div></a>`;
+      return `<a class="gm-campaign-slide has-image ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" aria-label="${escAttr(item.text)}" style="background-image:url('${escAttr(item.banner)}')" onclick="trackDaftar('campaign-banner-${i+1}')"><span class="sr-only">${esc(item.text)} - ${esc(item.btn)}</span></a>`;
     }
-    return `<a class="gm-campaign-slide gm-campaign-fallback ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" onclick="trackDaftar('campaign-text-${i+1}')"><div class="gm-campaign-content"><span>Onboarding Merchant</span><h1>${esc(item.text.split(',')[0]||'Daftar GrabMart Gratis')}</h1><p>${esc(item.text.includes(',')?item.text.split(',').slice(1).join(',').trim():'Aktif 3-10 hari kerja')}</p><div class="gm-campaign-cta">${esc(item.btn)} <strong>›</strong></div></div><div class="gm-campaign-visual" aria-hidden="true"><img src="${fallbackVisual}" alt="" width="720" height="560" loading="eager" decoding="async"></div></a>`;
+    return `<a class="gm-campaign-slide gm-campaign-fallback ${i===0?'is-active':''}" href="${escAttr(item.link)}" target="_blank" rel="noopener noreferrer" onclick="trackDaftar('campaign-text-${i+1}')"><div class="gm-campaign-content"><span>Onboarding Merchant</span><h1>${esc(shortHeadline(item.text.split(',')[0]||item.text))}</h1><p>${esc(splitSubline(item.text))}</p><div class="gm-campaign-cta">${esc(item.btn)} <strong>›</strong></div></div><div class="gm-campaign-visual" aria-hidden="true"><img src="${fallbackVisual}" alt="" width="720" height="560" loading="eager" decoding="async"></div></a>`;
   }).join('');
-  dots.innerHTML=normalized.map((_,i)=>`<button class="${i===0?'is-active':''}" type="button" data-campaign-dot="${i}" aria-label="Banner ${i+1}"></button>`).join('');
+
+  dots.innerHTML=heroItems.map((_,i)=>`<button class="${i===0?'is-active':''}" type="button" data-campaign-dot="${i}" aria-label="Banner ${i+1}"></button>`).join('');
   const slides=[...track.querySelectorAll('.gm-campaign-slide')];
   const dotBtns=[...dots.querySelectorAll('[data-campaign-dot]')];
   const show=(idx)=>{
@@ -281,7 +298,11 @@ function initCampaignAnnouncements(rows){
     current=(idx+slides.length)%slides.length;
     slides.forEach((el,i)=>el.classList.toggle('is-active',i===current));
     dotBtns.forEach((el,i)=>el.classList.toggle('is-active',i===current));
-    if(topLink){topLink.textContent=normalized[current].text;topLink.href=normalized[current].link;}
+    if(topLink){
+      const currentItem=heroItems[current]||normalized[0];
+      topLink.textContent=currentItem.text;
+      topLink.href=currentItem.link;
+    }
   };
   document.querySelectorAll('[data-campaign-prev]').forEach(btn=>{btn.onclick=(e)=>{e.preventDefault();show(current-1);restart();};});
   document.querySelectorAll('[data-campaign-next]').forEach(btn=>{btn.onclick=(e)=>{e.preventDefault();show(current+1);restart();};});
