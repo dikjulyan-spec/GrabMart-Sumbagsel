@@ -1,17 +1,25 @@
-GrabMart Sumbagsel V3 - Step 6
-Launch conversion package untuk GitHub Pages.
-Fokus update
-Dynamic announcement bar dari Google Sheet tab `pengumuman`
-Floating WhatsApp quick hub dari Google Sheet tab `kontak`
-Back-to-top button
-Basic PWA manifest (`manifest.webmanifest`)
-Custom `404.html` untuk GitHub Pages
-Noscript fallback supaya website tetap informatif kalau JavaScript mati
-File utama yang berubah
-`index.html`
-`assets/css/main.css`
-`assets/js/app.js`
-`manifest.webmanifest`
-`404.html`
-`README.md`
-Upload isi folder ini ke root repository GitHub Pages, bukan folder parent-nya.
+# GrabMart Sumbagsel V3 - Step 15 Professional Reset
+
+Paket ini merapikan homepage agar lebih profesional, ringan, dan tidak bercampur dengan CSS patch lama.
+
+## Upload ke GitHub
+
+Replace/upload file berikut ke root repo:
+
+- index.html
+- panduan-grabmerchant.html
+- assets/css/pro-home.css
+- assets/js/pro-home.js
+- AUDIT-DESIGN.md
+
+Tidak perlu update Google Apps Script.
+
+## Test URL
+
+- https://mitrasumbagsel.com/?v=15.0
+- https://mitrasumbagsel.com/panduan-grabmerchant.html?v=15.0
+- https://mitrasumbagsel.com/daftar.html?v=15.0
+
+## Commit message
+
+Step 15 professional homepage reset
