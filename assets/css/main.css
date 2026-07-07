@@ -101,3 +101,12 @@ body.has-announcement{--announcement-space:64px}
 
 .announcement-slide.has-banner{background-size:cover;background-position:center;background-repeat:no-repeat}
 .announcement-slide.has-banner::after,.announcement-slide.has-banner .announcement-dot,.announcement-slide.has-banner strong,.announcement-slide.has-banner em{display:none}
+
+/* Step 7.4 - Recommended announcement banner height */
+body.has-announcement{--announcement-space:120px}
+.announcement-wrap{height:120px}
+.announcement-slide{min-height:120px;background-position:center center}
+.announcement-slide.has-banner{background-size:cover;background-position:center center}
+@media(max-width:960px){body.has-announcement{--announcement-space:96px}.announcement-wrap{height:96px}.announcement-slide{min-height:96px}}
+@media(max-width:760px){body.has-announcement{--announcement-space:78px}.announcement-wrap{height:78px}.announcement-slide{min-height:78px}}
+@media(max-width:480px){body.has-announcement{--announcement-space:70px}.announcement-wrap{height:70px}.announcement-slide{min-height:70px}}
