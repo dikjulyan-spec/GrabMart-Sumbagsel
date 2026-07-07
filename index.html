@@ -266,7 +266,7 @@ h2.sec-t .g{color:var(--green)}
 /* ── WILAYAH ── */
 .wilayah-section{background:#fff;padding:72px 5vw}
 .kota-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
-.kota-card{background:var(--green-bg);border:2px solid var(--border);border-radius:var(--radius);padding:24px 16px;text-align:center;transition:all .3s}
+.kota-card{display:block;color:inherit;background:var(--green-bg);border:2px solid var(--border);border-radius:var(--radius);padding:24px 16px;text-align:center;transition:all .3s}
 .kota-card:hover{border-color:var(--green);background:#fff;box-shadow:var(--shadow);transform:translateY(-4px)}
 .kota-ico{font-size:2.4rem;margin-bottom:12px}
 .kota-nm{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:.95rem;color:var(--text);margin-bottom:4px}
@@ -722,11 +722,11 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
     <p class="sec-d">Kami melayani pendaftaran merchant GrabMart untuk seluruh wilayah Sumatera Bagian Selatan.</p>
   </div>
   <div class="kota-grid reveal">
-    <div class="kota-card"><div class="kota-ico">🏙️</div><div class="kota-nm">Palembang</div><div class="kota-prov">Sumatera Selatan</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Ibu kota Sumatera Selatan — pasar terbesar di Sumbagsel</div></div>
-    <div class="kota-card"><div class="kota-ico">🌊</div><div class="kota-nm">Bandar Lampung</div><div class="kota-prov">Lampung</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Pusat perdagangan Lampung dengan jutaan konsumen potensial</div></div>
-    <div class="kota-card"><div class="kota-ico">🌿</div><div class="kota-nm">Jambi</div><div class="kota-prov">Provinsi Jambi</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Kota berkembang dengan potensi pasar digital yang besar</div></div>
-    <div class="kota-card"><div class="kota-ico">🌺</div><div class="kota-nm">Bengkulu</div><div class="kota-prov">Provinsi Bengkulu</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Potensi pasar yang terus tumbuh dengan pelanggan aktif Grab</div></div>
-    <div class="kota-card"><div class="kota-ico">🏝️</div><div class="kota-nm">Pangkal Pinang</div><div class="kota-prov">Bangka Belitung</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Kota kepulauan dengan pasar online yang terus berkembang</div></div>
+    <a class="kota-card" href="daftar-grabmart-palembang.html" aria-label="Buka halaman pendaftaran GrabMart Palembang" onclick="trackDaftar('wilayah-palembang')"><div class="kota-ico">🏙️</div><div class="kota-nm">Palembang</div><div class="kota-prov">Sumatera Selatan</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Ibu kota Sumatera Selatan — pasar terbesar di Sumbagsel</div></a>
+    <a class="kota-card" href="daftar-grabmart-lampung.html" aria-label="Buka halaman pendaftaran GrabMart Bandar Lampung" onclick="trackDaftar('wilayah-lampung')"><div class="kota-ico">🌊</div><div class="kota-nm">Bandar Lampung</div><div class="kota-prov">Lampung</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Pusat perdagangan Lampung dengan jutaan konsumen potensial</div></a>
+    <a class="kota-card" href="daftar-grabmart-jambi.html" aria-label="Buka halaman pendaftaran GrabMart Jambi" onclick="trackDaftar('wilayah-jambi')"><div class="kota-ico">🌿</div><div class="kota-nm">Jambi</div><div class="kota-prov">Provinsi Jambi</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Kota berkembang dengan potensi pasar digital yang besar</div></a>
+    <a class="kota-card" href="daftar-grabmart-bengkulu.html" aria-label="Buka halaman pendaftaran GrabMart Bengkulu" onclick="trackDaftar('wilayah-bengkulu')"><div class="kota-ico">🌺</div><div class="kota-nm">Bengkulu</div><div class="kota-prov">Provinsi Bengkulu</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Potensi pasar yang terus tumbuh dengan pelanggan aktif Grab</div></a>
+    <a class="kota-card" href="daftar-grabmart-pangkal-pinang.html" aria-label="Buka halaman pendaftaran GrabMart Pangkal Pinang" onclick="trackDaftar('wilayah-pangkal-pinang')"><div class="kota-ico">🏝️</div><div class="kota-nm">Pangkal Pinang</div><div class="kota-prov">Bangka Belitung</div><div class="kota-badge">✅ Tersedia</div><div class="kota-desc">Kota kepulauan dengan pasar online yang terus berkembang</div></a>
   </div>
   <div class="kota-cta reveal">
     <h3>Bisnis Anda di Sumbagsel Siap Go Digital? 🚀</h3>
