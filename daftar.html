@@ -25,8 +25,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/variables.css?v=11.1">
-<link rel="stylesheet" href="assets/css/main.css?v=11.1">
+<link rel="stylesheet" href="assets/css/variables.css?v=11.3">
+<link rel="stylesheet" href="assets/css/main.css?v=11.3">
 </head>
 <body class="city-page register-page">
 <header class="register-hero">
@@ -121,7 +121,7 @@
   </div>
 </footer>
 <script>
-const GS_API='https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
+const GS_API='https://script.google.com/macros/s/AKfycbwJFr2K3kaigoVYs5PwxhriPQih8FZYtGaJeV7B_P6jvUsAE_tl4NchdgPZGijBefou/exec';
 const cityContacts={
   'Palembang':{wa:'6281282102509',label:'Palembang'},
   'Lampung':{wa:'6288902083913',label:'Lampung'},
@@ -281,7 +281,13 @@ document.getElementById('registerForm').addEventListener('submit',async function
       window.open('https://wa.me/'+kontak.wa+'?text='+encodeURIComponent(msg),'_blank','noopener');
     },450);
   }catch(err){
-    setRegisterStatus('Gagal mengirim data: '+(err.message||'server error'), 'error');
+    // Apps Script kadang sudah menyimpan data, tetapi response JSONP gagal terbaca karena redirect/timeout.
+    // Jangan tampilkan pesan gagal keras; tetap arahkan calon merchant ke WhatsApp agar proses onboarding lanjut.
+    setRegisterStatus('Data sedang diproses. Jika belum terlihat di Sheet, tim akan tetap menerima konfirmasi lewat WhatsApp.', 'success');
+    const msg=buildWhatsAppMessage(data);
+    setTimeout(function(){
+      window.open('https://wa.me/'+kontak.wa+'?text='+encodeURIComponent(msg),'_blank','noopener');
+    },450);
   }finally{
     btn.disabled=false;
     btn.textContent=originalText;
