@@ -272,3 +272,20 @@ function hardenOutboundLinks(){
 }
 createMobileStickyCta();
 hardenOutboundLinks();
+
+// Step 7.6 - robust WhatsApp launcher delegation for mobile/desktop re-renders
+(function(){
+  if(window.__grabmartWaDelegationV76) return;
+  window.__grabmartWaDelegationV76 = true;
+  function toggleWaLauncher(e){
+    const btn = e.target && e.target.closest ? e.target.closest('[data-wa-toggle]') : null;
+    if(!btn) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const launcher = btn.closest('.wa-launcher');
+    const panel = launcher && launcher.querySelector('[data-wa-panel]');
+    if(panel) panel.classList.toggle('open');
+    if(launcher) launcher.querySelector('.wa-ping')?.remove();
+  }
+  document.addEventListener('click', toggleWaLauncher, true);
+})();
