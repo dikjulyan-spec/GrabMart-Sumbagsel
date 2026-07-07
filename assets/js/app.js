@@ -1,4 +1,4 @@
-const GS_API='https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
+const GS_API='https://script.google.com/macros/s/AKfycbwJFr2K3kaigoVYs5PwxhriPQih8FZYtGaJeV7B_P6jvUsAE_tl4NchdgPZGijBefou/exec';
 const CACHE_TTL=1000*60*4;
 const navShell=document.querySelector('.nav-shell');
 const menuBtn=document.querySelector('[data-menu-btn]');
