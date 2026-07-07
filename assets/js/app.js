@@ -633,7 +633,7 @@ function initCampaignAnnouncements(rows) {
       if (hasBanner) {
         return `<a class="gm-campaign-slide has-image ${ i === 0 ? "is-active" : "" }" href="${escAttr( item.link )}" target="_blank" rel="noopener noreferrer" aria-label="${escAttr( item.text )}" style="background-image:url('${escAttr( item.banner )}')" onclick="trackDaftar('campaign-banner-${ i + 1 }')"><span class="sr-only">${esc(item.text)} - ${esc( item.btn )}</span></a>`;
       }
-      return `<a class="gm-campaign-slide gm-campaign-fallback ${ i === 0 ? "is-active" : "" }" href="${escAttr( item.link )}" target="_blank" rel="noopener noreferrer" onclick="trackDaftar('campaign-text-${ i + 1 }')"><div class="gm-campaign-content"><span>Onboarding Merchant</span><h1>${esc( shortHeadline(item.text.split(",")[0] || item.text) )}</h1><p>${esc( splitSubline(item.text) )}</p><div class="gm-campaign-cta">${esc( item.btn )} <strong>›</strong></div></div><div class="gm-campaign-visual" aria-hidden="true"><img src="${fallbackVisual}" alt="" width="720" height="560" loading="eager" decoding="async"></div></a>`;
+      return `<a class="gm-campaign-slide gm-campaign-fallback ${ i === 0 ? "is-active" : "" }" href="${escAttr( item.link )}" target="_blank" rel="noopener noreferrer" onclick="trackDaftar('campaign-text-${ i + 1 }')"><div class="gm-campaign-content"><span>Onboarding Merchant</span><h1>${esc( shortHeadline(item.text.split(",")[0] || item.text) )}</h1><p>${esc( splitSubline(item.text) )}</p><div class="gm-campaign-cta">${esc( item.btn )} <strong>&rsaquo;</strong></div></div><div class="gm-campaign-visual" aria-hidden="true"><img src="${fallbackVisual}" alt="" width="720" height="560" loading="eager" decoding="async"></div></a>`;
     })
     .join("");
 
