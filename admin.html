@@ -4,283 +4,211 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Posting Merchant Baru — Admin GrabMart Sumbagsel</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<title>CMS Premium — GrabMart Sumbagsel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F8F1;color:#1B4332;min-height:100vh;-webkit-font-smoothing:antialiased}
-
-.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-.login-card{background:#fff;border:1.5px solid #B7DFB7;border-radius:20px;padding:36px 30px;width:100%;max-width:400px;box-shadow:0 8px 32px rgba(0,100,50,.1);text-align:center}
-.login-logo{font-size:2.4rem;margin-bottom:10px}
-.login-title{font-size:1.25rem;font-weight:800;margin-bottom:6px}
-.login-sub{color:#52796F;font-size:.85rem;margin-bottom:24px;font-weight:500}
-.login-card input{width:100%;background:#F1F8F1;border:1.5px solid #B7DFB7;border-radius:10px;padding:13px 14px;font-family:inherit;font-size:.92rem;color:#1B4332;outline:none;margin-bottom:14px}
-.login-card input:focus{border-color:#00B14F}
-.login-btn{width:100%;background:#00B14F;color:#fff;border:none;border-radius:10px;padding:13px;font-weight:800;font-size:.95rem;cursor:pointer;font-family:inherit;transition:all .2s}
-.login-btn:hover{background:#008C3E}
-.login-err{color:#E53935;font-size:.8rem;margin-top:10px;display:none;font-weight:700}
-
-.app{display:none;max-width:560px;margin:0 auto;padding:24px 16px 60px}
-.app-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;padding:0 4px}
-.app-header .logo{width:42px;height:42px;background:#00B14F;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
-.app-header h1{font-size:1.1rem;font-weight:800}
-.app-header p{font-size:.78rem;color:#52796F;font-weight:600}
-.logout-link{margin-left:auto;font-size:.78rem;color:#52796F;font-weight:700;cursor:pointer;text-decoration:underline;flex-shrink:0}
-
-.composer{background:#fff;border:1.5px solid #B7DFB7;border-radius:18px;padding:20px;box-shadow:0 2px 10px rgba(0,100,50,.06);margin-bottom:20px}
-.composer-label{font-size:.78rem;font-weight:800;color:#2D6A4F;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.04em}
-.composer input[type=text],.composer input[type=url]{width:100%;background:#F1F8F1;border:1.5px solid #B7DFB7;border-radius:10px;padding:12px 13px;font-family:inherit;font-size:.9rem;color:#1B4332;outline:none;margin-bottom:16px;transition:border-color .2s}
-.composer input[type=text]:focus,.composer input[type=url]:focus{border-color:#00B14F}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.hint{font-size:.72rem;color:#52796F;margin-top:-12px;margin-bottom:16px;font-weight:500}
-
-.photo-zone{border:2px dashed #B7DFB7;border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px;background:#F1F8F1;position:relative;overflow:hidden}
-.photo-zone:hover{border-color:#00B14F;background:#E8F5E9}
-.photo-zone.has-image{padding:0;border-style:solid}
-.photo-zone input[type=file]{display:none}
-.photo-zone .pz-icon{font-size:2.2rem;margin-bottom:6px}
-.photo-zone .pz-text{font-size:.85rem;font-weight:700;color:#2D6A4F}
-.photo-zone .pz-sub{font-size:.74rem;color:#52796F;margin-top:3px;font-weight:500}
-.photo-preview{width:100%;max-height:320px;object-fit:contain;display:block;background:#1B4332}
-.photo-remove{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;z-index:2}
-
-.submit-btn{width:100%;background:#00B14F;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:.95rem;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;box-shadow:0 4px 14px rgba(0,177,79,.3)}
-.submit-btn:hover{background:#008C3E;transform:translateY(-1px)}
-.submit-btn:disabled{background:#A0BBA0;cursor:not-allowed;transform:none;box-shadow:none}
-
-.recent-title{font-size:.85rem;font-weight:800;color:#2D6A4F;margin:28px 0 12px;text-transform:uppercase;letter-spacing:.04em}
-.recent-item{background:#fff;border:1.5px solid #B7DFB7;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:10px}
-.recent-item img{width:54px;height:54px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#F1F8F1}
-.recent-item .ri-noimg{width:54px;height:54px;border-radius:10px;background:#E8F5E9;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
-.recent-item .ri-name{font-weight:800;font-size:.86rem}
-.recent-item .ri-loc{font-size:.74rem;color:#52796F;font-weight:600;margin-top:1px}
-.recent-item .ri-date{font-size:.7rem;color:#95A5A0;font-weight:600;margin-top:2px}
-
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1B4332;color:#fff;padding:13px 22px;border-radius:12px;font-weight:700;font-size:.85rem;box-shadow:0 8px 24px rgba(0,0,0,.2);opacity:0;transition:all .35s;z-index:9999;max-width:90vw;text-align:center}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-.toast.error{background:#C62828}
-
-.spinner{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-@media(max-width:480px){
-  .row2{grid-template-columns:1fr}
+:root{
+  --grab:#00B14F;--grab-2:#00C45A;--grab-dark:#007E38;--ink:#0F172A;--ink-2:#1E293B;--muted:#64748B;--muted-2:#94A3B8;--line:#E2E8F0;--soft:#F8FAFC;--soft-2:#F1F5F9;--white:#FFFFFF;--danger:#DC2626;--warn:#D97706;--ok:#059669;--shadow:0 24px 70px rgba(15,23,42,.10);--shadow-sm:0 10px 30px rgba(15,23,42,.08);--radius:24px;--radius-sm:16px;--sidebar:288px
 }
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at top left,rgba(0,177,79,.14),transparent 34%),linear-gradient(180deg,#fff 0%,#f8fafc 42%,#eef7f1 100%);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font-family:inherit}button{cursor:pointer}a{text-decoration:none}.hidden{display:none!important}.muted{color:var(--muted)}
+.bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(15,23,42,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.04) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.6),transparent 70%);pointer-events:none;z-index:-2}.blob{position:fixed;width:420px;height:420px;border-radius:999px;filter:blur(38px);opacity:.22;z-index:-1}.blob.one{background:var(--grab);top:-130px;right:-80px}.blob.two{background:#94f4bc;left:-150px;bottom:70px}
+
+/* login */
+.login-screen{min-height:100vh;display:grid;place-items:center;padding:22px}.login-card{width:min(100%,440px);background:rgba(255,255,255,.78);border:1px solid rgba(226,232,240,.9);border-radius:32px;box-shadow:var(--shadow);backdrop-filter:blur(20px);padding:34px}.login-brand{display:flex;align-items:center;gap:14px;margin-bottom:28px}.login-logo{width:52px;height:52px;border-radius:18px;background:linear-gradient(145deg,var(--grab),var(--grab-dark));display:grid;place-items:center;color:#fff;font-weight:900;letter-spacing:-.06em}.login-title{font-size:1.32rem;font-weight:900;letter-spacing:-.035em}.login-sub{font-size:.84rem;color:var(--muted);font-weight:650;margin-top:3px;line-height:1.55}.login-hero{background:linear-gradient(145deg,#0f172a,#111827);border-radius:24px;padding:20px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden}.login-hero:after{content:"";position:absolute;width:160px;height:160px;border-radius:999px;background:rgba(0,177,79,.35);right:-60px;top:-70px;filter:blur(12px)}.login-hero small{display:block;color:rgba(255,255,255,.64);font-weight:700;margin-bottom:8px}.login-hero strong{font-size:1.18rem;line-height:1.25;display:block;max-width:280px}.field-login{display:grid;gap:8px}.field-login label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--ink-2)}.field-login input{width:100%;border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px 15px;font-size:.94rem;outline:none;color:var(--ink);transition:.2s}.field-login input:focus{border-color:rgba(0,177,79,.65);box-shadow:0 0 0 4px rgba(0,177,79,.12)}.login-btn{margin-top:14px;width:100%;border:none;border-radius:16px;background:linear-gradient(135deg,var(--grab),var(--grab-dark));color:#fff;font-size:.94rem;font-weight:900;padding:14px;box-shadow:0 14px 26px rgba(0,177,79,.25);transition:.2s}.login-btn:hover{transform:translateY(-1px)}.login-btn:disabled{opacity:.65;cursor:not-allowed;transform:none}.login-err{display:none;margin-top:12px;color:var(--danger);font-size:.82rem;font-weight:800;text-align:center}.login-foot{margin-top:18px;color:var(--muted);font-size:.74rem;font-weight:650;text-align:center;line-height:1.55}
+
+/* layout */
+.app{display:none}.shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;padding:18px;background:rgba(255,255,255,.72);border-right:1px solid rgba(226,232,240,.85);backdrop-filter:blur(22px);overflow:auto}.brand{display:flex;align-items:center;gap:12px;padding:12px 10px 18px}.brand img{width:44px;height:44px;object-fit:contain}.brand-fallback{width:44px;height:44px;border-radius:16px;background:linear-gradient(145deg,var(--grab),var(--grab-dark));color:#fff;display:grid;place-items:center;font-weight:900}.brand h1{font-size:1rem;font-weight:900;letter-spacing:-.03em}.brand p{font-size:.72rem;color:var(--muted);font-weight:700;margin-top:2px}.nav{display:grid;gap:8px;margin-top:8px}.nav-btn{border:1px solid transparent;background:transparent;color:var(--muted);border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center;font-weight:850;font-size:.86rem;transition:.2s;text-align:left}.nav-btn:hover{background:#fff;border-color:var(--line);color:var(--ink)}.nav-btn.on{background:linear-gradient(145deg,#fff,#f8fafc);border-color:rgba(0,177,79,.28);box-shadow:var(--shadow-sm);color:var(--ink)}.nav-icon{width:34px;height:34px;border-radius:12px;background:var(--soft-2);display:grid;place-items:center;color:var(--grab);font-size:.78rem;font-weight:900}.nav-btn.on .nav-icon{background:rgba(0,177,79,.12)}.side-card{margin-top:18px;border-radius:22px;background:linear-gradient(145deg,#07150d,#10351f);color:#fff;padding:18px;box-shadow:var(--shadow-sm);overflow:hidden;position:relative}.side-card:after{content:"";position:absolute;width:140px;height:140px;border-radius:999px;background:rgba(0,177,79,.38);right:-60px;top:-50px;filter:blur(8px)}.side-card strong{display:block;font-size:.94rem;position:relative}.side-card p{margin-top:6px;color:rgba(255,255,255,.68);font-size:.76rem;line-height:1.55;font-weight:650;position:relative}.logout{margin-top:14px;width:100%;border:1px solid rgba(220,38,38,.22);background:#fff1f2;color:var(--danger);border-radius:16px;padding:12px;font-weight:900}.main{min-width:0;padding:26px 30px 70px}.mobile-head{display:none;position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:12px 14px;align-items:center;justify-content:space-between}.mobile-head strong{font-size:.96rem}.mobile-head button{border:none;background:var(--ink);color:#fff;border-radius:12px;padding:9px 12px;font-weight:900}.backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:70}
+
+/* top */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:22px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--grab-dark);font-size:.74rem;font-weight:900;text-transform:uppercase;letter-spacing:.09em;background:rgba(0,177,79,.10);border:1px solid rgba(0,177,79,.18);border-radius:999px;padding:6px 11px;margin-bottom:10px}.dot{width:8px;height:8px;border-radius:999px;background:var(--grab);box-shadow:0 0 0 6px rgba(0,177,79,.12)}.page-title{font-size:clamp(1.55rem,3vw,2.24rem);font-weight:900;letter-spacing:-.055em;line-height:1.06}.page-desc{margin-top:8px;color:var(--muted);font-size:.92rem;font-weight:650;line-height:1.65;max-width:720px}.top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.btn{border:none;border-radius:15px;padding:11px 15px;font-weight:900;font-size:.83rem;display:inline-flex;gap:8px;align-items:center;justify-content:center;transition:.2s;white-space:nowrap}.btn-primary{background:linear-gradient(135deg,var(--grab),var(--grab-dark));color:#fff;box-shadow:0 12px 24px rgba(0,177,79,.22)}.btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 30px rgba(0,177,79,.28)}.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}.btn-ghost:hover{border-color:rgba(0,177,79,.45);color:var(--grab-dark)}.btn-danger{background:#fff1f2;border:1px solid #fecdd3;color:var(--danger)}.btn:disabled{opacity:.65;cursor:not-allowed;transform:none}
+
+/* cards */
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric-card{background:rgba(255,255,255,.78);border:1px solid rgba(226,232,240,.9);border-radius:22px;padding:18px;box-shadow:0 10px 30px rgba(15,23,42,.05);position:relative;overflow:hidden}.metric-card:after{content:"";position:absolute;inset:auto -24px -46px auto;width:120px;height:120px;background:rgba(0,177,79,.08);border-radius:999px}.metric-label{font-size:.75rem;color:var(--muted);font-weight:850;text-transform:uppercase;letter-spacing:.06em}.metric-value{font-size:1.72rem;font-weight:900;letter-spacing:-.055em;margin-top:10px}.metric-note{font-size:.76rem;color:var(--muted);font-weight:700;margin-top:5px}.dashboard-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.panel{background:rgba(255,255,255,.82);border:1px solid rgba(226,232,240,.95);border-radius:26px;box-shadow:var(--shadow-sm);overflow:hidden}.panel-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.panel-title{font-size:.98rem;font-weight:900;letter-spacing:-.02em}.panel-sub{font-size:.78rem;color:var(--muted);font-weight:650;margin-top:4px;line-height:1.45}.panel-body{padding:20px}.module-list{display:grid;gap:12px}.module-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:12px;border:1px solid var(--line);border-radius:18px;padding:12px;background:#fff}.module-mark{width:44px;height:44px;border-radius:15px;background:rgba(0,177,79,.10);color:var(--grab-dark);display:grid;place-items:center;font-weight:900}.module-row strong{display:block;font-size:.86rem}.module-row span{display:block;color:var(--muted);font-size:.74rem;font-weight:700;margin-top:3px}.mini-pill{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;background:var(--soft-2);color:var(--ink-2);font-size:.72rem;font-weight:900}.chart{height:220px;display:flex;align-items:end;gap:12px;padding:10px 4px 0}.bar{flex:1;border-radius:14px 14px 8px 8px;background:linear-gradient(180deg,var(--grab-2),var(--grab-dark));min-height:28px;position:relative}.bar span{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);font-size:.72rem;color:var(--muted);font-weight:900}.activity{display:grid;gap:10px}.activity-item{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px}.activity-item strong{display:block;font-size:.83rem}.activity-item span{display:block;color:var(--muted);font-size:.74rem;font-weight:700;margin-top:4px;line-height:1.45}
+
+/* form/table */
+.cms-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field.full{grid-column:1/-1}.label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.72rem;font-weight:900;color:var(--ink-2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px 13px;font-size:.88rem;color:var(--ink);outline:none;transition:.2s}.field textarea{min-height:112px;resize:vertical;line-height:1.6}.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(0,177,79,.65);box-shadow:0 0 0 4px rgba(0,177,79,.11)}.field-help{font-size:.73rem;color:var(--muted);font-weight:650;line-height:1.45;margin-top:7px}.file-input{margin-top:10px;background:var(--soft)!important}.preview{display:flex;align-items:center;gap:12px;border:1px dashed rgba(0,177,79,.32);background:rgba(0,177,79,.04);border-radius:18px;margin-top:12px;padding:12px}.preview img{width:78px;height:78px;object-fit:cover;border-radius:16px;background:#0f172a}.preview .noimg{width:78px;height:78px;border-radius:16px;background:var(--soft-2);display:grid;place-items:center;color:var(--muted);font-weight:900}.preview small{display:block;color:var(--muted);font-size:.72rem;font-weight:700;word-break:break-all;line-height:1.45}.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:13px}.search{min-width:310px;border:1px solid var(--line);background:#fff;border-radius:16px;padding:12px 14px;outline:none;font-size:.86rem}.search:focus{border-color:rgba(0,177,79,.65);box-shadow:0 0 0 4px rgba(0,177,79,.10)}.meta{font-size:.76rem;color:var(--muted);font-weight:850}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:22px;background:#fff}table{width:100%;border-collapse:collapse;min-width:920px}th,td{padding:13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:.81rem}th{background:var(--soft);font-size:.7rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.07em;position:sticky;top:0;z-index:1}tr:hover td{background:#fbfefc}.row-img{width:50px;height:50px;border-radius:14px;object-fit:cover;background:var(--soft-2)}.row-icon{width:50px;height:50px;border-radius:14px;background:var(--soft-2);display:grid;place-items:center;color:var(--grab-dark);font-weight:900}.cell-main{font-weight:900;color:var(--ink);max-width:300px;line-height:1.35}.cell-small{color:var(--muted);font-weight:650;line-height:1.5;max-width:430px}.status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:6px 10px;font-size:.7rem;font-weight:900}.status.ok{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}.status.off{background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0}.row-actions{display:flex;gap:7px;flex-wrap:wrap}.mini{border:none;border-radius:11px;padding:8px 10px;font-weight:900;font-size:.72rem}.mini.edit{background:#ecfdf5;color:#047857}.mini.toggle{background:#fffbeb;color:#92400e}.mini.del{background:#fff1f2;color:var(--danger)}.empty,.loading{text-align:center;padding:36px;color:var(--muted);font-weight:800}.spinner{width:15px;height:15px;border:2.5px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:#0f172a;color:#fff;padding:13px 18px;border-radius:16px;font-size:.84rem;font-weight:850;box-shadow:var(--shadow);z-index:999;opacity:0;transition:.32s;max-width:92vw;text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.toast.error{background:var(--danger)}
+
+@media(max-width:1180px){.metric-grid{grid-template-columns:repeat(2,1fr)}.dashboard-grid{grid-template-columns:1fr}.shell{grid-template-columns:250px 1fr}:root{--sidebar:250px}.main{padding:22px}}
+@media(max-width:860px){.mobile-head{display:flex}.shell{display:block}.sidebar{position:fixed;left:-300px;top:0;width:286px;height:100vh;z-index:80;transition:left .25s;box-shadow:20px 0 60px rgba(15,23,42,.18)}.sidebar.open{left:0}.backdrop.show{display:block}.main{padding:18px 14px 56px}.topbar{flex-direction:column}.top-actions{justify-content:flex-start}.form-grid{grid-template-columns:1fr}.search{min-width:0;width:100%}.panel-head{flex-direction:column}.brand{padding-top:6px}.side-card{display:none}}
+@media(max-width:560px){.metric-grid{grid-template-columns:1fr}.login-card{padding:26px;border-radius:26px}.top-actions,.top-actions .btn,.form-actions .btn{width:100%}.btn{width:100%}.module-row{grid-template-columns:38px 1fr}.module-row .mini-pill{grid-column:1/-1;justify-self:start}.chart{gap:7px}.page-title{font-size:1.55rem}}
 </style>
 </head>
 <body>
+<div class="bg-grid"></div><div class="blob one"></div><div class="blob two"></div>
 
-<div class="login-screen" id="loginScreen">
+<section class="login-screen" id="loginScreen">
   <div class="login-card">
-    <div class="login-logo">🆕</div>
-    <div class="login-title">Posting Merchant Baru Aktif</div>
-    <div class="login-sub">Khusus admin GrabMart Sumbagsel</div>
-    <input type="password" id="loginPass" placeholder="Masukkan password" onkeypress="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">🔓 Masuk</button>
-    <div class="login-err" id="loginErr">❌ Password salah, coba lagi!</div>
-  </div>
-</div>
-
-<div class="app" id="app">
-  <div class="app-header">
-    <div class="logo">🆕</div>
-    <div>
-      <h1>Merchant Baru Aktif</h1>
-      <p>Langsung tayang di halaman depan</p>
+    <div class="login-brand">
+      <div class="login-logo">GM</div>
+      <div><div class="login-title">CMS Premium</div><div class="login-sub">GrabMart Sumbagsel Command Center</div></div>
     </div>
-    <span class="logout-link" onclick="doLogout()">Keluar</span>
+    <div class="login-hero"><small>Private admin area</small><strong>Kelola website, merchant, FAQ, kontak, dan pengumuman dari satu dashboard.</strong></div>
+    <div class="field-login">
+      <label for="loginPass">Password Admin</label>
+      <input type="password" id="loginPass" placeholder="Masukkan password" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">Masuk Dashboard</button>
+    <div class="login-err" id="loginErr">Password salah</div>
+    <div class="login-foot">Autentikasi memakai token dari Google Apps Script. Jangan bagikan akses admin ke pihak luar.</div>
   </div>
+</section>
 
-  <div class="composer">
-    <label class="composer-label">📸 Screenshot Halaman Toko di GrabMart</label>
-    <div class="photo-zone" id="photoZone" onclick="document.getElementById('photoInput').click()">
-      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
-      <div id="photoPlaceholder">
-        <div class="pz-icon">📱</div>
-        <div class="pz-text">Tap untuk pilih screenshot</div>
-        <div class="pz-sub">Screenshot tampilan toko di app/web Grab</div>
+<section class="app" id="app">
+  <div class="mobile-head"><strong>GrabMart CMS</strong><button onclick="toggleSidebar()">Menu</button></div>
+  <div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/images/logo.png" alt="GrabMart" onerror="this.outerHTML='<div class=&quot;brand-fallback&quot;>GM</div>'">
+        <div><h1>GrabMart CMS</h1><p>Sumbagsel Admin</p></div>
       </div>
-    </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="side-card"><strong>Website V3 Premium</strong><p>Gunakan dashboard ini untuk update konten yang tampil otomatis di landing page.</p></div>
+      <button class="logout" onclick="doLogout()">Keluar</button>
+    </aside>
 
-    <label class="composer-label">Nama Toko</label>
-    <input type="text" id="fNamaToko" placeholder="Contoh: Sayur Segar Bu Linda">
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="eyebrow"><span class="dot"></span><span id="eyebrowText">Dashboard</span></div>
+          <h2 class="page-title" id="pageTitle">Command Center</h2>
+          <p class="page-desc" id="pageDesc">Ringkasan konten website GrabMart Sumbagsel dan akses cepat untuk mengelola semua modul CMS.</p>
+        </div>
+        <div class="top-actions" id="topActions">
+          <a class="btn btn-ghost" href="/" target="_blank">Lihat Website</a>
+          <button class="btn btn-ghost" onclick="refreshView()">Refresh</button>
+          <button class="btn btn-primary" onclick="newItemFromTop()">Tambah Data</button>
+        </div>
+      </div>
 
-    <label class="composer-label">Lokasi</label>
-    <input type="text" id="fLokasi" placeholder="Contoh: Palembang">
+      <section id="dashboardView">
+        <div class="metric-grid" id="dashboardMetrics"></div>
+        <div class="dashboard-grid">
+          <div class="panel">
+            <div class="panel-head"><div><div class="panel-title">Status Modul CMS</div><div class="panel-sub">Jumlah data aktif/tampil dari setiap tab Google Sheet.</div></div></div>
+            <div class="panel-body"><div class="module-list" id="moduleList"><div class="loading">Memuat dashboard...</div></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><div class="panel-title">Distribusi Konten</div><div class="panel-sub">Visual sederhana untuk membaca isi CMS.</div></div></div>
+            <div class="panel-body"><div class="chart" id="chart"></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><div class="panel-title">Aktivitas Terbaru</div><div class="panel-sub">Data paling baru yang masuk dari setiap modul.</div></div></div>
+            <div class="panel-body"><div class="activity" id="activityList"><div class="loading">Memuat aktivitas...</div></div></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><div><div class="panel-title">Checklist Admin</div><div class="panel-sub">Pengecekan cepat sebelum update website dipublikasikan.</div></div></div>
+            <div class="panel-body">
+              <div class="activity">
+                <div class="activity-item"><strong>Konten aktif</strong><span>Pastikan status data yang ingin tampil adalah aktif/tampil.</span></div>
+                <div class="activity-item"><strong>Gambar valid</strong><span>Gunakan URL HTTPS atau upload file melalui form gambar.</span></div>
+                <div class="activity-item"><strong>FAQ singkat</strong><span>Jawaban FAQ sebaiknya jelas, pendek, dan tidak terlalu panjang.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <label class="composer-label">Link Toko di GrabMart</label>
-    <input type="url" id="fLinkToko" placeholder="https://grab.com/...">
-    <div class="hint">Tempel link halaman toko dari app/web Grab di sini</div>
+      <section id="cmsView" class="hidden">
+        <div class="metric-grid" id="sheetMetrics"></div>
+        <div class="cms-layout">
+          <section class="panel">
+            <div class="panel-head">
+              <div><div class="panel-title" id="formTitle">Tambah Data</div><div class="panel-sub" id="formSub">Isi form lalu klik simpan.</div></div>
+              <div class="meta" id="editMeta">Mode tambah</div>
+            </div>
+            <div class="panel-body">
+              <form id="cmsForm" onsubmit="saveItem(event)">
+                <div class="form-grid" id="formGrid"></div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" id="saveBtn">Simpan Data</button>
+                  <button type="button" class="btn btn-ghost" onclick="resetForm()">Reset Form</button>
+                  <button type="button" class="btn btn-danger hidden" id="deleteEditBtn" onclick="deleteCurrentEdit()">Hapus Data Ini</button>
+                </div>
+              </form>
+            </div>
+          </section>
 
-    <button class="submit-btn" id="submitBtn" onclick="submitMerchantBaru()">
-      🚀 <span id="submitText">Posting ke Halaman Depan</span>
-    </button>
+          <section class="panel">
+            <div class="panel-head">
+              <div><div class="panel-title" id="listTitle">Daftar Data</div><div class="panel-sub">Edit, ubah status, atau hapus data dari Google Sheet.</div></div>
+            </div>
+            <div class="panel-body">
+              <div class="toolbar">
+                <input class="search" id="searchInput" placeholder="Cari data..." oninput="renderTable()">
+                <div class="meta" id="listMeta">0 data</div>
+              </div>
+              <div class="table-wrap" id="tableArea"><div class="loading">Memuat data...</div></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
   </div>
-
-  <div class="recent-title">📋 Postingan Terbaru</div>
-  <div id="recentList">
-    <div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;font-weight:600;">Memuat...</div>
-  </div>
-</div>
+</section>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const GS_API = 'https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
-const ADMIN_PASS_CHECK = 'sumbagsel2026';
-
-let photoBase64 = null;
-let photoMimeType = null;
-
-function doLogin(){
-  const pass = document.getElementById('loginPass').value;
-  if(pass === ADMIN_PASS_CHECK){
-    sessionStorage.setItem('merchantBaruAdminPass', pass);
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    loadRecent();
-  } else {
-    document.getElementById('loginErr').style.display = 'block';
-  }
-}
-function doLogout(){
-  sessionStorage.removeItem('merchantBaruAdminPass');
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginPass').value = '';
-}
-if(sessionStorage.getItem('merchantBaruAdminPass') === ADMIN_PASS_CHECK){
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-}
-
-function handlePhoto(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  if(file.size > 5 * 1024 * 1024){
-    showToast('❌ Ukuran foto maksimal 5MB', true);
-    e.target.value = '';
-    return;
-  }
-  photoMimeType = file.type;
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const result = ev.target.result;
-    photoBase64 = result.split(',')[1];
-    const zone = document.getElementById('photoZone');
-    zone.classList.add('has-image');
-    zone.innerHTML = `
-      <img src="${result}" class="photo-preview">
-      <button class="photo-remove" onclick="removePhoto(event)">✕</button>
-      <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)" style="display:none">
-    `;
-  };
-  reader.readAsDataURL(file);
-}
-function removePhoto(e){
-  e.stopPropagation();
-  photoBase64 = null;
-  photoMimeType = null;
-  const zone = document.getElementById('photoZone');
-  zone.classList.remove('has-image');
-  zone.innerHTML = `
-    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
-    <div id="photoPlaceholder">
-      <div class="pz-icon">📱</div>
-      <div class="pz-text">Tap untuk pilih screenshot</div>
-      <div class="pz-sub">Screenshot tampilan toko di app/web Grab</div>
-    </div>
-  `;
-}
-
-async function submitMerchantBaru(){
-  const namaToko = document.getElementById('fNamaToko').value.trim();
-  const lokasi = document.getElementById('fLokasi').value.trim();
-  const linkToko = document.getElementById('fLinkToko').value.trim();
-
-  if(!namaToko || !lokasi || !linkToko){
-    showToast('❌ Lengkapi semua field dulu ya!', true);
-    return;
-  }
-  if(!photoBase64){
-    showToast('❌ Screenshot toko wajib diupload!', true);
-    return;
-  }
-
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> <span>Mengirim...</span>';
-
-  try{
-    const payload = {
-      password: sessionStorage.getItem('merchantBaruAdminPass'),
-      action: 'addMerchantBaru',
-      namaToko, lokasi, linkToko,
-      fotoBase64: photoBase64,
-      fotoMimeType: photoMimeType
-    };
-
-    const res = await fetch(GS_API, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-
-    if(data.success){
-      showToast('✅ Berhasil diposting ke halaman depan!');
-      resetForm();
-      loadRecent();
-    } else {
-      showToast('❌ ' + (data.message || 'Gagal posting'), true);
-    }
-  } catch(err){
-    showToast('❌ Gagal terhubung ke server', true);
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '🚀 <span id="submitText">Posting ke Halaman Depan</span>';
-  }
-}
-
-function resetForm(){
-  document.getElementById('fNamaToko').value = '';
-  document.getElementById('fLokasi').value = '';
-  document.getElementById('fLinkToko').value = '';
-  removePhoto({stopPropagation:()=>{}});
-}
-
-async function loadRecent(){
-  try{
-    const res = await fetch(GS_API + '?sheet=merchant_baru');
-    const data = await res.json();
-    const list = document.getElementById('recentList');
-    if(!data || data.error || data.length === 0){
-      list.innerHTML = '<div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;">Belum ada postingan.</div>';
-      return;
-    }
-    const recent = data.slice(0, 5);
-    list.innerHTML = recent.map(m => `
-      <div class="recent-item">
-        ${m.screenshot ? `<img src="${m.screenshot}" onerror="this.outerHTML='<div class=&quot;ri-noimg&quot;>🏪</div>'">` : '<div class="ri-noimg">🏪</div>'}
-        <div>
-          <div class="ri-name">${m.nama_toko}</div>
-          <div class="ri-loc">📍 ${m.lokasi}</div>
-          <div class="ri-date">🕐 ${m.tanggal}</div>
-        </div>
-      </div>
-    `).join('');
-  } catch(e){
-    document.getElementById('recentList').innerHTML = '<div style="text-align:center;padding:20px;color:#52796F;font-size:.82rem;">Gagal memuat data.</div>';
-  }
-}
-
-function showToast(msg, isError){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (isError ? ' error' : '');
-  setTimeout(()=>{ t.className = 'toast'; }, 3500);
-}
+const GS_API='https://script.google.com/macros/s/AKfycbwqcXVXjSyCwHnbN9AYKsH8pYT3xkGw6AoR_G6JGMTu0D27qpUkXntHEDFFVMPgNlF0/exec';
+const MODULES={
+  merchant_baru:{code:'MB',title:'Merchant Baru',desc:'Toko baru aktif yang tampil di slider website.',primary:'nama_toko',image:'screenshot',status:['aktif','nonaktif'],active:['aktif'],fields:[
+    {key:'nama_toko',label:'Nama Toko',type:'text',required:true,max:90},{key:'lokasi',label:'Lokasi',type:'text',required:true,max:80},{key:'link_toko',label:'Link Toko GrabMart',type:'url',required:true,help:'Gunakan URL HTTPS menuju halaman toko.'},{key:'tanggal',label:'Tanggal',type:'text',help:'Opsional. Bisa diisi manual atau dikosongkan.'},{key:'status',label:'Status',type:'select'},{key:'screenshot',label:'Screenshot Toko',type:'image',full:true,help:'Upload JPG/PNG/WEBP maksimal 5MB atau isi URL gambar HTTPS.'}
+  ]},
+  merchant:{code:'TS',title:'Testimoni Merchant',desc:'Kisah atau testimoni merchant yang tampil di website.',primary:'nama',image:'foto',status:['tampil','sembunyi'],active:['tampil'],fields:[
+    {key:'nama',label:'Nama Merchant',type:'text',required:true,max:90},{key:'lokasi',label:'Lokasi',type:'text',max:90},{key:'kategori',label:'Kategori',type:'text',max:90},{key:'kutipan',label:'Kutipan / Testimoni',type:'textarea',full:true,required:true},{key:'status',label:'Status',type:'select'},{key:'foto',label:'Foto Merchant',type:'image',full:true,help:'Opsional. Upload gambar atau isi URL gambar HTTPS.'}
+  ]},
+  faq:{code:'FQ',title:'FAQ',desc:'Pertanyaan dan jawaban yang tampil di halaman FAQ.',primary:'pertanyaan',image:null,status:['tampil','sembunyi'],active:['tampil'],fields:[
+    {key:'pertanyaan',label:'Pertanyaan',type:'text',required:true},{key:'jawaban',label:'Jawaban',type:'textarea',full:true,required:true},{key:'status',label:'Status',type:'select'}
+  ]},
+  kontak:{code:'WA',title:'Kontak Wilayah',desc:'Nomor WhatsApp per kota dan pesan default.',primary:'kota',image:null,status:['aktif','nonaktif'],active:['aktif'],fields:[
+    {key:'kota',label:'Kota',type:'text',required:true},{key:'wa',label:'Nomor WhatsApp',type:'text',required:true,help:'Format angka saja. Contoh: 6281282102509'},{key:'pesan',label:'Pesan Default',type:'textarea',full:true,required:true},{key:'status',label:'Status',type:'select'}
+  ]},
+  pengumuman:{code:'BN',title:'Pengumuman',desc:'Banner pengumuman yang dapat ditampilkan di website.',primary:'teks',image:null,status:['aktif','nonaktif'],active:['aktif'],fields:[
+    {key:'teks',label:'Teks Pengumuman',type:'textarea',full:true,required:true},{key:'link',label:'Link Tombol',type:'url',help:'Opsional. Gunakan HTTPS kalau diisi.'},{key:'btn',label:'Label Tombol',type:'text',help:'Contoh: Daftar Sekarang'},{key:'status',label:'Status',type:'select'}
+  ]}
+};
+const ORDER=['merchant_baru','merchant','faq','kontak','pengumuman'];
+let activeView='dashboard',currentSheet='merchant_baru',dataCache={},currentData=[],editId=null,uploadBase64=null,uploadMimeType=null,uploadingField=null,isSaving=false;
+function token(){return sessionStorage.getItem('grabmartCmsToken')}function setToken(v){sessionStorage.setItem('grabmartCmsToken',v)}function clearToken(){sessionStorage.removeItem('grabmartCmsToken')}
+async function api(payload){const res=await fetch(GS_API,{method:'POST',body:JSON.stringify(payload)});const data=await res.json();if(data&&data.message&&String(data.message).toLowerCase().includes('session')){showToast('Session habis, silakan login ulang',true);clearToken();showLogin()}return data}
+async function doLogin(){const pass=document.getElementById('loginPass').value.trim(),err=document.getElementById('loginErr'),btn=document.getElementById('loginBtn');err.style.display='none';if(!pass){err.textContent='Password wajib diisi';err.style.display='block';return}btn.disabled=true;btn.textContent='Memeriksa akses...';try{const data=await api({action:'login',password:pass});if(data.success&&data.token){setToken(data.token);document.getElementById('loginPass').value='';showApp();await loadDashboard()}else{err.textContent=data.message||'Password salah';err.style.display='block'}}catch(e){showToast('Gagal terhubung ke server',true)}finally{btn.disabled=false;btn.textContent='Masuk Dashboard'}}
+async function doLogout(){try{if(token())await api({action:'logout',token:token()})}catch(e){}clearToken();showLogin()}
+function showApp(){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';renderNav()}function showLogin(){document.getElementById('loginScreen').style.display='grid';document.getElementById('app').style.display='none'}
+function renderNav(){const nav=document.getElementById('nav');const dash=`<button class="nav-btn ${activeView==='dashboard'?'on':''}" onclick="showDashboard()"><span class="nav-icon">DB</span><span>Dashboard</span></button>`;const mods=ORDER.map(k=>{const m=MODULES[k];return `<button class="nav-btn ${activeView===k?'on':''}" onclick="switchSheet('${k}')"><span class="nav-icon">${m.code}</span><span>${m.title}</span></button>`}).join('');nav.innerHTML=dash+mods}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}function toggleSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('backdrop').classList.add('show')}
+async function showDashboard(){activeView='dashboard';renderNav();closeSidebar();document.getElementById('dashboardView').classList.remove('hidden');document.getElementById('cmsView').classList.add('hidden');document.getElementById('eyebrowText').textContent='Dashboard';document.getElementById('pageTitle').textContent='Command Center';document.getElementById('pageDesc').textContent='Ringkasan konten website GrabMart Sumbagsel dan akses cepat untuk mengelola semua modul CMS.';document.getElementById('topActions').innerHTML=`<a class="btn btn-ghost" href="/" target="_blank">Lihat Website</a><button class="btn btn-ghost" onclick="loadDashboard(true)">Refresh</button><button class="btn btn-primary" onclick="switchSheet('merchant_baru')">Tambah Merchant</button>`;await loadDashboard()}
+async function loadDashboard(force=false){document.getElementById('moduleList').innerHTML='<div class="loading">Memuat dashboard...</div>';let failed=false;for(const key of ORDER){if(!force&&dataCache[key])continue;try{const res=await api({action:'adminList',token:token(),sheet:key});if(res.success)dataCache[key]=res.data||[];else failed=true}catch(e){failed=true}}renderDashboard();if(failed)showToast('Sebagian data gagal dimuat. Coba refresh.',true)}
+function renderDashboard(){const total=ORDER.reduce((s,k)=>s+(dataCache[k]?.length||0),0);const active=ORDER.reduce((s,k)=>s+(dataCache[k]||[]).filter(x=>isActive(k,x)).length,0);const inactive=total-active;const metrics=[['Total Konten',total,'Semua data di CMS'],['Aktif / Tampil',active,'Tayang di website'],['Draft / Nonaktif',inactive,'Tidak tampil publik'],['Modul CMS',ORDER.length,'Sheet aktif terhubung']];document.getElementById('dashboardMetrics').innerHTML=metrics.map(m=>`<article class="metric-card"><div class="metric-label">${esc(m[0])}</div><div class="metric-value">${esc(m[1])}</div><div class="metric-note">${esc(m[2])}</div></article>`).join('');document.getElementById('moduleList').innerHTML=ORDER.map(k=>{const m=MODULES[k],rows=dataCache[k]||[],a=rows.filter(x=>isActive(k,x)).length;return `<div class="module-row"><div class="module-mark">${m.code}</div><div><strong>${esc(m.title)}</strong><span>${a} aktif dari ${rows.length} data</span></div><button class="mini edit" onclick="switchSheet('${k}')">Kelola</button></div>`}).join('');const max=Math.max(1,...ORDER.map(k=>dataCache[k]?.length||0));document.getElementById('chart').innerHTML=ORDER.map(k=>{const n=dataCache[k]?.length||0;return `<div class="bar" style="height:${Math.max(18,(n/max)*100)}%"><span>${n}</span></div>`}).join('');const acts=[];ORDER.forEach(k=>{const rows=dataCache[k]||[];if(rows[0])acts.push({module:MODULES[k].title,text:rows[0][MODULES[k].primary]||'-',status:rows[0].status||'-'})});document.getElementById('activityList').innerHTML=acts.length?acts.map(a=>`<div class="activity-item"><strong>${esc(shortText(a.text,70))}</strong><span>${esc(a.module)} · status ${esc(a.status)}</span></div>`).join(''):'<div class="empty">Belum ada aktivitas.</div>'}
+async function switchSheet(sheet){currentSheet=sheet;activeView=sheet;editId=null;uploadBase64=null;uploadMimeType=null;uploadingField=null;renderNav();closeSidebar();document.getElementById('dashboardView').classList.add('hidden');document.getElementById('cmsView').classList.remove('hidden');const m=MODULES[sheet];document.getElementById('eyebrowText').textContent='CMS Module';document.getElementById('pageTitle').textContent=m.title;document.getElementById('pageDesc').textContent=m.desc;document.getElementById('topActions').innerHTML=`<a class="btn btn-ghost" href="/" target="_blank">Lihat Website</a><button class="btn btn-ghost" onclick="loadSheet(currentSheet,true)">Refresh</button><button class="btn btn-primary" onclick="newItem()">Tambah Data</button>`;await loadSheet(sheet)}
+async function loadSheet(sheet,force=false){const m=MODULES[sheet];document.getElementById('formTitle').textContent='Tambah '+m.title;document.getElementById('formSub').textContent='Isi form lalu klik simpan.';document.getElementById('listTitle').textContent='Daftar '+m.title;document.getElementById('searchInput').value='';document.getElementById('tableArea').innerHTML='<div class="loading">Memuat data...</div>';renderForm({status:m.status[0]});try{if(!force&&dataCache[sheet])currentData=dataCache[sheet];else{const res=await api({action:'adminList',token:token(),sheet});if(!res.success){showToast(res.message||'Gagal memuat data',true);return}currentData=res.data||[];dataCache[sheet]=currentData}renderSheetMetrics();renderTable();resetForm(false)}catch(e){document.getElementById('tableArea').innerHTML='<div class="empty">Gagal memuat data.</div>'}}
+function renderSheetMetrics(){const m=MODULES[currentSheet],total=currentData.length,aktif=currentData.filter(x=>isActive(currentSheet,x)).length,non=total-aktif,latest=total?(currentData[0][m.primary]||'-'):'-';const cards=[['Total',total,'Data di modul ini'],['Aktif/Tampil',aktif,'Muncul di website'],['Nonaktif',non,'Disembunyikan'],['Terbaru',shortText(latest,24),'Data paling atas']];document.getElementById('sheetMetrics').innerHTML=cards.map(c=>`<article class="metric-card"><div class="metric-label">${esc(c[0])}</div><div class="metric-value">${esc(c[1])}</div><div class="metric-note">${esc(c[2])}</div></article>`).join('')}
+function isActive(sheet,item){return MODULES[sheet].active.includes(String(item.status||MODULES[sheet].status[0]))}
+function renderForm(item={}){const m=MODULES[currentSheet];document.getElementById('formGrid').innerHTML=m.fields.map(f=>fieldHtml(f,item[f.key]??(f.type==='select'?m.status[0]:''))).join('');updatePreview()}
+function fieldHtml(f,value){const id='f_'+f.key,cls=f.full?'field full':'field',req=f.required?'required':'',max=f.max?`maxlength="${f.max}"`:'';let input='';if(f.type==='textarea')input=`<textarea id="${id}" ${req}>${esc(value)}</textarea>`;else if(f.type==='select')input=`<select id="${id}">${MODULES[currentSheet].status.map(s=>`<option value="${escAttr(s)}" ${String(value||MODULES[currentSheet].status[0])===s?'selected':''}>${esc(s)}</option>`).join('')}</select>`;else if(f.type==='image')input=`<input type="url" id="${id}" value="${escAttr(value)}" placeholder="https://..." oninput="updatePreview()"><div class="field-help">Isi URL gambar atau upload file baru.</div><input class="file-input" type="file" id="file_${f.key}" accept="image/jpeg,image/png,image/webp" onchange="handleImageFile(event,'${f.key}')"><div class="preview" id="preview_${f.key}"></div>`;else input=`<input type="${f.type||'text'}" id="${id}" value="${escAttr(value)}" ${req} ${max}>`;return `<div class="${cls}"><label class="label" for="${id}">${esc(f.label)}</label>${input}${f.help?`<div class="field-help">${esc(f.help)}</div>`:''}</div>`}
+function updatePreview(){const m=MODULES[currentSheet];if(!m.image)return;const field=m.image,urlEl=document.getElementById('f_'+field),preview=document.getElementById('preview_'+field);if(!urlEl||!preview)return;const url=urlEl.value.trim();preview.innerHTML=url?`<img src="${escAttr(url)}" onerror="this.outerHTML='<div class=&quot;noimg&quot;>IMG</div>'"><div><small>${esc(url)}</small><div class="field-help">Preview gambar saat ini.</div></div>`:`<div class="noimg">IMG</div><div><small>Belum ada gambar</small><div class="field-help">Upload file atau tempel URL HTTPS.</div></div>`}
+function handleImageFile(e,field){const file=e.target.files[0];if(!file)return;const allowed=['image/jpeg','image/png','image/webp'];if(!allowed.includes(file.type)){showToast('Format harus JPG, PNG, atau WEBP',true);e.target.value='';return}if(file.size>5*1024*1024){showToast('Ukuran gambar maksimal 5MB',true);e.target.value='';return}uploadingField=field;uploadMimeType=file.type;const reader=new FileReader();reader.onload=ev=>{const result=ev.target.result;uploadBase64=result.split(',')[1];const preview=document.getElementById('preview_'+field);if(preview)preview.innerHTML=`<img src="${result}"><div><small>File baru siap upload: ${esc(file.name)}</small><div class="field-help">Klik simpan untuk upload ke server.</div></div>`};reader.readAsDataURL(file)}
+async function saveItem(e){e.preventDefault();if(isSaving)return;const m=MODULES[currentSheet],payloadData={};for(const f of m.fields){const el=document.getElementById('f_'+f.key);if(!el)continue;const val=el.value.trim();if(f.required&&!val&&f.type!=='image'){showToast(f.label+' wajib diisi',true);return}if((f.type==='url'||f.type==='image')&&val&&!/^https:\/\/.+/i.test(val)){showToast(f.label+' harus diawali https://',true);return}payloadData[f.key]=val}const payload={action:editId?'updateItem':'createItem',token:token(),sheet:currentSheet,data:payloadData};if(editId)payload.id=editId;if(uploadBase64&&uploadMimeType&&uploadingField){payload.imageBase64=uploadBase64;payload.imageMimeType=uploadMimeType;payload.imageField=uploadingField}const btn=document.getElementById('saveBtn');isSaving=true;btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Menyimpan...';try{const res=await api(payload);if(res.success){showToast(res.message||'Data berhasil disimpan');delete dataCache[currentSheet];uploadBase64=null;uploadMimeType=null;uploadingField=null;await loadSheet(currentSheet,true)}else showToast(res.message||'Gagal menyimpan data',true)}catch(err){showToast('Gagal terhubung ke server',true)}finally{isSaving=false;btn.disabled=false;btn.textContent='Simpan Data'}}
+function renderTable(){const m=MODULES[currentSheet],q=document.getElementById('searchInput').value.trim().toLowerCase(),rows=currentData.filter(item=>JSON.stringify(item).toLowerCase().includes(q));document.getElementById('listMeta').textContent=`${rows.length} dari ${currentData.length} data`;if(!rows.length){document.getElementById('tableArea').innerHTML='<div class="empty">Tidak ada data.</div>';return}const extra=getDisplayCols(currentSheet),head=['Media','Data Utama',...extra.map(x=>x.label),'Status','Aksi'];const body=rows.map(item=>{const img=m.image&&item[m.image]?`<img class="row-img" src="${escAttr(item[m.image])}" onerror="this.outerHTML='<div class=&quot;row-icon&quot;>${m.code}</div>'">`:`<div class="row-icon">${m.code}</div>`;const main=`<div class="cell-main">${esc(shortText(item[m.primary]||'-',86))}</div><div class="cell-small">ID: ${esc(item.id||'-')}</div>`;const cols=extra.map(col=>`<td><div class="cell-small">${esc(shortText(item[col.key]||'-',col.len||120))}</div></td>`).join('');const active=isActive(currentSheet,item),status=`<span class="status ${active?'ok':'off'}">${active?'Aktif':'Nonaktif'} · ${esc(item.status||'-')}</span>`,next=nextStatusFor(item.status);return `<tr><td>${img}</td><td>${main}</td>${cols}<td>${status}</td><td><div class="row-actions"><button class="mini edit" onclick="editItem('${escAttr(item.id)}')">Edit</button><button class="mini toggle" onclick="toggleStatus('${escAttr(item.id)}','${escAttr(next)}')">${esc(next)}</button><button class="mini del" onclick="deleteItem('${escAttr(item.id)}')">Hapus</button></div></td></tr>`}).join('');document.getElementById('tableArea').innerHTML=`<table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`}
+function getDisplayCols(sheet){return {merchant_baru:[{key:'lokasi',label:'Lokasi',len:70},{key:'tanggal',label:'Tanggal',len:45},{key:'link_toko',label:'Link',len:90}],merchant:[{key:'lokasi',label:'Lokasi',len:70},{key:'kategori',label:'Kategori',len:70},{key:'kutipan',label:'Kutipan',len:150}],faq:[{key:'jawaban',label:'Jawaban',len:190}],kontak:[{key:'wa',label:'WA',len:60},{key:'pesan',label:'Pesan',len:160}],pengumuman:[{key:'btn',label:'Tombol',len:70},{key:'link',label:'Link',len:120}]}[sheet]||[]}
+function nextStatusFor(status){const s=String(status||'');if(currentSheet==='merchant'||currentSheet==='faq')return s==='tampil'?'sembunyi':'tampil';return s==='aktif'?'nonaktif':'aktif'}
+function editItem(id){const item=currentData.find(x=>String(x.id)===String(id));if(!item){showToast('Data tidak ditemukan',true);return}editId=id;uploadBase64=null;uploadMimeType=null;uploadingField=null;document.getElementById('formTitle').textContent='Edit '+MODULES[currentSheet].title;document.getElementById('formSub').textContent='Ubah data lalu klik simpan.';document.getElementById('editMeta').textContent='Mode edit · '+id;document.getElementById('deleteEditBtn').classList.remove('hidden');renderForm(item);window.scrollTo({top:0,behavior:'smooth'})}
+function newItem(){resetForm(true);window.scrollTo({top:0,behavior:'smooth'})}function newItemFromTop(){if(activeView==='dashboard')switchSheet('merchant_baru');else newItem()}
+function resetForm(showMsg=true){editId=null;uploadBase64=null;uploadMimeType=null;uploadingField=null;document.getElementById('formTitle').textContent='Tambah '+MODULES[currentSheet].title;document.getElementById('formSub').textContent='Isi form lalu klik simpan.';document.getElementById('editMeta').textContent='Mode tambah';document.getElementById('deleteEditBtn').classList.add('hidden');renderForm({status:MODULES[currentSheet].status[0]});if(showMsg)showToast('Form dikosongkan')}
+async function toggleStatus(id,status){if(!confirm('Ubah status data ini menjadi "'+status+'"?'))return;try{const res=await api({action:'toggleStatus',token:token(),sheet:currentSheet,id,status});if(res.success){showToast('Status berhasil diperbarui');delete dataCache[currentSheet];await loadSheet(currentSheet,true)}else showToast(res.message||'Gagal ubah status',true)}catch(e){showToast('Gagal terhubung ke server',true)}}
+async function deleteItem(id){if(!confirm('Yakin hapus data ini? Data yang sudah dihapus tidak bisa dikembalikan.'))return;try{const res=await api({action:'deleteItem',token:token(),sheet:currentSheet,id});if(res.success){showToast('Data berhasil dihapus');delete dataCache[currentSheet];await loadSheet(currentSheet,true)}else showToast(res.message||'Gagal hapus data',true)}catch(e){showToast('Gagal terhubung ke server',true)}}function deleteCurrentEdit(){if(editId)deleteItem(editId)}
+function refreshView(){if(activeView==='dashboard')loadDashboard(true);else loadSheet(currentSheet,true)}
+function showToast(msg,isError=false){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(isError?' error':'');setTimeout(()=>{t.className='toast'},3500)}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function escAttr(v){return esc(v)}function shortText(v,n){v=String(v??'');return v.length>n?v.slice(0,n-1)+'…':v}
+if(token()){showApp();loadDashboard()}else showLogin();
 </script>
 </body>
 </html>
