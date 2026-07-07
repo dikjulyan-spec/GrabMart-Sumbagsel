@@ -106,11 +106,13 @@ function renderTestimonials(rows){
 
 let cachedFaqRows=[];
 function faqFallback(){return [
-  {pertanyaan:'Apakah pendaftaran GrabMart berbayar?',jawaban:'Pendaftaran merchant tidak dikenakan biaya pendaftaran. Tetap waspada terhadap pihak yang meminta transfer biaya pendaftaran.',status:'tampil'},
-  {pertanyaan:'Berapa lama toko bisa aktif?',jawaban:'Estimasi toko aktif sekitar 3-10 hari kerja setelah data dan dokumen lengkap, mengikuti proses verifikasi dan onboarding.',status:'tampil'},
-  {pertanyaan:'Dokumen apa saja yang perlu disiapkan?',jawaban:'Umumnya KTP pemilik, selfie KTP, foto luar toko, foto dalam toko, rekening bank, serta daftar produk dan harga.',status:'tampil'},
-  {pertanyaan:'Wilayah mana saja yang dibantu?',jawaban:'Wilayah Sumbagsel meliputi Palembang, Bandar Lampung, Jambi, Bengkulu, dan Pangkal Pinang.',status:'tampil'},
-  {pertanyaan:'Apakah saya bisa tanya dulu sebelum daftar?',jawaban:'Bisa. Pilih kontak kota pada bagian Kontak Wilayah untuk chat WhatsApp dengan tim yang sesuai.',status:'tampil'}
+  {pertanyaan:'Apa itu GrabMerchant dan GrabMart?',jawaban:'GrabMerchant adalah ekosistem merchant Grab. GrabMart membantu penjual memasarkan kebutuhan harian melalui aplikasi Grab, seperti bahan makanan, frozen food, personal care, snack, health and wellness, dan pet product sesuai ketentuan Grab.',status:'tampil'},
+  {pertanyaan:'Apakah pendaftaran GrabMart berbayar?',jawaban:'Tidak. Pendaftaran Mitra GrabMart gratis dan tidak dipungut biaya apa pun. Waspadai pihak yang meminta transfer biaya pendaftaran.',status:'tampil'},
+  {pertanyaan:'Dokumen apa saja yang perlu disiapkan?',jawaban:'Siapkan foto KTP, selfie dengan KTP, foto buku tabungan atau informasi bank, foto toko tampak depan, foto toko tampak dalam, serta daftar barang dan harga.',status:'tampil'},
+  {pertanyaan:'Apakah penjual online tanpa toko fisik bisa daftar?',jawaban:'Untuk GrabMart, penjual berbasis media sosial dapat menyiapkan screenshot profil Instagram Bisnis dan salah satu post produk sebagai pengganti dokumen foto tampak depan dan dalam toko, mengikuti ketentuan Grab.',status:'tampil'},
+  {pertanyaan:'Bagaimana alur setelah mengisi form website ini?',jawaban:'Data pendaftaran tersimpan ke Google Sheet, lalu sistem mengirim email ke PIC kota. PIC kota akan melakukan follow-up calon merchant sesuai wilayah.',status:'tampil'},
+  {pertanyaan:'Kapan toko bisa mulai menerima pesanan?',jawaban:'Aktivasi mengikuti kelengkapan data, dokumen, dan proses verifikasi Grab. Estimasi umum di website ini tetap 3-10 hari kerja setelah data siap.',status:'tampil'},
+  {pertanyaan:'Di mana bantuan resmi GrabMerchant?',jawaban:'Gunakan Pusat Bantuan di aplikasi Grab atau laman help.grab.com/merchant/id-id. Informasi Grab Indonesia juga mencantumkan nomor resmi Mitra GrabMerchant +62 21 2350 7045.',status:'tampil'}
 ];}
 function renderFaq(rows,query=''){
   const box=document.getElementById('faq-container');
