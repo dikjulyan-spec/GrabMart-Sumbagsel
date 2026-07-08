@@ -328,6 +328,10 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .reveal.vis{opacity:1;transform:translateY(0)}
 
+
+/* ── PANDUAN DROPDOWN / ARTICLE MENU ── */
+.nav-dropdown{position:relative;list-style:none}.nav-drop-trigger{display:inline-flex!important;align-items:center;gap:6px;cursor:pointer}.nav-drop-menu{position:absolute;top:calc(100% + 12px);right:-120px;width:330px;background:#fff;border:1.5px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);padding:10px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .22s;z-index:1200}.nav-dropdown:hover .nav-drop-menu,.nav-dropdown:focus-within .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}.nav-drop-menu a{display:flex!important;gap:12px;align-items:flex-start;color:var(--text)!important;padding:12px!important;border-radius:12px;text-decoration:none}.nav-drop-menu a::after{display:none}.nav-drop-menu a:hover{background:var(--green-bg)}.nav-drop-ico{font-size:1.2rem;line-height:1}.nav-drop-title{display:block;font-weight:900;font-size:.85rem;line-height:1.25}.nav-drop-desc{display:block;font-size:.72rem;color:var(--text-3);font-weight:650;line-height:1.4;margin-top:2px}.mob-guide-btn{width:100%;background:none;border:0;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:700;padding:14px 0;border-bottom:1px solid var(--green-light);text-align:left;display:flex;justify-content:space-between;align-items:center}.mob-guide-list{display:none;background:var(--green-bg);border:1.5px solid var(--border);border-radius:14px;margin:10px 0;padding:8px 12px}.mob-guide-list.open{display:block}.mob-guide-list a{font-size:.92rem!important;padding:9px 0!important;border-bottom:1px dashed var(--border)!important;color:var(--green-dark)!important}.mob-guide-list a:last-child{border-bottom:0!important}
+
 /* ── RESPONSIVE TABLET ── */
 @media(max-width:960px){
   .nav-links{display:none}
@@ -404,7 +408,18 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
     <li><a href="#merchant-baru">Merchant Baru</a></li>
     <li><a href="#why">Keuntungan</a></li>
     <li><a href="#wilayah">Wilayah Layanan</a></li>
-    <li><a href="#edukasi">Panduan</a></li>
+    <li class="nav-dropdown">
+      <a href="artikel-grabmart.html" class="nav-drop-trigger">Panduan ▾</a>
+      <div class="nav-drop-menu" aria-label="Menu panduan artikel">
+        <a href="artikel-grabmart.html"><span class="nav-drop-ico">📚</span><span><span class="nav-drop-title">Semua Artikel</span><span class="nav-drop-desc">Pusat panduan merchant</span></span></a>
+        <a href="cara-daftar-grabmart-2026.html"><span class="nav-drop-ico">🛒</span><span><span class="nav-drop-title">Cara Daftar GrabMart</span><span class="nav-drop-desc">Alur daftar 2026</span></span></a>
+        <a href="syarat-merchant-grabmart.html"><span class="nav-drop-ico">📋</span><span><span class="nav-drop-title">Syarat Merchant</span><span class="nav-drop-desc">Dokumen & kesiapan toko</span></span></a>
+        <a href="berapa-komisi-grabmart.html"><span class="nav-drop-ico">💰</span><span><span class="nav-drop-title">Komisi GrabMart</span><span class="nav-drop-desc">Biaya, margin, harga jual</span></span></a>
+        <a href="cara-upload-produk-grabmerchant.html"><span class="nav-drop-ico">📦</span><span><span class="nav-drop-title">Upload Produk</span><span class="nav-drop-desc">Katalog GrabMerchant</span></span></a>
+        <a href="grabmart-vs-shopeefood-mart.html"><span class="nav-drop-ico">⚖️</span><span><span class="nav-drop-title">GrabMart vs ShopeeFood</span><span class="nav-drop-desc">Perbandingan platform</span></span></a>
+        <a href="tips-merchant-baru-grabmart.html"><span class="nav-drop-ico">🚀</span><span><span class="nav-drop-title">Tips Merchant Baru</span><span class="nav-drop-desc">Strategi 30 hari pertama</span></span></a>
+      </div>
+    </li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -419,7 +434,16 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
   <a href="#merchant-baru" onclick="closeMenu()">Merchant Baru</a>
   <a href="#why" onclick="closeMenu()">Keuntungan</a>
   <a href="#wilayah" onclick="closeMenu()">Wilayah Layanan</a>
-  <a href="#edukasi" onclick="closeMenu()">Panduan</a>
+  <button class="mob-guide-btn" onclick="toggleMobileGuide()" type="button"><span>Panduan Artikel</span><span>▾</span></button>
+  <div class="mob-guide-list" id="mob-guide-list">
+    <a href="artikel-grabmart.html">📚 Semua Artikel</a>
+    <a href="cara-daftar-grabmart-2026.html">🛒 Cara Daftar GrabMart</a>
+    <a href="syarat-merchant-grabmart.html">📋 Syarat Merchant</a>
+    <a href="berapa-komisi-grabmart.html">💰 Komisi GrabMart</a>
+    <a href="cara-upload-produk-grabmerchant.html">📦 Upload Produk</a>
+    <a href="grabmart-vs-shopeefood-mart.html">⚖️ GrabMart vs ShopeeFood</a>
+    <a href="tips-merchant-baru-grabmart.html">🚀 Tips Merchant Baru</a>
+  </div>
   <a href="#faq" onclick="closeMenu()">FAQ</a>
   <a href="https://mitrasumbagsel.com/daftar.html" class="mob-cta">🛒 Daftar Sekarang — Gratis</a>
 </div>
@@ -788,6 +812,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
     <li><a href="#daftar">Daftar</a></li>
     <li><a href="#wilayah">Wilayah</a></li>
     <li><a href="#edukasi">Panduan</a></li>
+    <li><a href="artikel-grabmart.html">Artikel</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="https://help.grab.com/merchant/id-id" target="_blank">Pusat Bantuan ↗</a></li>
   </ul>
@@ -863,6 +888,7 @@ function showHam(){hamBtn.style.display=window.innerWidth<=960?'flex':'none';if(
 showHam();window.addEventListener('resize',showHam);
 function toggleMenu(){mobMenu.style.display=mobMenu.style.display==='flex'?'none':'flex'}
 function closeMenu(){mobMenu.style.display='none'}
+function toggleMobileGuide(){const el=document.getElementById('mob-guide-list');if(el)el.classList.toggle('open')}
 
 // Reveal
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}}),{threshold:0.07});
@@ -1008,11 +1034,8 @@ async function loadPengumuman(){
 
     aktifList.forEach(item=>{
       const slide=document.createElement('div');
-      const itemLink = String(item.link || '');
-      const isInternalLink = itemLink.indexOf('https://mitrasumbagsel.com') === 0 || itemLink.indexOf('/') === 0 || itemLink.indexOf('#') === 0;
-      const targetAttr = isInternalLink ? '' : ' target="_blank" rel="noopener"';
       slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:10px 36px 22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;`;
-      slide.innerHTML=`<span style="font-size:.8rem;font-weight:600;line-height:1.4;word-break:break-word;max-width:100%;">${item.teks}</span><a href="${itemLink}"${targetAttr} style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.76rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
+      slide.innerHTML=`<span style="font-size:.8rem;font-weight:600;line-height:1.4;word-break:break-word;max-width:100%;">${item.teks}</span><a href="${item.link}" ${String(item.link||'').indexOf('mitrasumbagsel.com')>=0 || String(item.link||'').indexOf('/')===0 ? '' : 'target="_blank" rel="noopener"'} style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.76rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
       track.appendChild(slide);
     });
 
