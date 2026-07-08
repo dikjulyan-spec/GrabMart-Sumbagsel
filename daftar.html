@@ -567,6 +567,43 @@
       box-shadow: 0 8px 16px rgba(0,177,79,.2);
     }
 
+    .success-actions {
+      width: 100%;
+      margin-top: 28px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: titleSlide .5s .5s ease both;
+    }
+    .success-actions .reset-btn,
+    .success-actions .home-btn {
+      margin-top: 0;
+      flex: 1;
+      min-width: 180px;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .home-btn {
+      background: linear-gradient(105deg, #00A342, #00C755);
+      border: 1.8px solid #00A342;
+      border-radius: 44px;
+      padding: 12px 28px;
+      font-weight: 800;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 8px 18px rgba(0,177,79,.22);
+    }
+    .home-btn:hover {
+      background: linear-gradient(105deg, #008f3e, #00B14F);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,177,79,.3);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 480px) {
       body::after { display: none; }
@@ -754,9 +791,14 @@
     <h2>Pendaftaran Berhasil! 🎉</h2>
     <p>Data berhasil tersimpan. PIC kota akan menerima email notifikasi untuk follow-up.</p>
     <div class="success-meta" id="successMeta"></div>
-    <button class="reset-btn" onclick="resetForm()">
-      <i class="fas fa-arrow-rotate-left"></i> Daftar toko lain
-    </button>
+    <div class="success-actions">
+      <button class="reset-btn" type="button" onclick="resetForm()">
+        <i class="fas fa-arrow-rotate-left"></i> Daftarkan merchant lain
+      </button>
+      <a class="home-btn" href="https://mitrasumbagsel.com/" aria-label="Kembali ke beranda GrabMart Sumbagsel">
+        <i class="fas fa-house"></i> Kembali ke Beranda
+      </a>
+    </div>
   </div>
 
 </div><!-- /card -->
