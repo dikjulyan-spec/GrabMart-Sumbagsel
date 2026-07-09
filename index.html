@@ -1024,22 +1024,50 @@ async function loadPengumuman(){
     // Outer wrapper - fixed below navbar, clips overflow
     const wrap=document.createElement('div');
     wrap.id='gs-banner';
-    wrap.style.cssText='background:#00B14F;color:#fff;position:fixed;left:0;right:0;top:var(--nav-h);width:100%;overflow:hidden;box-sizing:border-box;z-index:880;box-shadow:0 2px 8px rgba(0,0,0,.1);';
+    wrap.style.cssText='background:linear-gradient(135deg,#00B14F,#008C3E,#006830);color:#fff;position:fixed;left:0;right:0;top:var(--nav-h);width:100%;overflow:hidden;box-sizing:border-box;z-index:880;box-shadow:0 10px 28px rgba(0,100,50,.18);';
+
+    const bannerThemes=[
+      {name:'grab',bg:'linear-gradient(135deg,#00B14F,#008C3E,#006830)',color:'#fff',btnBg:'rgba(255,255,255,.22)',btnColor:'#fff',btnBorder:'rgba(255,255,255,.35)',closeBg:'rgba(255,255,255,.18)',dot:'#fff'},
+      {name:'soft',bg:'linear-gradient(135deg,#FFF8E7,#EAF8EF)',color:'#1B4332',btnBg:'#00B14F',btnColor:'#fff',btnBorder:'#00B14F',closeBg:'rgba(0,177,79,.14)',dot:'#00B14F'},
+      {name:'bluegreen',bg:'linear-gradient(135deg,#0EA5E9,#00B14F)',color:'#fff',btnBg:'rgba(255,255,255,.22)',btnColor:'#fff',btnBorder:'rgba(255,255,255,.36)',closeBg:'rgba(255,255,255,.18)',dot:'#fff'},
+      {name:'forest',bg:'linear-gradient(135deg,#073B2A,#0B5D3B)',color:'#fff',btnBg:'#E8F5E9',btnColor:'#006830',btnBorder:'#E8F5E9',closeBg:'rgba(255,255,255,.18)',dot:'#fff'},
+      {name:'yellow',bg:'linear-gradient(135deg,#FFF3C4,#FFE082)',color:'#3A2B00',btnBg:'#00B14F',btnColor:'#fff',btnBorder:'#00B14F',closeBg:'rgba(0,0,0,.10)',dot:'#00B14F'},
+      {name:'serabi',bg:'linear-gradient(90deg,rgba(0,60,35,.82),rgba(0,177,79,.62)),url('/serabi-hero-bg.jpg') center/cover no-repeat',color:'#fff',btnBg:'rgba(255,255,255,.22)',btnColor:'#fff',btnBorder:'rgba(255,255,255,.38)',closeBg:'rgba(255,255,255,.18)',dot:'#fff'}
+    ];
+    function bannerThemeFor(item,index){
+      const text=String((item.teks||'')+' '+(item.btn||'')+' '+(item.link||'')).toLowerCase();
+      if(text.indexOf('serabi')>=0 || text.indexOf('perempuan')>=0) return bannerThemes[5];
+      if(text.indexOf('katalog')>=0 || text.indexOf('produk')>=0 || text.indexOf('upload')>=0) return bannerThemes[2];
+      if(text.indexOf('komunitas')>=0 || text.indexOf('perwira')>=0 || text.indexOf('network')>=0) return bannerThemes[3];
+      if(text.indexOf('syarat')>=0 || text.indexOf('ktp')>=0 || text.indexOf('dokumen')>=0) return bannerThemes[4];
+      if(index%4===1) return bannerThemes[1];
+      if(index%4===2) return bannerThemes[2];
+      if(index%4===3) return bannerThemes[3];
+      return bannerThemes[0];
+    }
+    function safeText(value){return String(value||'').replace(/[<>]/g,'').trim()}
 
     // Close button
     const closeBtn=document.createElement('button');
     closeBtn.innerHTML='✕';
-    closeBtn.style.cssText='position:absolute;top:6px;right:8px;background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.8rem;width:20px;height:20px;border-radius:50%;line-height:1;z-index:5;display:flex;align-items:center;justify-content:center;';
+    closeBtn.style.cssText='position:absolute;top:6px;right:8px;background:rgba(255,255,255,.18);border:none;color:#fff;cursor:pointer;font-size:.8rem;width:20px;height:20px;border-radius:50%;line-height:1;z-index:5;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s;';
 
     // Sliding track
     const track=document.createElement('div');
     track.id='gs-track';
     track.style.cssText=`display:flex;width:${aktifList.length*100}%;transition:transform .5s ease;`;
 
-    aktifList.forEach(item=>{
+    aktifList.forEach((item,index)=>{
+      const theme=bannerThemeFor(item,index);
       const slide=document.createElement('div');
-      slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:10px 36px 22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;`;
-      slide.innerHTML=`<span style="font-size:.8rem;font-weight:600;line-height:1.4;word-break:break-word;max-width:100%;">${item.teks}</span><a href="${item.link}" ${String(item.link||'').indexOf('mitrasumbagsel.com')>=0 || String(item.link||'').indexOf('/')===0 ? '' : 'target="_blank" rel="noopener"'} style="background:rgba(255,255,255,.25);color:#fff;padding:5px 16px;border-radius:50px;font-weight:700;font-size:.76rem;text-decoration:none;white-space:nowrap;">${item.btn}</a>`;
+      slide.dataset.theme=theme.name;
+      slide.dataset.dot=theme.dot;
+      slide.dataset.color=theme.color;
+      slide.dataset.closeBg=theme.closeBg;
+      slide.style.cssText=`width:${100/aktifList.length}%;flex-shrink:0;box-sizing:border-box;padding:11px 40px 24px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;background:${theme.bg};color:${theme.color};`;
+      const link=String(item.link||'/daftar/').trim() || '/daftar/';
+      const targetAttr=link.indexOf('mitrasumbagsel.com')>=0 || link.indexOf('/')===0 ? '' : 'target="_blank" rel="noopener"';
+      slide.innerHTML=`<span style="font-size:.82rem;font-weight:800;line-height:1.4;word-break:break-word;max-width:min(980px,90vw);text-shadow:${theme.color==='#fff'?'0 1px 8px rgba(0,0,0,.16)':'none'};">${safeText(item.teks)}</span><a href="${link}" ${targetAttr} style="background:${theme.btnBg};color:${theme.btnColor};border:1.5px solid ${theme.btnBorder};padding:6px 18px;border-radius:50px;font-weight:900;font-size:.78rem;text-decoration:none;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.10);">${safeText(item.btn||'Lihat')}</a>`;
       track.appendChild(slide);
     });
 
@@ -1084,12 +1112,19 @@ async function loadPengumuman(){
     let current=0;
     function updateSlide(){
       track.style.transform=`translateX(-${current*(100/aktifList.length)}%)`;
+      const activeSlide=track.children[current];
+      const dotColor=activeSlide ? activeSlide.dataset.dot || '#fff' : '#fff';
+      const textColor=activeSlide ? activeSlide.dataset.color || '#fff' : '#fff';
+      closeBtn.style.background=activeSlide ? activeSlide.dataset.closeBg || 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.18)';
+      closeBtn.style.color=textColor==='#fff'?'#fff':'#006830';
       wrap.querySelectorAll('[data-i]').forEach((d,i)=>{
-        d.style.background=i===current?'#fff':'rgba(255,255,255,.4)';
+        d.style.background=i===current?dotColor:'rgba(255,255,255,.45)';
+        d.style.boxShadow=i===current?'0 0 0 2px rgba(255,255,255,.55)':'none';
       });
       setTimeout(adjustHeroPadding, 550);
     }
     window.goToSlide=function(i){current=i;updateSlide()};
+    updateSlide();
     if(aktifList.length>1){
       setInterval(()=>{current=(current+1)%aktifList.length;updateSlide()},5000);
     }
