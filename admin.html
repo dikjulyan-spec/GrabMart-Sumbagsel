@@ -58,7 +58,7 @@ button{cursor:pointer}
   <div class="login-card">
     <div class="login-logo">🛠️</div>
     <div class="login-title">CMS GrabMart Sumbagsel</div>
-    <div class="login-sub">Kelola merchant baru, testimoni, FAQ, kontak WA, dan pengumuman website.</div>
+    <div class="login-sub">Kelola merchant baru, testimoni, FAQ, kontak WA, pengumuman, dan aktivitas Teras PERWIRA.</div>
     <input type="password" id="loginPass" placeholder="Masukkan password admin" onkeypress="if(event.key==='Enter')doLogin()">
     <button class="login-btn" id="loginBtn" onclick="doLogin()">🔓 Masuk Dashboard</button>
     <div class="login-err" id="loginErr">❌ Password salah</div>
@@ -196,10 +196,23 @@ const CONFIG = {
       {key:'btn', label:'Label Tombol', type:'text', help:'Contoh: Daftar Sekarang'},
       {key:'status', label:'Status', type:'select'}
     ]
+  },
+  teras_perwira: {
+    icon:'🤝', title:'Teras PERWIRA', desc:'Kelola aktivitas, dokumentasi, dan foto yang tampil di artikel Teras PERWIRA.', primary:'judul', image:'foto',
+    status:['aktif','nonaktif'], active:['aktif'],
+    fields:[
+      {key:'judul', label:'Judul Aktivitas', type:'text', required:true, max:120, help:'Contoh: Sharing Teras PERWIRA Palembang'},
+      {key:'kota', label:'Kota / Wilayah', type:'text', required:true, max:80, help:'Contoh: Palembang, Lampung, Jambi'},
+      {key:'tanggal', label:'Tanggal Aktivitas', type:'text', max:50, help:'Contoh: 09 Jul 2026 atau Juli 2026'},
+      {key:'deskripsi', label:'Deskripsi Aktivitas', type:'textarea', full:true, required:true, help:'Ceritakan ringkas kegiatan, topik sharing, atau manfaat untuk merchant.'},
+      {key:'link', label:'Link Detail / Postingan', type:'url', help:'Opsional. Bisa link artikel, dokumentasi, atau post sosial media. Wajib https:// kalau diisi.'},
+      {key:'status', label:'Status', type:'select'},
+      {key:'foto', label:'Foto Aktivitas', type:'image', full:true, help:'Upload JPG/PNG/WEBP maksimal 5MB. Foto ini akan tampil di galeri artikel.'}
+    ]
   }
 };
 
-const MENU_ORDER = ['merchant_baru','merchant','faq','kontak','pengumuman'];
+const MENU_ORDER = ['merchant_baru','merchant','faq','kontak','pengumuman','teras_perwira'];
 let currentSheet = 'merchant_baru';
 let currentData = [];
 let editId = null;
@@ -455,7 +468,8 @@ function getDisplayCols(sheet){
     merchant:[{key:'lokasi',label:'Lokasi',len:60},{key:'kategori',label:'Kategori',len:60},{key:'kutipan',label:'Kutipan',len:120}],
     faq:[{key:'jawaban',label:'Jawaban',len:180}],
     kontak:[{key:'wa',label:'WA',len:50},{key:'pesan',label:'Pesan',len:160}],
-    pengumuman:[{key:'btn',label:'Tombol',len:60},{key:'link',label:'Link',len:100}]
+    pengumuman:[{key:'btn',label:'Tombol',len:60},{key:'link',label:'Link',len:100}],
+    teras_perwira:[{key:'kota',label:'Kota',len:70},{key:'tanggal',label:'Tanggal',len:70},{key:'deskripsi',label:'Deskripsi',len:150}]
   };
   return map[sheet] || [];
 }
