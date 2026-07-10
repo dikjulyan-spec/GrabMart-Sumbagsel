@@ -58,7 +58,7 @@ button{cursor:pointer}
   <div class="login-card">
     <div class="login-logo">🛠️</div>
     <div class="login-title">CMS GrabMart Sumbagsel</div>
-    <div class="login-sub">Kelola merchant baru, testimoni, FAQ, kontak WA, pengumuman, dan aktivitas Teras PERWIRA.</div>
+    <div class="login-sub">Kelola merchant baru, collection merchant sukses, testimoni, FAQ, kontak WA, pengumuman, dan aktivitas Teras PERWIRA.</div>
     <input type="password" id="loginPass" placeholder="Masukkan password admin" onkeypress="if(event.key==='Enter')doLogin()">
     <button class="login-btn" id="loginBtn" onclick="doLogin()">🔓 Masuk Dashboard</button>
     <div class="login-err" id="loginErr">❌ Password salah</div>
@@ -168,6 +168,20 @@ const CONFIG = {
       {key:'foto', label:'Foto Merchant', type:'image', full:true, help:'Opsional. Bisa upload gambar atau isi URL gambar.'}
     ]
   },
+
+  merchant_sukses: {
+    icon:'🏆', title:'Merchant Sukses', desc:'Kelola collection merchant sukses di wilayah Sumbagsel. Data aktif tampil di homepage dan halaman Merchant Sukses.', primary:'nama_merchant', image:'logo',
+    status:['aktif','nonaktif'], active:['aktif'],
+    fields:[
+      {key:'nama_merchant', label:'Nama Merchant', type:'text', required:true, max:100, help:'Contoh: Pempek Beringin, Toko Sembako Maju Jaya'},
+      {key:'lokasi', label:'Lokasi / Kota', type:'text', required:true, max:100, help:'Contoh: Palembang, Bandar Lampung, Jambi, Bengkulu, Pangkal Pinang'},
+      {key:'kategori', label:'Category Merchant', type:'text', required:true, max:80, help:'Contoh: Kuliner, Sembako, Frozen Food, Apotek, Buah & Sayur'},
+      {key:'deskripsi', label:'Deskripsi Merchant', type:'textarea', full:true, required:true, help:'Ceritakan keunggulan merchant, produk favorit, atau pencapaian singkat.'},
+      {key:'link_landing', label:'Link Landing Page', type:'url', required:true, help:'Link halaman landing page merchant. Wajib diawali https://'},
+      {key:'status', label:'Status', type:'select'},
+      {key:'logo', label:'Foto Logo / Foto Merchant', type:'image', full:true, help:'Upload logo/foto merchant JPG, PNG, atau WEBP maksimal 5MB.'}
+    ]
+  },
   faq: {
     icon:'❓', title:'FAQ', desc:'Kelola pertanyaan dan jawaban yang tampil di section FAQ.', primary:'pertanyaan', image:null,
     status:['tampil','sembunyi'], active:['tampil'],
@@ -204,8 +218,8 @@ const CONFIG = {
       {key:'judul', label:'Judul Aktivitas', type:'text', required:true, max:120, help:'Contoh: Sharing Teras PERWIRA Palembang'},
       {key:'kota', label:'Kota / Wilayah', type:'text', required:true, max:80, help:'Contoh: Palembang, Lampung, Jambi'},
       {key:'tanggal', label:'Tanggal Aktivitas', type:'text', max:50, help:'Contoh: 09 Jul 2026 atau Juli 2026'},
-      {key:'deskripsi', label:'Ringkasan Aktivitas', type:'textarea', full:true, required:true, help:'Ringkasan pendek yang tampil di kartu artikel. Disarankan 150–500 karakter.'},
-      {key:'isi_artikel', label:'Isi Artikel Lengkap', type:'textarea', full:true, help:'Opsional. Maksimal 30.000 karakter. Tulis cerita lengkap kegiatan; kalau kosong, halaman detail memakai ringkasan aktivitas.'},
+      {key:'deskripsi', label:'Ringkasan Aktivitas', type:'textarea', full:true, required:true, help:'Ringkasan pendek yang tampil di kartu artikel.'},
+      {key:'isi_artikel', label:'Isi Artikel Lengkap', type:'textarea', full:true, help:'Opsional. Tulis cerita lengkap kegiatan. Kalau kosong, halaman detail akan memakai ringkasan aktivitas.'},
       {key:'link', label:'Link Sumber / Postingan Eksternal', type:'url', help:'Opsional. Bisa link dokumentasi, sosial media, atau sumber lain. Wajib https:// kalau diisi.'},
       {key:'status', label:'Status', type:'select'},
       {key:'foto', label:'Foto Aktivitas', type:'image', full:true, help:'Upload JPG/PNG/WEBP maksimal 5MB. Foto ini akan tampil di galeri artikel.'}
@@ -213,7 +227,7 @@ const CONFIG = {
   }
 };
 
-const MENU_ORDER = ['merchant_baru','merchant','faq','kontak','pengumuman','teras_perwira'];
+const MENU_ORDER = ['merchant_baru','merchant_sukses','merchant','faq','kontak','pengumuman','teras_perwira'];
 let currentSheet = 'merchant_baru';
 let currentData = [];
 let editId = null;
@@ -467,6 +481,7 @@ function getDisplayCols(sheet){
   const map = {
     merchant_baru:[{key:'lokasi',label:'Lokasi',len:60},{key:'tanggal',label:'Tanggal',len:40},{key:'link_toko',label:'Link',len:80}],
     merchant:[{key:'lokasi',label:'Lokasi',len:60},{key:'kategori',label:'Kategori',len:60},{key:'kutipan',label:'Kutipan',len:120}],
+    merchant_sukses:[{key:'lokasi',label:'Lokasi',len:80},{key:'kategori',label:'Category',len:80},{key:'deskripsi',label:'Deskripsi',len:150},{key:'link_landing',label:'Landing Page',len:120}],
     faq:[{key:'jawaban',label:'Jawaban',len:180}],
     kontak:[{key:'wa',label:'WA',len:50},{key:'pesan',label:'Pesan',len:160}],
     pengumuman:[{key:'btn',label:'Tombol',len:60},{key:'link',label:'Link',len:100}],

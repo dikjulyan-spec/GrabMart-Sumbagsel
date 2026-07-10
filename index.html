@@ -332,6 +332,26 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 /* ── PANDUAN DROPDOWN / ARTICLE MENU ── */
 .nav-dropdown{position:relative;list-style:none}.nav-drop-trigger{display:inline-flex!important;align-items:center;gap:6px;cursor:pointer}.nav-drop-menu{position:absolute;top:calc(100% + 12px);right:-120px;width:330px;background:#fff;border:1.5px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);padding:10px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all .22s;z-index:1200}.nav-dropdown:hover .nav-drop-menu,.nav-dropdown:focus-within .nav-drop-menu{opacity:1;visibility:visible;transform:translateY(0)}.nav-drop-menu a{display:flex!important;gap:12px;align-items:flex-start;color:var(--text)!important;padding:12px!important;border-radius:12px;text-decoration:none}.nav-drop-menu a::after{display:none}.nav-drop-menu a:hover{background:var(--green-bg)}.nav-drop-ico{font-size:1.2rem;line-height:1}.nav-drop-title{display:block;font-weight:900;font-size:.85rem;line-height:1.25}.nav-drop-desc{display:block;font-size:.72rem;color:var(--text-3);font-weight:650;line-height:1.4;margin-top:2px}.mob-guide-btn{width:100%;background:none;border:0;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:700;padding:14px 0;border-bottom:1px solid var(--green-light);text-align:left;display:flex;justify-content:space-between;align-items:center}.mob-guide-list{display:none;background:var(--green-bg);border:1.5px solid var(--border);border-radius:14px;margin:10px 0;padding:8px 12px}.mob-guide-list.open{display:block}.mob-guide-list a{font-size:.92rem!important;padding:9px 0!important;border-bottom:1px dashed var(--border)!important;color:var(--green-dark)!important}.mob-guide-list a:last-child{border-bottom:0!important}
 
+
+/* ── MERCHANT SUKSES COLLECTION ── */
+.msuccess-section{background:#fff;padding:72px 5vw}
+.msuccess-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.msuccess-card{background:linear-gradient(145deg,#fff,#F4FBF5);border:1.5px solid var(--border);border-radius:20px;padding:20px;box-shadow:0 4px 18px rgba(0,100,50,.07);display:flex;flex-direction:column;gap:12px;transition:all .25s;color:inherit;text-decoration:none;min-height:260px}
+.msuccess-card:hover{border-color:var(--green);box-shadow:var(--shadow-lg);transform:translateY(-4px);text-decoration:none}
+.msuccess-top{display:flex;gap:14px;align-items:center}
+.msuccess-logo{width:72px;height:72px;border-radius:18px;background:var(--green-light);border:1.5px solid var(--border);object-fit:cover;flex-shrink:0}
+.msuccess-noimg{width:72px;height:72px;border-radius:18px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.msuccess-name{font-weight:900;color:var(--text);font-size:1rem;line-height:1.25;margin-bottom:4px}
+.msuccess-meta{display:flex;flex-wrap:wrap;gap:6px}
+.msuccess-pill{background:var(--green-light);border:1px solid var(--border);color:var(--green-dark);border-radius:999px;padding:3px 9px;font-size:.68rem;font-weight:900}
+.msuccess-desc{font-size:.84rem;color:var(--text-3);line-height:1.65;font-weight:600;flex:1}
+.msuccess-link{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;border-radius:11px;padding:10px 12px;font-size:.82rem;font-weight:900;text-decoration:none;box-shadow:0 4px 14px rgba(0,177,79,.22)}
+.msuccess-card:hover .msuccess-link{background:var(--green-dark)}
+.msuccess-empty{grid-column:1/-1;text-align:center;padding:34px;background:var(--green-bg);border:1.5px dashed var(--border);border-radius:18px;color:var(--text-3);font-weight:700}
+.msuccess-actions{text-align:center;margin-top:28px}
+@media(max-width:960px){.msuccess-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.msuccess-grid{grid-template-columns:1fr}.msuccess-card{min-height:auto}.msuccess-top{align-items:flex-start}.msuccess-logo,.msuccess-noimg{width:64px;height:64px;border-radius:16px}}
+
 /* ── RESPONSIVE TABLET ── */
 @media(max-width:960px){
   .nav-links{display:none}
@@ -406,6 +426,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
   <ul class="nav-links">
     <li><a href="#" class="active">Beranda</a></li>
     <li><a href="#merchant-baru">Merchant Baru</a></li>
+    <li><a href="/merchant-sukses/">Merchant Sukses</a></li>
     <li><a href="#why">Keuntungan</a></li>
     <li><a href="#wilayah">Wilayah Layanan</a></li>
     <li class="nav-dropdown">
@@ -434,6 +455,7 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
 <div id="mob-menu">
   <a href="#" onclick="closeMenu()">Beranda</a>
   <a href="#merchant-baru" onclick="closeMenu()">Merchant Baru</a>
+  <a href="/merchant-sukses/" onclick="closeMenu()">Merchant Sukses</a>
   <a href="#why" onclick="closeMenu()">Keuntungan</a>
   <a href="#wilayah" onclick="closeMenu()">Wilayah Layanan</a>
   <button class="mob-guide-btn" onclick="toggleMobileGuide()" type="button"><span>Panduan Artikel</span><span>▾</span></button>
@@ -496,6 +518,25 @@ footer{background:var(--green-deep);padding:36px 5vw;display:flex;justify-conten
       <div style="font-size:2rem;margin-bottom:10px;">⏳</div>
       <div>Memuat data...</div>
     </div>
+  </div>
+</section>
+
+
+<!-- MERCHANT SUKSES COLLECTION -->
+<section id="merchant-sukses" class="msuccess-section">
+  <div class="section-header reveal">
+    <div class="section-chip">✦ Collection Merchant Sukses</div>
+    <h2 class="sec-t">Merchant Sukses <span class="g">di Sumbagsel</span></h2>
+    <p class="sec-d">Kumpulan merchant pilihan dari berbagai kota Sumbagsel yang sudah aktif mengembangkan bisnis digital bersama ekosistem GrabMerchant.</p>
+  </div>
+  <div class="msuccess-grid reveal" id="merchant-sukses-container">
+    <div class="msuccess-empty">
+      <div style="font-size:2rem;margin-bottom:8px;">⏳</div>
+      <div>Memuat collection merchant sukses...</div>
+    </div>
+  </div>
+  <div class="msuccess-actions reveal">
+    <a href="/merchant-sukses/" class="btn-outline" style="display:inline-flex;">🏆 Lihat Semua Merchant Sukses</a>
   </div>
 </section>
 
@@ -986,6 +1027,37 @@ async function loadMerchantBaru(){
   }
 }
 
+
+async function loadMerchantSukses(){
+  try{
+    const res=await fetch(GS_API+'?sheet=merchant_sukses');
+    const data=await res.json();
+    const container=document.getElementById('merchant-sukses-container');
+    if(!container)return;
+    if(!data||data.error||data.length===0){
+      container.innerHTML='<div class="msuccess-empty">Belum ada collection merchant sukses yang diposting.</div>';
+      return;
+    }
+    const aktif=data.filter(d=>String(d.status||'').toLowerCase()==='aktif');
+    if(!aktif.length){
+      container.innerHTML='<div class="msuccess-empty">Belum ada collection merchant sukses yang aktif.</div>';
+      return;
+    }
+    container.innerHTML=aktif.slice(0,6).map(m=>{
+      const logo=m.logo?`<img class="msuccess-logo" src="${m.logo}" alt="${m.nama_merchant||'Merchant sukses'}" loading="lazy" onerror="this.outerHTML='<div class=&quot;msuccess-noimg&quot;>🏪</div>'">`:`<div class="msuccess-noimg">🏪</div>`;
+      const link=m.link_landing||'/merchant-sukses/';
+      return `<a class="msuccess-card" href="${link}" ${link.startsWith('http')&&!link.includes('mitrasumbagsel.com')?'target="_blank" rel="noopener"':''} onclick="trackDaftar('merchant-sukses')">
+        <div class="msuccess-top">${logo}<div><div class="msuccess-name">${m.nama_merchant||'-'}</div><div class="msuccess-meta"><span class="msuccess-pill">📍 ${m.lokasi||'-'}</span><span class="msuccess-pill">${m.kategori||'Merchant'}</span></div></div></div>
+        <div class="msuccess-desc">${m.deskripsi||'Merchant aktif di ekosistem GrabMerchant Sumbagsel.'}</div>
+        <span class="msuccess-link">Lihat Landing Page →</span>
+      </a>`;
+    }).join('');
+  }catch(e){
+    const container=document.getElementById('merchant-sukses-container');
+    if(container)container.innerHTML='<div class="msuccess-empty">Gagal memuat collection merchant sukses.</div>';
+  }
+}
+
 async function loadFaq(){
   try{
     const res=await fetch(GS_API+'?sheet=faq');
@@ -1134,6 +1206,7 @@ async function loadPengumuman(){
 document.addEventListener('DOMContentLoaded',()=>{
   loadMerchant();
   loadMerchantBaru();
+  loadMerchantSukses();
   loadFaq();
   loadKontak();
   loadPengumuman();
